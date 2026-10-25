@@ -517,11 +517,3 @@
 	</include>
 
 </includes>
-auto</width>
-			<label>$VAR[videoosd_Subtitle_Toggle_Label]</label>
-			<textcolor>$VAR[Light_Color]</textcolor>
-			<font>MusicPlayer_Title</font>
-		</control>
-	</include>
-
-</includes>

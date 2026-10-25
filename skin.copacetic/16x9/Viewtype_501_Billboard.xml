@@ -87,13 +87,3 @@
 
 
 </includes>
-P[BillboardView_Flags_All] + !String.IsEqual(Control.GetLabel(914),flags/blank.png) + !String.IsEqual(Control.GetLabel(915),flags/blank.png)">Conditional</animation>
-		<include content="Now_Playing_Icon">
-			<param name="visible" value="$EXP[ListItem(0)_NowPlaying]" />
-		</include>
-	</control>
-
-
-
-
-</includes>ludes>

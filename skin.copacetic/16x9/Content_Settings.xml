@@ -1673,15 +1673,3 @@
 	</include>
 
 </includes>
-ed>!Skin.HasSetting(GlobalSearch_Songs_Disabled)</selected>
-		</control>
-		<control type="button" id="61">
-			<description>Globalsearch limit</description>
-			<visible>ControlGroup(3200).HasFocus(6) + !Skin.HasSetting(GlobalSearch_Songs_Disabled)</visible>
-			<label>- $LOCALIZE[21427]</label>
-			<label2>$INFO[Skin.String(GlobalSearch_Songs_Limit)]</label2>
-			<onclick>Skin.SetNumeric(GlobalSearch_Songs_Limit)</onclick>
-		</control>
-	</include>
-
-</includes>

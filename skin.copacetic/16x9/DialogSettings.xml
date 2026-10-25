@@ -43,11 +43,3 @@
 		</include>
 	</controls>
 </window>
-	<param name="button2_texture" value="Cross" />
-				<param name="button3" value="true" />
-				<param name="button3_id" value="28" />
-				<param name="button3_texture" value="Check" />
-			</include>
-		</include>
-	</controls>
-</window>

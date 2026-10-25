@@ -112,6 +112,11 @@ msgctxt "#31034"
 msgid "Detailed list (WIP)"
 msgstr ""
 
+#Subtitle search dialog
+msgctxt "#31044"
+msgid "Local subtitle found!"
+msgstr ""
+
 
 
 

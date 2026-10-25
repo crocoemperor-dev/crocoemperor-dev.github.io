@@ -1963,19 +1963,3 @@
 	<expression name="GridView_Details_Breadcrumb_Favourites">Container.Content(favourites) + Skin.String(GridView_Details_Favourites,Breadcrumb)</expression>
 	<expression name="GridView_Details_On">$EXP[GridView_Details_Title] | $EXP[GridView_Details_Info]</expression>
 </includes>
-Movies_InPlaylist5] + Skin.String(GridView_Details_Playlist5,Breadcrumb)</expression>
-	<expression name="GridView_Details_Breadcrumb_Playlist6">$EXP[Movies_InPlaylist6] + Skin.String(GridView_Details_Playlist6,Breadcrumb)</expression>
-	<expression name="GridView_Details_Breadcrumb_Sets">Container.Content(sets) + Skin.String(GridView_Details_Sets,Breadcrumb)</expression>
-	<expression name="GridView_Details_Breadcrumb_TVShows">Container.Content(tvshows) + Skin.String(GridView_Details_TVShows,Breadcrumb)</expression>
-	<expression name="GridView_Details_Breadcrumb_Seasons">Container.Content(seasons) + Skin.String(GridView_Details_Seasons,Breadcrumb)</expression>
-	<expression name="GridView_Details_Breadcrumb_Episodes">Container.Content(episodes) + Skin.String(GridView_Details_Episodes,Breadcrumb)</expression>
-	<expression name="GridView_Details_Breadcrumb_Artists">Container.Content(artists) + Skin.String(GridView_Details_Artists,Breadcrumb)</expression>
-	<expression name="GridView_Details_Breadcrumb_Albums">Container.Content(albums) + Skin.String(GridView_Details_Albums,Breadcrumb)</expression>
-	<expression name="GridView_Details_Breadcrumb_MusicVideos">Container.Content(musicvideos) + Skin.String(GridView_Details_MusicVideos,Breadcrumb)</expression>
-	<expression name="GridView_Details_Breadcrumb_Addons">Container.Content(addons) + Skin.String(GridView_Details_Addons,Breadcrumb)</expression>
-	<expression name="GridView_Details_Breadcrumb_Images">Container.Content(images) + Skin.String(GridView_Details_Images,Breadcrumb)</expression>
-	<expression name="GridView_Details_Breadcrumb_Programs_Folders">$EXP[Container_Programs_IsFolders] + Skin.String(GridView_Details_Programs_Folders,Breadcrumb)</expression>
-	<expression name="GridView_Details_Breadcrumb_Programs_Files">$EXP[Container_Programs_IsFiles] + Skin.String(GridView_Details_Programs_Files,Breadcrumb)</expression>
-	<expression name="GridView_Details_Breadcrumb_Favourites">Container.Content(favourites) + Skin.String(GridView_Details_Favourites,Breadcrumb)</expression>
-	<expression name="GridView_Details_On">$EXP[GridView_Details_Title] | $EXP[GridView_Details_Info]</expression>
-</includes>
