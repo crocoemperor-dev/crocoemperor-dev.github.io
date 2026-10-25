@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Trailer controls: opened (Timers.xml) once a context menu trailer is playing in the Strip view, closed when it ends. Draws nothing (the seek bar / pause icon live in Extras_Trailer_Window.xml).
+     It has no <visible> condition, so Kodi makes it modal and it receives every key while open. That matters for Back:
+     many remotes send PreviousMenu rather than Back, which controls in the videos window never see - the window
+     itself handles it and returns to the previous screen. Here both just close this dialog, which ends the trailer.
+     OK: play/pause, Left/Right: -10s/+10s, Down/Up: -30s/+30s, Back: stop. -->
+<window type="dialog" id="1191">
+	<defaultcontrol always="true">100</defaultcontrol>
+	<!-- Back (or PreviousMenu) closes it: stop the trailer right away; the artwork then shrinks back (Timers.xml cleans up) -->
+	<onunload condition="!String.IsEmpty(Window(home).Property(Trailer_Window_Playing)) + Player.HasVideo">SetProperty(Trailer_Window_Closing,true,home)</onunload>
+	<onunload condition="!String.IsEmpty(Window(home).Property(Trailer_Window_Playing)) + Player.HasVideo">PlayerControl(Stop)</onunload>
+	<controls>
+		<control type="button" id="100">
+			<left>-10</left>
+			<top>-10</top>
+			<width>1</width>
+			<height>1</height>
+			<texturefocus />
+			<texturenofocus />
+			<onclick condition="Player.HasVideo">PlayerControl(Play)</onclick>
+			<onleft condition="Player.HasVideo">Seek(-10)</onleft>
+			<onright condition="Player.HasVideo">Seek(10)</onright>
+			<ondown condition="Player.HasVideo">Seek(-30)</ondown>
+			<onup condition="Player.HasVideo">Seek(30)</onup>
+			<!-- Nothing playing (normally this is closed first): any key just closes it -->
+			<onclick condition="!Player.HasVideo">Close</onclick>
+			<onleft condition="!Player.HasVideo">Close</onleft>
+			<onright condition="!Player.HasVideo">Close</onright>
+			<ondown condition="!Player.HasVideo">Close</ondown>
+			<onup condition="!Player.HasVideo">Close</onup>
+		</control>
+	</controls>
+</window>

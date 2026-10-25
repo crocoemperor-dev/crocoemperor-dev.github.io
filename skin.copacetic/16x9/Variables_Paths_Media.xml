@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+
+	<variable name="AutoComplete_Path">
+		<value condition="System.AddonIsEnabled(plugin.program.autocompletion) + !System.HasHiddenInput">plugin://plugin.program.autocompletion?info=autocomplete&amp;&amp;id=$INFO[Control.GetLabel(312).index(1)]&amp;&amp;limit=9</value>
+	</variable>
+
+	<include name="Background_Home_Content">
+		<content sortby="random" limit="40" browse="never">$VAR[Background_Home_Path]</content>
+	</include>
+
+	<include name="Background_Login_Content">
+		<content sortby="random" limit="40" browse="never">$VAR[Background_Login_Path]</content>
+	</include>
+
+	<include name="Background_Global_Content">
+		<content sortby="random" browse="never">$VAR[Background_Global_Path]</content>
+	</include>
+
+	<include name="Background_Media_Content">
+		<content sortby="random" browse="never">$VAR[Background_Media_Path]</content>
+	</include>
+
+	<variable name="Background_Home_Path">
+		<!-- Global override - script.copacetic.helper -->
+		<value condition="Skin.HasSetting(Background_Slideshow2) + String.Contains(Window(home).Property(CurrentSlideshow),2) + Skin.String(Background_Slideshow2,Custom) + Skin.String(Background_Slideshow2_Custom_Path)">$INFO[Skin.String(Background_Slideshow2_Custom_Path)]</value>
+		<value condition="Skin.HasSetting(Home_Background_Override_Enabled) + Skin.String(Background_Slideshow_Custom_Path)">$INFO[Skin.String(Background_Slideshow_Custom_Path)]</value>
+		<!-- Item override -->
+		<value condition="String.IsEqual(Container(3000).ListItem.Property(backgroundType),playlist)">$INFO[Container(3000).ListItem.Property(backgroundPath)]</value>
+		<!-- playlists, xml library paths e.g. inprogress or sets, video and music db:// -->
+		<value condition="String.Contains(Container(3000).ListItem.Property(path),.xsp)">$INFO[Container(3000).ListItem.Property(path)]</value>
+		<value condition="String.Contains(Container(3000).ListItem.Property(path),.xml)">$INFO[Container(3000).ListItem.Property(path)]</value>
+		<value condition="String.Contains(Container(3000).ListItem.Property(path),db://)">$INFO[Container(3000).ListItem.Property(path)]</value>
+		<!-- music paths -->
+		<value condition="String.Contains(Container(3000).ListItem.Property(path),recentlyaddedalbums)">musicdb://recentlyaddedalbums/</value>
+		<value condition="String.Contains(Container(3000).ListItem.Property(path),recentlyplayedalbums)">musicdb://recentlyplayedalbums/</value>
+		<value condition="String.Contains(Container(3000).ListItem.Property(path),musicplaylists)">musicdb://artists/?albumartistsonly=true</value>
+		<value condition="String.Contains(Container(3000).ListItem.Property(path),musicdb)">musicdb://artists/?albumartistsonly=true</value>
+		<!-- video paths -->
+		<value condition="String.Contains(Container(3000).ListItem.Property(path),recentlyaddedepisodes)">videodb://recentlyaddedepisodes/</value>
+		<value condition="String.Contains(Container(3000).ListItem.Property(path),inprogresstvshows)">videodb://inprogresstvshows</value>
+		<value condition="String.Contains(Container(3000).ListItem.Property(path),tvshows)">videodb://tvshows/titles/</value>
+		<value condition="String.Contains(Container(3000).ListItem.Property(path),recentlyaddedmovies)">videodb://recentlyaddedmovies/</value>
+		<value condition="String.Contains(Container(3000).ListItem.Property(path),sets)">videodb://movies/sets/</value>
+		<value condition="String.Contains(Container(3000).ListItem.Property(path),movies)">videodb://movies/titles/</value>
+		<!-- fallbacks -->
+		<value condition="Library.HasContent(Movies)">videodb://movies/titles/</value>
+		<value condition="Library.HasContent(TVShows)">videodb://tvshows/titles/</value>
+		<value condition="Library.HasContent(Music)">musicdb://artists/?albumartistsonly=true</value>
+	</variable>
+
+	<variable name="Background_Login_Path">
+		<value condition="Library.HasContent(Movies)">videodb://movies/titles/</value>
+		<value condition="Library.HasContent(TVShows)">videodb://tvshows/titles/</value>
+		<value condition="Library.HasContent(Music)">musicdb://artists/?albumartistsonly=true</value>
+	</variable>
+
+	<variable name="Background_Global_Path">
+		<value condition="Skin.HasSetting(Background_Slideshow2) + String.Contains(Window(home).Property(CurrentSlideshow),2) + Skin.String(Background_Slideshow2,Custom) + Skin.String(Background_Slideshow2_Custom_Path)">$INFO[Skin.String(Background_Slideshow2_Custom_Path)]</value>
+		<value condition="Skin.String(Background_Slideshow,Custom) + Skin.String(Background_Slideshow_Custom_Path)">$INFO[Skin.String(Background_Slideshow_Custom_Path)]</value>
+	</variable>
+
+	<variable name="Background_Media_Path">
+		<value condition="!String.Contains(Container.FolderPath,plugin://)">$INFO[ListItem.FolderPath]</value>
+	</variable>
+
+	<variable name="Secondary_List_Path">
+		<value condition="Container.Content(movies) + ListItem.HasVideoVersions	">$INFO[ListItem.DBID,videodb://movies/videoversions/0?mediaid=,]</value>
+		<value>$INFO[ListItem.FolderPath]</value>
+	</variable>
+
+	<variable name="Secondary_List_Sort">
+		<value condition="Container.Content(tvshows)">season</value>
+		<value>year</value>
+	</variable>
+
+	<variable name="Secondary_List_Sort_Order">
+		<value condition="Window.Is(music)">descending</value>
+		<value>ascending</value>
+	</variable>
+
+	<variable name="Secondary_List_Target">
+		<value condition="Window.Is(music)">music</value>
+		<value>videos</value>
+	</variable>
+
+</includes>

@@ -1,0 +1,186 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<includes>
+	<include name="skinshortcuts-mainmenu">
+		<item id="1">
+			<label>Movies</label>
+			<icon>DefaultVideoPlaylists.png</icon>
+			<onclick>ActivateWindow(Videos,special://profile/playlists/video/Movies.xsp,return)</onclick>
+			<property name="id">1</property>
+			<property name="name">movies</property>
+			<property name="menu">mainmenu</property>
+			<property name="action">ActivateWindow(Videos,special://profile/playlists/video/Movies.xsp,return)</property>
+			<property name="path">special://profile/playlists/video/Movies.xsp</property>
+			<property name="submenuVisibility">movies</property>
+			<property name="background">playlistBackground</property>
+			<property name="backgroundLabel">Playlist: Movies</property>
+			<property name="backgroundPath">special://profile/playlists/video/Movies.xsp</property>
+			<property name="backgroundPlaylistType">movies</property>
+			<property name="backgroundType">playlist</property>
+		</item>
+		<item id="2">
+			<label>Sets</label>
+			<icon>DefaultMovies.png</icon>
+			<onclick>ActivateWindow(Videos,library://video/movies/sets.xml/,return)</onclick>
+			<property name="id">2</property>
+			<property name="name">user-8a7397eb</property>
+			<property name="menu">mainmenu</property>
+			<property name="action">ActivateWindow(Videos,library://video/movies/sets.xml/,return)</property>
+			<property name="path">library://video/movies/sets.xml/</property>
+			<property name="submenuVisibility">user-8a7397eb</property>
+		</item>
+		<item id="3">
+			<label>Shows</label>
+			<icon>DefaultVideoPlaylists.png</icon>
+			<onclick>ActivateWindow(Videos,special://profile/playlists/video/Shows.xsp,return)</onclick>
+			<property name="id">3</property>
+			<property name="name">tvshows</property>
+			<property name="menu">mainmenu</property>
+			<property name="action">ActivateWindow(Videos,special://profile/playlists/video/Shows.xsp,return)</property>
+			<property name="path">special://profile/playlists/video/Shows.xsp</property>
+			<property name="submenuVisibility">tvshows</property>
+			<property name="background">playlistBackground</property>
+			<property name="backgroundLabel">Playlist: Shows</property>
+			<property name="backgroundPath">special://profile/playlists/video/Shows.xsp</property>
+			<property name="backgroundPlaylistType">tvshows</property>
+			<property name="backgroundType">playlist</property>
+		</item>
+		<item id="4">
+			<label>Anime</label>
+			<icon>DefaultVideoPlaylists.png</icon>
+			<onclick>ActivateWindow(Videos,special://profile/playlists/video/Anime.xsp,return)</onclick>
+			<property name="id">4</property>
+			<property name="name">user-33f4d0ed</property>
+			<property name="menu">mainmenu</property>
+			<property name="action">ActivateWindow(Videos,special://profile/playlists/video/Anime.xsp,return)</property>
+			<property name="path">special://profile/playlists/video/Anime.xsp</property>
+			<property name="submenuVisibility">user-33f4d0ed</property>
+			<property name="background">playlistBackground</property>
+			<property name="backgroundLabel">Playlist: Anime</property>
+			<property name="backgroundPath">special://profile/playlists/video/Anime.xsp</property>
+			<property name="backgroundType">playlist</property>
+			<property name="backgroundPlaylistType">tvshows</property>
+		</item>
+		<item id="5">
+			<label>Bollywood</label>
+			<icon>DefaultVideoPlaylists.png</icon>
+			<onclick>ActivateWindow(Videos,special://profile/playlists/video/Bollywood.xsp,return)</onclick>
+			<property name="id">5</property>
+			<property name="name">user-16a2cb67</property>
+			<property name="menu">mainmenu</property>
+			<property name="action">ActivateWindow(Videos,special://profile/playlists/video/Bollywood.xsp,return)</property>
+			<property name="path">special://profile/playlists/video/Bollywood.xsp</property>
+			<property name="submenuVisibility">user-16a2cb67</property>
+			<property name="background">playlistBackground</property>
+			<property name="backgroundLabel">Playlist: Bollywood</property>
+			<property name="backgroundPath">special://profile/playlists/video/Bollywood.xsp</property>
+			<property name="backgroundType">playlist</property>
+			<property name="backgroundPlaylistType">movies</property>
+		</item>
+		<item id="6">
+			<label>Anime Films</label>
+			<icon>DefaultVideoPlaylists.png</icon>
+			<onclick>ActivateWindow(Videos,special://profile/playlists/video/Anime Movies.xsp,return)</onclick>
+			<property name="id">6</property>
+			<property name="name">user-eb225622</property>
+			<property name="menu">mainmenu</property>
+			<property name="action">ActivateWindow(Videos,special://profile/playlists/video/Anime Movies.xsp,return)</property>
+			<property name="path">special://profile/playlists/video/Anime Movies.xsp</property>
+			<property name="submenuVisibility">user-eb225622</property>
+			<property name="background">playlistBackground</property>
+			<property name="backgroundLabel">Playlist: Anime Movies</property>
+			<property name="backgroundPath">special://profile/playlists/video/Anime Movies.xsp</property>
+			<property name="backgroundType">playlist</property>
+			<property name="backgroundPlaylistType">movies</property>
+		</item>
+		<item id="7">
+			<label>Menu</label>
+			<icon>DefaultShortcut.png</icon>
+			<onclick>ActivateWindow(shutdownmenu)</onclick>
+			<property name="id">7</property>
+			<property name="name">user-ee1b51c0</property>
+			<property name="menu">mainmenu</property>
+			<property name="action">ActivateWindow(shutdownmenu)</property>
+			<property name="path">ActivateWindow(shutdownmenu)</property>
+			<property name="submenuVisibility">user-ee1b51c0</property>
+			<property name="background">playlistBackground</property>
+			<property name="backgroundLabel">Playlist: Animated Movies</property>
+			<property name="backgroundPath">special://profile/playlists/video/Animated Movies.xsp</property>
+			<property name="backgroundType">playlist</property>
+			<property name="backgroundPlaylistType">movies</property>
+		</item>
+	</include>
+	<include name="skinshortcuts-shutdownmenu">
+		<item id="1">
+			<label>$LOCALIZE[24001]</label>
+			<icon>DefaultShortcut.png</icon>
+			<onclick>Dialog.Close(all,force)</onclick>
+			<onclick>ActivateWindow(addonbrowser)</onclick>
+			<property name="id">1</property>
+			<property name="name">addons</property>
+			<property name="menu">shutdownmenu</property>
+			<property name="action">ActivateWindow(addonbrowser)</property>
+			<property name="path">ActivateWindow(addonbrowser)</property>
+			<property name="submenuVisibility">addons</property>
+		</item>
+		<item id="2">
+			<label>Files</label>
+			<icon>DefaultFolder.png</icon>
+			<onclick>Dialog.Close(all,force)</onclick>
+			<onclick>ActivateWindow(Videos,library://video/files.xml/,return)</onclick>
+			<property name="id">2</property>
+			<property name="name">user-6c7b5a79</property>
+			<property name="menu">shutdownmenu</property>
+			<property name="action">ActivateWindow(Videos,library://video/files.xml/,return)</property>
+			<property name="path">library://video/files.xml/</property>
+			<property name="submenuVisibility">user-6c7b5a79</property>
+		</item>
+		<item id="3">
+			<label>YouTube</label>
+			<icon>image://%2fstorage%2f.kodi%2faddons%2fplugin.video.youtube%2fresources%2fmedia%2ficon.png/</icon>
+			<onclick>Dialog.Close(all,force)</onclick>
+			<onclick>ActivateWindow(Videos,plugin://plugin.video.youtube/,return)</onclick>
+			<property name="id">3</property>
+			<property name="name">user-14cb660a</property>
+			<property name="menu">shutdownmenu</property>
+			<property name="action">ActivateWindow(Videos,plugin://plugin.video.youtube/,return)</property>
+			<property name="path">plugin://plugin.video.youtube/</property>
+			<property name="submenuVisibility">user-14cb660a</property>
+		</item>
+		<item id="4">
+			<label>$LOCALIZE[360]</label>
+			<icon>DefaultProgram.png</icon>
+			<onclick>Dialog.Close(all,force)</onclick>
+			<onclick>ActivateScreensaver</onclick>
+			<property name="id">4</property>
+			<property name="name">user-83235d2e</property>
+			<property name="menu">shutdownmenu</property>
+			<property name="action">ActivateScreensaver</property>
+			<property name="path">ActivateScreensaver</property>
+			<property name="submenuVisibility">user-83235d2e</property>
+		</item>
+		<item id="5">
+			<label>$LOCALIZE[13013]</label>
+			<icon>DefaultProgram.png</icon>
+			<onclick>Dialog.Close(all,force)</onclick>
+			<onclick>Reboot()</onclick>
+			<property name="id">5</property>
+			<property name="name">user-7ba8a368</property>
+			<property name="menu">shutdownmenu</property>
+			<property name="action">Reboot()</property>
+			<property name="path">Reboot()</property>
+			<property name="submenuVisibility">user-7ba8a368</property>
+		</item>
+		<item id="6">
+			<label>Power</label>
+			<icon>DefaultProgram.png</icon>
+			<onclick>Dialog.Close(all,force)</onclick>
+			<onclick>Powerdown()</onclick>
+			<property name="id">6</property>
+			<property name="name">user-d38f3165</property>
+			<property name="menu">shutdownmenu</property>
+			<property name="action">Powerdown()</property>
+			<property name="path">Powerdown()</property>
+			<property name="submenuVisibility">user-d38f3165</property>
+		</item>
+	</include>
+</includes>

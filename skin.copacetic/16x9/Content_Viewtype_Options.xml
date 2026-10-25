@@ -1,0 +1,916 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+
+	<include name="AddonBrowser_Menu_Options">
+		<!-- Settings -->
+		<item>
+			<onclick>SendClick(5)</onclick>
+			<label>$LOCALIZE[10004]</label>
+			<label2>$LOCALIZE[10004]</label2>
+			<visible>Control.IsEnabled(5)</visible>
+		</item>
+		<!-- Broken -->
+		<item>
+			<onclick>SetFocus(50)</onclick>
+			<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[16039] $VAR[Copacetic_Chevron_Right]</label>
+			<label2>$LOCALIZE[24999] $VAR[Copacetic_Divider_Bold] $LOCALIZE[16039]</label2>
+			<property name="ActionLeft">SendClick(8)</property>
+			<property name="ActionLeft2">Skin.SetString(AddonBroken,on)</property>
+			<property name="ActionRight">SendClick(8)</property>
+			<property name="ActionRight2">Skin.SetString(AddonBroken,on)</property>
+			<visible>Control.IsEnabled(8) + String.Contains(Skin.String(AddonBroken),off)</visible>
+		</item>
+		<item>
+			<onclick>SetFocus(50)</onclick>
+			<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[16041] $VAR[Copacetic_Chevron_Right]</label>
+			<label2>$LOCALIZE[24999] $VAR[Copacetic_Divider_Bold] $LOCALIZE[16041]</label2>
+			<property name="ActionLeft">SendClick(8)</property>
+			<property name="ActionLeft2">Skin.SetString(AddonBroken,off)</property>
+			<property name="ActionRight">SendClick(8)</property>
+			<property name="ActionRight2">Skin.SetString(AddonBroken,off)</property>
+			<visible>Control.IsEnabled(8) + String.Contains(Skin.String(AddonBroken),on)</visible>
+		</item>
+		<!-- Check updates -->
+		<item>
+			<onclick>SendClick(9)</onclick>
+			<onclick>SetFocus(50)</onclick>
+			<label>$LOCALIZE[24034]</label>
+			<label2>$LOCALIZE[24034]</label2>
+			<visible>Control.IsEnabled(9)</visible>
+		</item>
+	</include>
+
+	<include name="Common_Menu_Options">
+		<param name="target_id" default="50" /> 
+		<definition>
+			<!-- globalsearch -->
+			<item>
+				<onclick>SetFocus(50)</onclick>
+				<onclick>RunScript(script.copacetic.helper,action=globalsearch_input)</onclick>
+				<label>$LOCALIZE[137]</label>
+				<label2>$LOCALIZE[137]</label2>
+				<visible>Control.IsEnabled(8) + [Window.Is(videos) | Window.Is(music)]</visible>
+			</item>
+			<!-- Shared -->
+			<!-- Sort -->
+			<item id="2">
+				<onclick>SetFocus($PARAM[target_id])</onclick>
+				<label>$VAR[Copacetic_Chevron_Left] $INFO[Container.SortMethod] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31012] $VAR[Copacetic_Divider_Bold] $INFO[Container.SortMethod]</label2>
+				<property name="ActionLeft">Container.PreviousSortMethod</property>
+				<property name="ActionRight">Container.NextSortMethod</property>
+				<visible>Control.IsEnabled(3) + Integer.IsGreater(Container.NumItems,1)</visible>
+			</item>
+			<!-- Sort mode -->
+			<item id="2">
+				<description>Order / Ascending</description>
+				<onclick>SetFocus($PARAM[target_id])</onclick>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[584] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31013] $VAR[Copacetic_Divider_Bold] $LOCALIZE[584]</label2>
+				<property name="ActionLeft">Container.SetSortDirection</property>
+				<property name="ActionRight">Container.SetSortDirection</property>
+				<visible>Control.IsEnabled(3) + Control.IsEnabled(4) + Container.SortDirection(ascending) + Integer.IsGreater(Container.NumItems,1)</visible>
+			</item>
+			<item id="2">
+				<description>Order / Descending</description>
+				<onclick>SetFocus($PARAM[target_id])</onclick>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[585] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31013] $VAR[Copacetic_Divider_Bold] $LOCALIZE[585]</label2>
+				<property name="ActionLeft">Container.SetSortDirection</property>
+				<property name="ActionRight">Container.SetSortDirection</property>
+				<visible>Control.IsEnabled(3) + Control.IsEnabled(4) + Container.SortDirection(descending) + Integer.IsGreater(Container.NumItems,1)</visible>
+			</item>
+			<!-- Party mode -->
+			<item>
+				<onclick>SetFocus($PARAM[target_id])</onclick>
+				<onclick>SendClick(16)</onclick>
+				<label>$LOCALIZE[589]</label>
+				<label2>$LOCALIZE[589]</label2>
+				<visible>Control.IsEnabled(16) + !MusicPartyMode.Enabled</visible>
+			</item>
+			<!-- Filter -->
+			<item>
+				<onclick>SetFocus($PARAM[target_id])</onclick>
+				<onclick condition="Container.CanFilterAdvanced">Filter</onclick>
+				<label>$LOCALIZE[587]</label>
+				<label2>$LOCALIZE[587]</label2>
+				<visible>Container.CanFilterAdvanced + Integer.IsGreater(Container.NumItems,1)</visible>
+			</item>
+		</definition>
+	</include>
+
+	<include name="MusicVideo_Menu_Options">
+		<item>
+			<onclick>SetFocus(50)</onclick>
+			<onclick>ActivateWindow(musicplaylist)</onclick>
+			<label>$LOCALIZE[13350]</label>
+			<label2>$LOCALIZE[13350]</label2>
+			<visible>Window.Is(music) + !String.IsEqual(Playlist.Length(music),0)</visible>
+		</item>
+		<!-- Update Library -->
+		<item>
+			<description>Update Library</description>
+			<onclick>SetFocus(50)</onclick>
+			<onclick>SendClick(20)</onclick>
+			<label>$LOCALIZE[653]</label>
+			<label2>$LOCALIZE[653]</label2>
+			<visible>Control.IsEnabled(20) + !Library.IsScanningVideo + !Library.IsScanningMusic</visible>
+		</item>
+		<item>
+			<description>Cancel Update</description>
+			<onclick>SetFocus(50)</onclick>
+			<onclick>SendClick(20)</onclick>
+			<label>$LOCALIZE[13353]</label>
+			<label2>$LOCALIZE[13353]</label2>
+			<visible>Control.IsEnabled(20) + [Library.IsScanningVideo | Library.IsScanningMusic]</visible>
+		</item>
+	</include>
+
+	<include name="Pictures_Menu_Options">
+		<!-- Start slideshow -->
+		<item>
+			<onclick>SetFocus(50)</onclick>
+			<onclick>SendClick(6)</onclick>
+			<label>$LOCALIZE[13317]</label>
+			<label2>$LOCALIZE[13317]</label2>
+			<visible>Control.IsEnabled(6)</visible>
+		</item>
+		<!-- Recursive slideshow -->
+		<item>
+			<onclick>SetFocus(50)</onclick>
+			<onclick>SendClick(7)</onclick>
+			<label>$LOCALIZE[13318]</label>
+			<label2>$LOCALIZE[13318]</label2>
+			<visible>Control.IsEnabled(7)</visible>
+		</item>
+		<!-- Random on/off -->
+		<item>
+			<property name="ActionLeft">SetFocus(9)</property>
+			<property name="ActionLeft2">Select</property>
+			<property name="ActionLeft3">SetFocus(3000)</property>
+			<property name="ActionRight">SetFocus(9)</property>
+			<property name="ActionRight2">Select</property>
+			<property name="ActionRight3">SetFocus(3000)</property>
+			<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[34222] $VAR[Copacetic_Chevron_Right]</label>
+			<label2>$LOCALIZE[13319] $VAR[Copacetic_Divider_Bold] $LOCALIZE[34222]</label2>
+			<visible>Control.IsEnabled(9) + String.Contains(Control.GetLabel(9),*)</visible>
+		</item>
+		<item>
+			<property name="ActionLeft">SetFocus(9)</property>
+			<property name="ActionLeft2">Select</property>
+			<property name="ActionLeft3">SetFocus(3000)</property>
+			<property name="ActionRight">SetFocus(9)</property>
+			<property name="ActionRight2">Select</property>
+			<property name="ActionRight3">SetFocus(3000)</property>
+			<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+			<label2>$LOCALIZE[13319] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+			<visible>Control.IsEnabled(9) + !String.Contains(Control.GetLabel(9),*)</visible>
+		</item>
+	</include>
+
+	<include name="Playlist_Menu_Options">
+		<!-- Shuffle playlist -->
+		<!-- Off -->
+		<item>
+			<onclick>SetFocus(50)</onclick>
+			<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+			<label2>$LOCALIZE[191] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+			<property name="ActionLeft">SendClick(20)</property>
+			<property name="ActionRight">SendClick(20)</property>
+			<visible>Window.Is(musicplaylist) + Control.IsEnabled(20) + String.Contains(Playlist.Random,$LOCALIZE[591])</visible>
+		</item>
+		<!-- On -->
+		<item>
+			<onclick>SetFocus(50)</onclick>
+			<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[34222] $VAR[Copacetic_Chevron_Right]</label>
+			<label2>$LOCALIZE[191] $VAR[Copacetic_Divider_Bold] $LOCALIZE[34222]</label2>
+			<property name="ActionLeft">SendClick(20)</property>
+			<property name="ActionRight">SendClick(20)</property>
+			<visible>Window.Is(musicplaylist) + Control.IsEnabled(20) + String.Contains(Playlist.Random,$LOCALIZE[34222])</visible>
+		</item>
+		<!-- Repeat playlist -->
+		<!-- Off -->
+		<item>
+			<onclick>SetFocus(50)</onclick>
+			<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+			<label2>$LOCALIZE[486] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+			<property name="ActionLeft">SendClick(26)</property>
+			<property name="ActionLeft2">SendClick(26)</property>
+			<property name="ActionRight">SendClick(26)</property>
+			<visible>Window.Is(musicplaylist) + Control.IsEnabled(26) + String.Contains(Playlist.Repeat,$LOCALIZE[591])</visible>
+		</item>
+		<!-- One -->
+		<item>
+			<onclick>SetFocus(50)</onclick>
+			<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[592] $VAR[Copacetic_Chevron_Right]</label>
+			<label2>$LOCALIZE[486] $VAR[Copacetic_Divider_Bold] $LOCALIZE[592]</label2>
+			<property name="ActionLeft">SendClick(26)</property>
+			<property name="ActionLeft2">SendClick(26)</property>
+			<property name="ActionRight">SendClick(26)</property>
+			<visible>Window.Is(musicplaylist) + Control.IsEnabled(26) + String.Contains(Playlist.Repeat,$LOCALIZE[592])</visible>
+		</item>
+		<!-- All -->
+		<item>
+			<onclick>SetFocus(50)</onclick>
+			<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[593] $VAR[Copacetic_Chevron_Right]</label>
+			<label2>$LOCALIZE[486] $VAR[Copacetic_Divider_Bold] $LOCALIZE[593]</label2>
+			<property name="ActionLeft">SendClick(26)</property>
+			<property name="ActionLeft2">SendClick(26)</property>
+			<property name="ActionRight">SendClick(26)</property>
+			<visible>Window.Is(musicplaylist) + Control.IsEnabled(26) + String.Contains(Playlist.Repeat,$LOCALIZE[593])</visible>
+		</item>
+		<!-- Save playlist -->
+		<item>
+			<onclick>SendClick(21)</onclick>
+			<label>$LOCALIZE[190]</label>
+			<label2>$LOCALIZE[190]</label2>
+			<visible>Control.IsEnabled(21)</visible>
+		</item>
+		<!-- Clear playlist -->
+		<item>
+			<onclick>SendClick(22)</onclick>
+			<onclick>SetFocus(50)</onclick>
+			<onclick>ReplaceWindow(Videos)</onclick>
+			<label>$LOCALIZE[192]</label>
+			<label2>$LOCALIZE[192]</label2>
+			<visible>Control.IsEnabled(22)</visible>
+		</item>
+	</include>
+
+	<include name="Trailer_Autoplay_Menu_Options">
+		<item>
+			<description>Trailer Autoplay (Movies) / Off</description>
+			<onclick>SetFocus(50)</onclick>
+			<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+			<label2>$LOCALIZE[31015] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+			<property name="ActionLeft">Skin.SetString(Trailer_Autoplay_Movies_Enabled,true)</property>
+			<property name="ActionRight">Skin.SetString(Trailer_Autoplay_Movies_Enabled,true)</property>
+			<visible>Container.Content(movies) + !Control.IsVisible(505) + !Skin.String(Trailer_Autoplay_Movies_Enabled,true)</visible>
+		</item>
+		<item>
+			<description>Trailer Autoplay (Movies) / On</description>
+			<onclick>SetFocus(50)</onclick>
+			<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[34222] $VAR[Copacetic_Chevron_Right]</label>
+			<label2>$LOCALIZE[31015] $VAR[Copacetic_Divider_Bold] $LOCALIZE[34222]</label2>
+			<property name="ActionLeft">Skin.SetString(Trailer_Autoplay_Movies_Enabled,false)</property>
+			<property name="ActionRight">Skin.SetString(Trailer_Autoplay_Movies_Enabled,false)</property>
+			<visible>Container.Content(movies) + !Control.IsVisible(505) + Skin.String(Trailer_Autoplay_Movies_Enabled,true)</visible>
+		</item>
+		<item>
+			<description>Trailer Autoplay (TV Shows) / Off</description>
+			<onclick>SetFocus(50)</onclick>
+			<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+			<label2>$LOCALIZE[31015] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+			<property name="ActionLeft">Skin.SetString(Trailer_Autoplay_TVShows_Enabled,true)</property>
+			<property name="ActionRight">Skin.SetString(Trailer_Autoplay_TVShows_Enabled,true)</property>
+			<visible>[Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)] + !Control.IsVisible(505) + !Skin.String(Trailer_Autoplay_TVShows_Enabled,true)</visible>
+		</item>
+		<item>
+			<description>Trailer Autoplay (Shows) / On</description>
+			<onclick>SetFocus(50)</onclick>
+			<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[34222] $VAR[Copacetic_Chevron_Right]</label>
+			<label2>$LOCALIZE[31015] $VAR[Copacetic_Divider_Bold] $LOCALIZE[34222]</label2>
+			<property name="ActionLeft">Skin.SetString(Trailer_Autoplay_TVShows_Enabled,false)</property>
+			<property name="ActionRight">Skin.SetString(Trailer_Autoplay_TVShows_Enabled,false)</property>
+			<visible>[Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)] + !Control.IsVisible(505) + Skin.String(Trailer_Autoplay_TVShows_Enabled,true)</visible>
+		</item>
+	</include>
+
+	<include name="shutdownmenu_Shortcut">
+		<item>
+			<description>Shutdown menu shortcut</description>
+			<onclick>ActivateWindow(shutdownmenu)</onclick>
+			<label>$LOCALIZE[10111]</label>
+			<label2>$LOCALIZE[10111]</label2>
+		</item>
+	</include>
+
+	<include name="tvcommon_Menu_Options">
+		<item id="1">
+			<description>Change view</description>
+			<onclick>SetFocus(50)</onclick>
+			<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31032] $VAR[Copacetic_Chevron_Right]</label>
+			<label2>$LOCALIZE[31005] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31032]</label2>
+			<property name="ActionLeft">Container.PreviousViewMode</property>
+			<property name="ActionRight">Container.NextViewMode</property>
+			<visible>Control.IsVisible(50) + Integer.IsGreater(Container.ViewCount,1) + Control.HasFocus(3700)</visible>
+		</item>
+		<item id="1">
+			<description>Change view</description>
+			<onclick>SetFocus(50)</onclick>
+			<label>$LOCALIZE[31005] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31032]</label>
+			<label2>$LOCALIZE[31005] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31032]</label2>
+			<property name="ActionLeft">Container.PreviousViewMode</property>
+			<property name="ActionRight">Container.NextViewMode</property>
+			<visible>Control.IsVisible(50) + Integer.IsGreater(Container.ViewCount,1) + !Control.HasFocus(3700)</visible>
+		</item>
+		<item id="1">
+			<description>Change view</description>
+			<onclick>SetFocus(51)</onclick>
+			<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31033] $VAR[Copacetic_Chevron_Right]</label>
+			<label2>$LOCALIZE[31005] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31033]</label2>
+			<property name="ActionLeft">Container.PreviousViewMode</property>
+			<property name="ActionRight">Container.NextViewMode</property>
+			<visible>Control.IsVisible(51) + Integer.IsGreater(Container.ViewCount,1) + Control.HasFocus(3700)</visible>
+		</item>
+		<item id="1">
+			<description>Change view</description>
+			<onclick>SetFocus(51)</onclick>
+			<label>$LOCALIZE[31005] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31033]</label>
+			<label2>$LOCALIZE[31005] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31033]</label2>
+			<property name="ActionLeft">Container.PreviousViewMode</property>
+			<property name="ActionRight">Container.NextViewMode</property>
+			<visible>Control.IsVisible(51) + Integer.IsGreater(Container.ViewCount,1) + !Control.HasFocus(3700)</visible>
+		</item>
+		<item>
+			<description>Channel Groups</description>
+			<label>$INFO[Control.GetLabel(28)]</label>
+			<label2>$INFO[Control.GetLabel(28)]</label2>
+			<onclick>SendClick(28)</onclick>
+		</item>
+	</include>
+
+	<include name="tvsort_Menu_Options">
+		<!-- Sort -->
+		<item id="2">
+			<description>Sort Method</description>
+			<onclick>SetFocus($PARAM[target_id])</onclick>
+			<label>$VAR[Copacetic_Chevron_Left] $INFO[Container.SortMethod] $VAR[Copacetic_Chevron_Right]</label>
+			<label2>$LOCALIZE[31012] $VAR[Copacetic_Divider_Bold] $INFO[Container.SortMethod]</label2>
+			<property name="ActionLeft">Container.PreviousSortMethod</property>
+			<property name="ActionRight">Container.NextSortMethod</property>
+			<visible>Control.IsEnabled(3) + Integer.IsGreater(Container.NumItems,1) + Control.HasFocus(3700)</visible>
+		</item>
+		<item>
+			<description>Sort Method</description>
+			<label>$LOCALIZE[31012] $VAR[Copacetic_Divider_Bold] $INFO[Container.SortMethod]</label>
+			<label2>$LOCALIZE[31012] $VAR[Copacetic_Divider_Bold] $INFO[Container.SortMethod]</label2>
+			<visible>Control.IsEnabled(3) + Integer.IsGreater(Container.NumItems,1) + !Control.HasFocus(3700)</visible>
+		</item>
+		<!-- Sort mode -->
+		<!-- Order / Ascending-->
+		<item id="2">
+			<description>Order / Ascending</description>
+			<onclick>SetFocus($PARAM[target_id])</onclick>
+			<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[584] $VAR[Copacetic_Chevron_Right]</label>
+			<label2>$LOCALIZE[31013] $VAR[Copacetic_Divider_Bold] $LOCALIZE[584]</label2>
+			<property name="ActionLeft">Container.SetSortDirection</property>
+			<property name="ActionRight">Container.SetSortDirection</property>
+			<visible>Control.IsEnabled(3) + Control.IsEnabled(4) + Container.SortDirection(ascending) + Integer.IsGreater(Container.NumItems,1) + Control.HasFocus(3700)</visible>
+		</item>
+		<item>
+			<description>Order / Ascending</description>
+			<label>$LOCALIZE[31013] $VAR[Copacetic_Divider_Bold] $LOCALIZE[584]</label>
+			<label2>$LOCALIZE[31013] $VAR[Copacetic_Divider_Bold] $LOCALIZE[584]</label2>
+			<visible>Control.IsEnabled(3) + Control.IsEnabled(4) + Container.SortDirection(ascending) + Integer.IsGreater(Container.NumItems,1) + !Control.HasFocus(3700)</visible>
+		</item>
+		<!-- Order / Descending -->
+		<item id="2">
+			<description>Order / Descending</description>
+			<onclick>SetFocus($PARAM[target_id])</onclick>
+			<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[585] $VAR[Copacetic_Chevron_Right]</label>
+			<label2>$LOCALIZE[31013] $VAR[Copacetic_Divider_Bold] $LOCALIZE[585]</label2>
+			<property name="ActionLeft">Container.SetSortDirection</property>
+			<property name="ActionRight">Container.SetSortDirection</property>
+			<visible>Control.IsEnabled(3) + Control.IsEnabled(4) + Container.SortDirection(descending) + Integer.IsGreater(Container.NumItems,1) + Control.HasFocus(3700)</visible>
+		</item>
+		<item>
+			<description>Order / Descending</description>
+			<label>$LOCALIZE[31013] $VAR[Copacetic_Divider_Bold] $LOCALIZE[585]</label>
+			<label2>$LOCALIZE[31013] $VAR[Copacetic_Divider_Bold] $LOCALIZE[585]</label2>
+			<visible>Control.IsEnabled(3) + Control.IsEnabled(4) + Container.SortDirection(descending) + Integer.IsGreater(Container.NumItems,1) + !Control.HasFocus(3700)</visible>
+		</item>
+	</include>
+
+	<include name="tvchannels_Menu_Options">
+		<item>
+			<onclick>SetFocus($PARAM[target_id])</onclick>
+			<onclick>Filter</onclick>
+			<label>$LOCALIZE[587]</label>
+			<label2>$LOCALIZE[587]</label2>
+		</item>
+	</include>
+
+	<include name="tvrecordings_Menu_Options">
+		<!-- Group items -->
+		<item>
+			<description>Group items / On</description>
+			<property name="ActionLeft">SendClick(5)</property>
+			<property name="ActionRight">SendClick(5)</property>
+			<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[34222] $VAR[Copacetic_Chevron_Right]</label>
+			<label2>$LOCALIZE[19270] $VAR[Copacetic_Divider_Bold] $LOCALIZE[34222]</label2>
+			<visible>Control.IsEnabled(5) + String.Contains(Control.GetLabel(5),*) + Control.HasFocus(3700)</visible>
+		</item>
+		<item>
+			<description>Group items / On</description>
+			<label>$LOCALIZE[19270] $VAR[Copacetic_Divider_Bold] $LOCALIZE[34222]</label>
+			<label2>$LOCALIZE[19270] $VAR[Copacetic_Divider_Bold] $LOCALIZE[34222]</label2>
+			<visible>Control.IsEnabled(5) + String.Contains(Control.GetLabel(5),*) + !Control.HasFocus(3700)</visible>
+		</item>
+		<item>
+			<description>Group items / Off</description>
+			<property name="ActionLeft">SendClick(5)</property>
+			<property name="ActionRight">SendClick(5)</property>
+			<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+			<label2>$LOCALIZE[19270] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+			<visible>Control.IsEnabled(5) + !String.Contains(Control.GetLabel(5),*) + Control.HasFocus(3700)</visible>
+		</item>
+		<item>
+			<description>Group items / Off</description>
+			<label>$LOCALIZE[19270] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label>
+			<label2>$LOCALIZE[19270] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+			<visible>Control.IsEnabled(5) + !String.Contains(Control.GetLabel(5),*) + !Control.HasFocus(3700)</visible>
+		</item>
+		<!-- Deleted recordings -->
+		<!-- Sending click to 7 doesn't work. Workaround is to send focus to 7 and then, button 7 has onfocus to select and pass focus back. -->
+		<!-- For this to work smoothly, menu and item visibility conditions have to be updated so nothing is hidden when 7 has focus -->
+		<item>
+			<description>Deleted recordings / On</description>
+			<property name="ActionLeft">SetFocus(7)</property>
+			<property name="ActionRight">SetFocus(7)</property>
+			<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[34222] $VAR[Copacetic_Chevron_Right]</label>
+			<label2>$LOCALIZE[19184] $VAR[Copacetic_Divider_Bold] $LOCALIZE[34222]</label2>
+			<visible>Control.IsEnabled(7) + String.Contains(Control.GetLabel(7),*) + [Control.HasFocus(3700) | Control.HasFocus(7)]</visible>
+		</item>
+		<item>
+			<description>Deleted recordings / On</description>
+			<label>$LOCALIZE[19184] $VAR[Copacetic_Divider_Bold] $LOCALIZE[34222]</label>
+			<label2>$LOCALIZE[19184] $VAR[Copacetic_Divider_Bold] $LOCALIZE[34222]</label2>
+			<visible>Control.IsEnabled(7) + String.Contains(Control.GetLabel(7),*) + !Control.HasFocus(3700) + !Control.HasFocus(7)</visible>
+		</item>
+		<item>
+			<description>Deleted recordings / Off</description>
+			<property name="ActionLeft">SetFocus(7)</property>
+			<property name="ActionRight">SetFocus(7)</property>
+			<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+			<label2>$LOCALIZE[19184] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+			<visible>Control.IsEnabled(7) + !String.Contains(Control.GetLabel(7),*) + [Control.HasFocus(3700) | Control.HasFocus(7)]</visible>
+		</item>
+		<item>
+			<description>Deleted recordings / Off</description>
+			<label>$LOCALIZE[19184] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label>
+			<label2>$LOCALIZE[19184] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+			<visible>Control.IsEnabled(7) + !String.Contains(Control.GetLabel(7),*) + !Control.HasFocus(3700) + !Control.HasFocus(7)</visible>
+		</item>
+		<!-- Filter recordings -->
+		<item>
+			<description>Filter / All recordings</description>
+			<property name="ActionLeft">SendClick(10)</property>
+			<property name="ActionRight">SendClick(10)</property>
+			<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[22015] $VAR[Copacetic_Chevron_Right]</label>
+			<label2>$LOCALIZE[587] $VAR[Copacetic_Divider_Bold] $LOCALIZE[22015]</label2>
+			<visible>String.IsEqual(Control.GetLabel(10),$LOCALIZE[22015]) + Control.HasFocus(3700)</visible>
+		</item>
+		<item>
+			<description>Filter / All recordings</description>
+			<label>$LOCALIZE[587] $VAR[Copacetic_Divider_Bold] $LOCALIZE[22015]</label>
+			<label2>$LOCALIZE[587] $VAR[Copacetic_Divider_Bold] $LOCALIZE[22015]</label2>
+			<visible>String.IsEqual(Control.GetLabel(10),$LOCALIZE[22015]) + !Control.HasFocus(3700)</visible>
+		</item>
+		<item>
+			<description>Filter / Unwatched</description>
+			<property name="ActionLeft">SendClick(10)</property>
+			<property name="ActionRight">SendClick(10)</property>
+			<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[16101] $VAR[Copacetic_Chevron_Right]</label>
+			<label2>$LOCALIZE[587] $VAR[Copacetic_Divider_Bold] $LOCALIZE[16101]</label2>
+			<visible>String.IsEqual(Control.GetLabel(10),$LOCALIZE[16101]) + Control.HasFocus(3700)</visible>
+		</item>
+		<item>
+			<description>Filter / Unwatched</description>
+			<label>$LOCALIZE[587] $VAR[Copacetic_Divider_Bold] $LOCALIZE[16101]</label>
+			<label2>$LOCALIZE[587] $VAR[Copacetic_Divider_Bold] $LOCALIZE[16101]</label2>
+			<visible>String.IsEqual(Control.GetLabel(10),$LOCALIZE[16101]) + !Control.HasFocus(3700)</visible>
+		</item>
+		<item>
+			<description>Filter / Watched</description>
+			<property name="ActionLeft">SendClick(10)</property>
+			<property name="ActionRight">SendClick(10)</property>
+			<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[16102] $VAR[Copacetic_Chevron_Right]</label>
+			<label2>$LOCALIZE[587] $VAR[Copacetic_Divider_Bold] $LOCALIZE[16102]</label2>
+			<visible>String.IsEqual(Control.GetLabel(10),$LOCALIZE[16102]) + Control.HasFocus(3700)</visible>
+		</item>
+		<item>
+			<description>Filter / Watched</description>
+			<label>$LOCALIZE[587] $VAR[Copacetic_Divider_Bold] $LOCALIZE[16102]</label>
+			<label2>$LOCALIZE[587] $VAR[Copacetic_Divider_Bold] $LOCALIZE[16102]</label2>
+			<visible>String.IsEqual(Control.GetLabel(10),$LOCALIZE[16102]) + !Control.HasFocus(3700)</visible>
+		</item>
+	</include>
+
+	<include name="tvtimers_Menu_Options">
+		<item>
+			<description>Hide disabled / On</description>
+			<property name="ActionLeft">SendClick(8)</property>
+			<property name="ActionRight">SendClick(8)</property>
+			<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[34222] $VAR[Copacetic_Chevron_Right]</label>
+			<label2>$LOCALIZE[19077] $VAR[Copacetic_Divider_Bold] $LOCALIZE[34222]</label2>
+			<visible>Control.IsEnabled(8) + String.Contains(Control.GetLabel(8),*)</visible>
+		</item>
+		<item>
+			<description>Hide disabled / Off</description>
+			<property name="ActionLeft">SendClick(8)</property>
+			<property name="ActionRight">SendClick(8)</property>
+			<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+			<label2>$LOCALIZE[19077] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+			<visible>Control.IsEnabled(8) + !String.Contains(Control.GetLabel(8),*)</visible>
+		</item>
+	</include>
+
+	<include name="MoviePlaylist_View_Menu_Options">
+		<!-- Movie playlists: give the open playlist its own view layout and view settings, or
+		     hand it back to the Movies library ones. Slots are tried from the last to the first and the
+		     path is written last, so every condition still holds while its slot is being filled. -->
+		<item>
+			<description>Own view settings for this playlist / Off</description>
+			<label>Own view settings $VAR[Copacetic_Divider_Bold] Off</label>
+			<label2>Own view settings $VAR[Copacetic_Divider_Bold] Off</label2>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(ListView_Display_Movies))">Skin.SetString(ListView_Display_Playlist6,$INFO[Skin.String(ListView_Display_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + String.IsEmpty(Skin.String(ListView_Display_Movies))">Skin.Reset(ListView_Display_Playlist6)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(ListView_Details_Movies))">Skin.SetString(ListView_Details_Playlist6,$INFO[Skin.String(ListView_Details_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + String.IsEmpty(Skin.String(ListView_Details_Movies))">Skin.Reset(ListView_Details_Playlist6)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(ListView_Flags_Movies))">Skin.SetString(ListView_Flags_Playlist6,$INFO[Skin.String(ListView_Flags_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + String.IsEmpty(Skin.String(ListView_Flags_Movies))">Skin.Reset(ListView_Flags_Playlist6)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(BillboardView_Details_Movies))">Skin.SetString(BillboardView_Details_Playlist6,$INFO[Skin.String(BillboardView_Details_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + String.IsEmpty(Skin.String(BillboardView_Details_Movies))">Skin.Reset(BillboardView_Details_Playlist6)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(BillboardView_Logo_Movies))">Skin.SetString(BillboardView_Logo_Playlist6,$INFO[Skin.String(BillboardView_Logo_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + String.IsEmpty(Skin.String(BillboardView_Logo_Movies))">Skin.Reset(BillboardView_Logo_Playlist6)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(BillboardView_Flags_Movies))">Skin.SetString(BillboardView_Flags_Playlist6,$INFO[Skin.String(BillboardView_Flags_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + String.IsEmpty(Skin.String(BillboardView_Flags_Movies))">Skin.Reset(BillboardView_Flags_Playlist6)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(ShowcaseView_Display_Movies))">Skin.SetString(ShowcaseView_Display_Playlist6,$INFO[Skin.String(ShowcaseView_Display_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + String.IsEmpty(Skin.String(ShowcaseView_Display_Movies))">Skin.Reset(ShowcaseView_Display_Playlist6)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(ShowcaseView_Details_Movies))">Skin.SetString(ShowcaseView_Details_Playlist6,$INFO[Skin.String(ShowcaseView_Details_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + String.IsEmpty(Skin.String(ShowcaseView_Details_Movies))">Skin.Reset(ShowcaseView_Details_Playlist6)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(ShowcaseView_Logo_Movies))">Skin.SetString(ShowcaseView_Logo_Playlist6,$INFO[Skin.String(ShowcaseView_Logo_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + String.IsEmpty(Skin.String(ShowcaseView_Logo_Movies))">Skin.Reset(ShowcaseView_Logo_Playlist6)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(ShowcaseView_Flags_Movies))">Skin.SetString(ShowcaseView_Flags_Playlist6,$INFO[Skin.String(ShowcaseView_Flags_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + String.IsEmpty(Skin.String(ShowcaseView_Flags_Movies))">Skin.Reset(ShowcaseView_Flags_Playlist6)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(StripView_Display_Movies))">Skin.SetString(StripView_Display_Playlist6,$INFO[Skin.String(StripView_Display_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + String.IsEmpty(Skin.String(StripView_Display_Movies))">Skin.Reset(StripView_Display_Playlist6)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(StripView_Details_Movies))">Skin.SetString(StripView_Details_Playlist6,$INFO[Skin.String(StripView_Details_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + String.IsEmpty(Skin.String(StripView_Details_Movies))">Skin.Reset(StripView_Details_Playlist6)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(StripView_Logo_Movies))">Skin.SetString(StripView_Logo_Playlist6,$INFO[Skin.String(StripView_Logo_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + String.IsEmpty(Skin.String(StripView_Logo_Movies))">Skin.Reset(StripView_Logo_Playlist6)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(StripView_Flags_Movies))">Skin.SetString(StripView_Flags_Playlist6,$INFO[Skin.String(StripView_Flags_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + String.IsEmpty(Skin.String(StripView_Flags_Movies))">Skin.Reset(StripView_Flags_Playlist6)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(GridView_Display_Movies))">Skin.SetString(GridView_Display_Playlist6,$INFO[Skin.String(GridView_Display_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + String.IsEmpty(Skin.String(GridView_Display_Movies))">Skin.Reset(GridView_Display_Playlist6)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(GridView_Details_Movies))">Skin.SetString(GridView_Details_Playlist6,$INFO[Skin.String(GridView_Details_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + String.IsEmpty(Skin.String(GridView_Details_Movies))">Skin.Reset(GridView_Details_Playlist6)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path))">Skin.Reset(Playlist6_ViewMode)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path))">ClearProperty(Playlist6_ViewPath,home)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Container.FolderName)">Skin.SetString(MoviePlaylist6_Name,$ESCINFO[Container.FolderName])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + String.IsEmpty(Container.FolderName)">Skin.SetString(MoviePlaylist6_Name,$ESCINFO[Container.FolderPath])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path))">Skin.SetString(MoviePlaylist6_Path,$ESCINFO[Container.FolderPath])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(ListView_Display_Movies))">Skin.SetString(ListView_Display_Playlist5,$INFO[Skin.String(ListView_Display_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + String.IsEmpty(Skin.String(ListView_Display_Movies))">Skin.Reset(ListView_Display_Playlist5)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(ListView_Details_Movies))">Skin.SetString(ListView_Details_Playlist5,$INFO[Skin.String(ListView_Details_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + String.IsEmpty(Skin.String(ListView_Details_Movies))">Skin.Reset(ListView_Details_Playlist5)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(ListView_Flags_Movies))">Skin.SetString(ListView_Flags_Playlist5,$INFO[Skin.String(ListView_Flags_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + String.IsEmpty(Skin.String(ListView_Flags_Movies))">Skin.Reset(ListView_Flags_Playlist5)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(BillboardView_Details_Movies))">Skin.SetString(BillboardView_Details_Playlist5,$INFO[Skin.String(BillboardView_Details_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + String.IsEmpty(Skin.String(BillboardView_Details_Movies))">Skin.Reset(BillboardView_Details_Playlist5)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(BillboardView_Logo_Movies))">Skin.SetString(BillboardView_Logo_Playlist5,$INFO[Skin.String(BillboardView_Logo_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + String.IsEmpty(Skin.String(BillboardView_Logo_Movies))">Skin.Reset(BillboardView_Logo_Playlist5)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(BillboardView_Flags_Movies))">Skin.SetString(BillboardView_Flags_Playlist5,$INFO[Skin.String(BillboardView_Flags_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + String.IsEmpty(Skin.String(BillboardView_Flags_Movies))">Skin.Reset(BillboardView_Flags_Playlist5)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(ShowcaseView_Display_Movies))">Skin.SetString(ShowcaseView_Display_Playlist5,$INFO[Skin.String(ShowcaseView_Display_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + String.IsEmpty(Skin.String(ShowcaseView_Display_Movies))">Skin.Reset(ShowcaseView_Display_Playlist5)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(ShowcaseView_Details_Movies))">Skin.SetString(ShowcaseView_Details_Playlist5,$INFO[Skin.String(ShowcaseView_Details_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + String.IsEmpty(Skin.String(ShowcaseView_Details_Movies))">Skin.Reset(ShowcaseView_Details_Playlist5)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(ShowcaseView_Logo_Movies))">Skin.SetString(ShowcaseView_Logo_Playlist5,$INFO[Skin.String(ShowcaseView_Logo_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + String.IsEmpty(Skin.String(ShowcaseView_Logo_Movies))">Skin.Reset(ShowcaseView_Logo_Playlist5)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(ShowcaseView_Flags_Movies))">Skin.SetString(ShowcaseView_Flags_Playlist5,$INFO[Skin.String(ShowcaseView_Flags_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + String.IsEmpty(Skin.String(ShowcaseView_Flags_Movies))">Skin.Reset(ShowcaseView_Flags_Playlist5)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(StripView_Display_Movies))">Skin.SetString(StripView_Display_Playlist5,$INFO[Skin.String(StripView_Display_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + String.IsEmpty(Skin.String(StripView_Display_Movies))">Skin.Reset(StripView_Display_Playlist5)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(StripView_Details_Movies))">Skin.SetString(StripView_Details_Playlist5,$INFO[Skin.String(StripView_Details_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + String.IsEmpty(Skin.String(StripView_Details_Movies))">Skin.Reset(StripView_Details_Playlist5)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(StripView_Logo_Movies))">Skin.SetString(StripView_Logo_Playlist5,$INFO[Skin.String(StripView_Logo_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + String.IsEmpty(Skin.String(StripView_Logo_Movies))">Skin.Reset(StripView_Logo_Playlist5)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(StripView_Flags_Movies))">Skin.SetString(StripView_Flags_Playlist5,$INFO[Skin.String(StripView_Flags_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + String.IsEmpty(Skin.String(StripView_Flags_Movies))">Skin.Reset(StripView_Flags_Playlist5)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(GridView_Display_Movies))">Skin.SetString(GridView_Display_Playlist5,$INFO[Skin.String(GridView_Display_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + String.IsEmpty(Skin.String(GridView_Display_Movies))">Skin.Reset(GridView_Display_Playlist5)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(GridView_Details_Movies))">Skin.SetString(GridView_Details_Playlist5,$INFO[Skin.String(GridView_Details_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + String.IsEmpty(Skin.String(GridView_Details_Movies))">Skin.Reset(GridView_Details_Playlist5)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path))">Skin.Reset(Playlist5_ViewMode)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path))">ClearProperty(Playlist5_ViewPath,home)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Container.FolderName)">Skin.SetString(MoviePlaylist5_Name,$ESCINFO[Container.FolderName])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + String.IsEmpty(Container.FolderName)">Skin.SetString(MoviePlaylist5_Name,$ESCINFO[Container.FolderPath])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path))">Skin.SetString(MoviePlaylist5_Path,$ESCINFO[Container.FolderPath])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(ListView_Display_Movies))">Skin.SetString(ListView_Display_Playlist4,$INFO[Skin.String(ListView_Display_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + String.IsEmpty(Skin.String(ListView_Display_Movies))">Skin.Reset(ListView_Display_Playlist4)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(ListView_Details_Movies))">Skin.SetString(ListView_Details_Playlist4,$INFO[Skin.String(ListView_Details_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + String.IsEmpty(Skin.String(ListView_Details_Movies))">Skin.Reset(ListView_Details_Playlist4)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(ListView_Flags_Movies))">Skin.SetString(ListView_Flags_Playlist4,$INFO[Skin.String(ListView_Flags_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + String.IsEmpty(Skin.String(ListView_Flags_Movies))">Skin.Reset(ListView_Flags_Playlist4)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(BillboardView_Details_Movies))">Skin.SetString(BillboardView_Details_Playlist4,$INFO[Skin.String(BillboardView_Details_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + String.IsEmpty(Skin.String(BillboardView_Details_Movies))">Skin.Reset(BillboardView_Details_Playlist4)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(BillboardView_Logo_Movies))">Skin.SetString(BillboardView_Logo_Playlist4,$INFO[Skin.String(BillboardView_Logo_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + String.IsEmpty(Skin.String(BillboardView_Logo_Movies))">Skin.Reset(BillboardView_Logo_Playlist4)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(BillboardView_Flags_Movies))">Skin.SetString(BillboardView_Flags_Playlist4,$INFO[Skin.String(BillboardView_Flags_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + String.IsEmpty(Skin.String(BillboardView_Flags_Movies))">Skin.Reset(BillboardView_Flags_Playlist4)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(ShowcaseView_Display_Movies))">Skin.SetString(ShowcaseView_Display_Playlist4,$INFO[Skin.String(ShowcaseView_Display_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + String.IsEmpty(Skin.String(ShowcaseView_Display_Movies))">Skin.Reset(ShowcaseView_Display_Playlist4)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(ShowcaseView_Details_Movies))">Skin.SetString(ShowcaseView_Details_Playlist4,$INFO[Skin.String(ShowcaseView_Details_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + String.IsEmpty(Skin.String(ShowcaseView_Details_Movies))">Skin.Reset(ShowcaseView_Details_Playlist4)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(ShowcaseView_Logo_Movies))">Skin.SetString(ShowcaseView_Logo_Playlist4,$INFO[Skin.String(ShowcaseView_Logo_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + String.IsEmpty(Skin.String(ShowcaseView_Logo_Movies))">Skin.Reset(ShowcaseView_Logo_Playlist4)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(ShowcaseView_Flags_Movies))">Skin.SetString(ShowcaseView_Flags_Playlist4,$INFO[Skin.String(ShowcaseView_Flags_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + String.IsEmpty(Skin.String(ShowcaseView_Flags_Movies))">Skin.Reset(ShowcaseView_Flags_Playlist4)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(StripView_Display_Movies))">Skin.SetString(StripView_Display_Playlist4,$INFO[Skin.String(StripView_Display_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + String.IsEmpty(Skin.String(StripView_Display_Movies))">Skin.Reset(StripView_Display_Playlist4)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(StripView_Details_Movies))">Skin.SetString(StripView_Details_Playlist4,$INFO[Skin.String(StripView_Details_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + String.IsEmpty(Skin.String(StripView_Details_Movies))">Skin.Reset(StripView_Details_Playlist4)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(StripView_Logo_Movies))">Skin.SetString(StripView_Logo_Playlist4,$INFO[Skin.String(StripView_Logo_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + String.IsEmpty(Skin.String(StripView_Logo_Movies))">Skin.Reset(StripView_Logo_Playlist4)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(StripView_Flags_Movies))">Skin.SetString(StripView_Flags_Playlist4,$INFO[Skin.String(StripView_Flags_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + String.IsEmpty(Skin.String(StripView_Flags_Movies))">Skin.Reset(StripView_Flags_Playlist4)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(GridView_Display_Movies))">Skin.SetString(GridView_Display_Playlist4,$INFO[Skin.String(GridView_Display_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + String.IsEmpty(Skin.String(GridView_Display_Movies))">Skin.Reset(GridView_Display_Playlist4)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(GridView_Details_Movies))">Skin.SetString(GridView_Details_Playlist4,$INFO[Skin.String(GridView_Details_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + String.IsEmpty(Skin.String(GridView_Details_Movies))">Skin.Reset(GridView_Details_Playlist4)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path))">Skin.Reset(Playlist4_ViewMode)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path))">ClearProperty(Playlist4_ViewPath,home)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Container.FolderName)">Skin.SetString(MoviePlaylist4_Name,$ESCINFO[Container.FolderName])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + String.IsEmpty(Container.FolderName)">Skin.SetString(MoviePlaylist4_Name,$ESCINFO[Container.FolderPath])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path))">Skin.SetString(MoviePlaylist4_Path,$ESCINFO[Container.FolderPath])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(ListView_Display_Movies))">Skin.SetString(ListView_Display_Playlist3,$INFO[Skin.String(ListView_Display_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + String.IsEmpty(Skin.String(ListView_Display_Movies))">Skin.Reset(ListView_Display_Playlist3)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(ListView_Details_Movies))">Skin.SetString(ListView_Details_Playlist3,$INFO[Skin.String(ListView_Details_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + String.IsEmpty(Skin.String(ListView_Details_Movies))">Skin.Reset(ListView_Details_Playlist3)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(ListView_Flags_Movies))">Skin.SetString(ListView_Flags_Playlist3,$INFO[Skin.String(ListView_Flags_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + String.IsEmpty(Skin.String(ListView_Flags_Movies))">Skin.Reset(ListView_Flags_Playlist3)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(BillboardView_Details_Movies))">Skin.SetString(BillboardView_Details_Playlist3,$INFO[Skin.String(BillboardView_Details_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + String.IsEmpty(Skin.String(BillboardView_Details_Movies))">Skin.Reset(BillboardView_Details_Playlist3)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(BillboardView_Logo_Movies))">Skin.SetString(BillboardView_Logo_Playlist3,$INFO[Skin.String(BillboardView_Logo_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + String.IsEmpty(Skin.String(BillboardView_Logo_Movies))">Skin.Reset(BillboardView_Logo_Playlist3)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(BillboardView_Flags_Movies))">Skin.SetString(BillboardView_Flags_Playlist3,$INFO[Skin.String(BillboardView_Flags_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + String.IsEmpty(Skin.String(BillboardView_Flags_Movies))">Skin.Reset(BillboardView_Flags_Playlist3)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(ShowcaseView_Display_Movies))">Skin.SetString(ShowcaseView_Display_Playlist3,$INFO[Skin.String(ShowcaseView_Display_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + String.IsEmpty(Skin.String(ShowcaseView_Display_Movies))">Skin.Reset(ShowcaseView_Display_Playlist3)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(ShowcaseView_Details_Movies))">Skin.SetString(ShowcaseView_Details_Playlist3,$INFO[Skin.String(ShowcaseView_Details_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + String.IsEmpty(Skin.String(ShowcaseView_Details_Movies))">Skin.Reset(ShowcaseView_Details_Playlist3)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(ShowcaseView_Logo_Movies))">Skin.SetString(ShowcaseView_Logo_Playlist3,$INFO[Skin.String(ShowcaseView_Logo_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + String.IsEmpty(Skin.String(ShowcaseView_Logo_Movies))">Skin.Reset(ShowcaseView_Logo_Playlist3)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(ShowcaseView_Flags_Movies))">Skin.SetString(ShowcaseView_Flags_Playlist3,$INFO[Skin.String(ShowcaseView_Flags_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + String.IsEmpty(Skin.String(ShowcaseView_Flags_Movies))">Skin.Reset(ShowcaseView_Flags_Playlist3)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(StripView_Display_Movies))">Skin.SetString(StripView_Display_Playlist3,$INFO[Skin.String(StripView_Display_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + String.IsEmpty(Skin.String(StripView_Display_Movies))">Skin.Reset(StripView_Display_Playlist3)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(StripView_Details_Movies))">Skin.SetString(StripView_Details_Playlist3,$INFO[Skin.String(StripView_Details_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + String.IsEmpty(Skin.String(StripView_Details_Movies))">Skin.Reset(StripView_Details_Playlist3)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(StripView_Logo_Movies))">Skin.SetString(StripView_Logo_Playlist3,$INFO[Skin.String(StripView_Logo_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + String.IsEmpty(Skin.String(StripView_Logo_Movies))">Skin.Reset(StripView_Logo_Playlist3)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(StripView_Flags_Movies))">Skin.SetString(StripView_Flags_Playlist3,$INFO[Skin.String(StripView_Flags_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + String.IsEmpty(Skin.String(StripView_Flags_Movies))">Skin.Reset(StripView_Flags_Playlist3)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(GridView_Display_Movies))">Skin.SetString(GridView_Display_Playlist3,$INFO[Skin.String(GridView_Display_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + String.IsEmpty(Skin.String(GridView_Display_Movies))">Skin.Reset(GridView_Display_Playlist3)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(GridView_Details_Movies))">Skin.SetString(GridView_Details_Playlist3,$INFO[Skin.String(GridView_Details_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + String.IsEmpty(Skin.String(GridView_Details_Movies))">Skin.Reset(GridView_Details_Playlist3)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path))">Skin.Reset(Playlist3_ViewMode)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path))">ClearProperty(Playlist3_ViewPath,home)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Container.FolderName)">Skin.SetString(MoviePlaylist3_Name,$ESCINFO[Container.FolderName])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + String.IsEmpty(Container.FolderName)">Skin.SetString(MoviePlaylist3_Name,$ESCINFO[Container.FolderPath])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path))">Skin.SetString(MoviePlaylist3_Path,$ESCINFO[Container.FolderPath])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(ListView_Display_Movies))">Skin.SetString(ListView_Display_Playlist2,$INFO[Skin.String(ListView_Display_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEmpty(Skin.String(ListView_Display_Movies))">Skin.Reset(ListView_Display_Playlist2)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(ListView_Details_Movies))">Skin.SetString(ListView_Details_Playlist2,$INFO[Skin.String(ListView_Details_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEmpty(Skin.String(ListView_Details_Movies))">Skin.Reset(ListView_Details_Playlist2)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(ListView_Flags_Movies))">Skin.SetString(ListView_Flags_Playlist2,$INFO[Skin.String(ListView_Flags_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEmpty(Skin.String(ListView_Flags_Movies))">Skin.Reset(ListView_Flags_Playlist2)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(BillboardView_Details_Movies))">Skin.SetString(BillboardView_Details_Playlist2,$INFO[Skin.String(BillboardView_Details_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEmpty(Skin.String(BillboardView_Details_Movies))">Skin.Reset(BillboardView_Details_Playlist2)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(BillboardView_Logo_Movies))">Skin.SetString(BillboardView_Logo_Playlist2,$INFO[Skin.String(BillboardView_Logo_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEmpty(Skin.String(BillboardView_Logo_Movies))">Skin.Reset(BillboardView_Logo_Playlist2)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(BillboardView_Flags_Movies))">Skin.SetString(BillboardView_Flags_Playlist2,$INFO[Skin.String(BillboardView_Flags_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEmpty(Skin.String(BillboardView_Flags_Movies))">Skin.Reset(BillboardView_Flags_Playlist2)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(ShowcaseView_Display_Movies))">Skin.SetString(ShowcaseView_Display_Playlist2,$INFO[Skin.String(ShowcaseView_Display_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEmpty(Skin.String(ShowcaseView_Display_Movies))">Skin.Reset(ShowcaseView_Display_Playlist2)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(ShowcaseView_Details_Movies))">Skin.SetString(ShowcaseView_Details_Playlist2,$INFO[Skin.String(ShowcaseView_Details_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEmpty(Skin.String(ShowcaseView_Details_Movies))">Skin.Reset(ShowcaseView_Details_Playlist2)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(ShowcaseView_Logo_Movies))">Skin.SetString(ShowcaseView_Logo_Playlist2,$INFO[Skin.String(ShowcaseView_Logo_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEmpty(Skin.String(ShowcaseView_Logo_Movies))">Skin.Reset(ShowcaseView_Logo_Playlist2)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(ShowcaseView_Flags_Movies))">Skin.SetString(ShowcaseView_Flags_Playlist2,$INFO[Skin.String(ShowcaseView_Flags_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEmpty(Skin.String(ShowcaseView_Flags_Movies))">Skin.Reset(ShowcaseView_Flags_Playlist2)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(StripView_Display_Movies))">Skin.SetString(StripView_Display_Playlist2,$INFO[Skin.String(StripView_Display_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEmpty(Skin.String(StripView_Display_Movies))">Skin.Reset(StripView_Display_Playlist2)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(StripView_Details_Movies))">Skin.SetString(StripView_Details_Playlist2,$INFO[Skin.String(StripView_Details_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEmpty(Skin.String(StripView_Details_Movies))">Skin.Reset(StripView_Details_Playlist2)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(StripView_Logo_Movies))">Skin.SetString(StripView_Logo_Playlist2,$INFO[Skin.String(StripView_Logo_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEmpty(Skin.String(StripView_Logo_Movies))">Skin.Reset(StripView_Logo_Playlist2)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(StripView_Flags_Movies))">Skin.SetString(StripView_Flags_Playlist2,$INFO[Skin.String(StripView_Flags_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEmpty(Skin.String(StripView_Flags_Movies))">Skin.Reset(StripView_Flags_Playlist2)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(GridView_Display_Movies))">Skin.SetString(GridView_Display_Playlist2,$INFO[Skin.String(GridView_Display_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEmpty(Skin.String(GridView_Display_Movies))">Skin.Reset(GridView_Display_Playlist2)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(GridView_Details_Movies))">Skin.SetString(GridView_Details_Playlist2,$INFO[Skin.String(GridView_Details_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEmpty(Skin.String(GridView_Details_Movies))">Skin.Reset(GridView_Details_Playlist2)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path))">Skin.Reset(Playlist2_ViewMode)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path))">ClearProperty(Playlist2_ViewPath,home)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Container.FolderName)">Skin.SetString(MoviePlaylist2_Name,$ESCINFO[Container.FolderName])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEmpty(Container.FolderName)">Skin.SetString(MoviePlaylist2_Name,$ESCINFO[Container.FolderPath])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist1_Path))">Skin.SetString(MoviePlaylist2_Path,$ESCINFO[Container.FolderPath])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(ListView_Display_Movies))">Skin.SetString(ListView_Display_Playlist1,$INFO[Skin.String(ListView_Display_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEmpty(Skin.String(ListView_Display_Movies))">Skin.Reset(ListView_Display_Playlist1)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(ListView_Details_Movies))">Skin.SetString(ListView_Details_Playlist1,$INFO[Skin.String(ListView_Details_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEmpty(Skin.String(ListView_Details_Movies))">Skin.Reset(ListView_Details_Playlist1)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(ListView_Flags_Movies))">Skin.SetString(ListView_Flags_Playlist1,$INFO[Skin.String(ListView_Flags_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEmpty(Skin.String(ListView_Flags_Movies))">Skin.Reset(ListView_Flags_Playlist1)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(BillboardView_Details_Movies))">Skin.SetString(BillboardView_Details_Playlist1,$INFO[Skin.String(BillboardView_Details_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEmpty(Skin.String(BillboardView_Details_Movies))">Skin.Reset(BillboardView_Details_Playlist1)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(BillboardView_Logo_Movies))">Skin.SetString(BillboardView_Logo_Playlist1,$INFO[Skin.String(BillboardView_Logo_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEmpty(Skin.String(BillboardView_Logo_Movies))">Skin.Reset(BillboardView_Logo_Playlist1)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(BillboardView_Flags_Movies))">Skin.SetString(BillboardView_Flags_Playlist1,$INFO[Skin.String(BillboardView_Flags_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEmpty(Skin.String(BillboardView_Flags_Movies))">Skin.Reset(BillboardView_Flags_Playlist1)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(ShowcaseView_Display_Movies))">Skin.SetString(ShowcaseView_Display_Playlist1,$INFO[Skin.String(ShowcaseView_Display_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEmpty(Skin.String(ShowcaseView_Display_Movies))">Skin.Reset(ShowcaseView_Display_Playlist1)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(ShowcaseView_Details_Movies))">Skin.SetString(ShowcaseView_Details_Playlist1,$INFO[Skin.String(ShowcaseView_Details_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEmpty(Skin.String(ShowcaseView_Details_Movies))">Skin.Reset(ShowcaseView_Details_Playlist1)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(ShowcaseView_Logo_Movies))">Skin.SetString(ShowcaseView_Logo_Playlist1,$INFO[Skin.String(ShowcaseView_Logo_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEmpty(Skin.String(ShowcaseView_Logo_Movies))">Skin.Reset(ShowcaseView_Logo_Playlist1)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(ShowcaseView_Flags_Movies))">Skin.SetString(ShowcaseView_Flags_Playlist1,$INFO[Skin.String(ShowcaseView_Flags_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEmpty(Skin.String(ShowcaseView_Flags_Movies))">Skin.Reset(ShowcaseView_Flags_Playlist1)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(StripView_Display_Movies))">Skin.SetString(StripView_Display_Playlist1,$INFO[Skin.String(StripView_Display_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEmpty(Skin.String(StripView_Display_Movies))">Skin.Reset(StripView_Display_Playlist1)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(StripView_Details_Movies))">Skin.SetString(StripView_Details_Playlist1,$INFO[Skin.String(StripView_Details_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEmpty(Skin.String(StripView_Details_Movies))">Skin.Reset(StripView_Details_Playlist1)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(StripView_Logo_Movies))">Skin.SetString(StripView_Logo_Playlist1,$INFO[Skin.String(StripView_Logo_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEmpty(Skin.String(StripView_Logo_Movies))">Skin.Reset(StripView_Logo_Playlist1)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(StripView_Flags_Movies))">Skin.SetString(StripView_Flags_Playlist1,$INFO[Skin.String(StripView_Flags_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEmpty(Skin.String(StripView_Flags_Movies))">Skin.Reset(StripView_Flags_Playlist1)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(GridView_Display_Movies))">Skin.SetString(GridView_Display_Playlist1,$INFO[Skin.String(GridView_Display_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEmpty(Skin.String(GridView_Display_Movies))">Skin.Reset(GridView_Display_Playlist1)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(GridView_Details_Movies))">Skin.SetString(GridView_Details_Playlist1,$INFO[Skin.String(GridView_Details_Movies)])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEmpty(Skin.String(GridView_Details_Movies))">Skin.Reset(GridView_Details_Playlist1)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path))">Skin.Reset(Playlist1_ViewMode)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path))">ClearProperty(Playlist1_ViewPath,home)</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Container.FolderName)">Skin.SetString(MoviePlaylist1_Name,$ESCINFO[Container.FolderName])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEmpty(Container.FolderName)">Skin.SetString(MoviePlaylist1_Name,$ESCINFO[Container.FolderPath])</onclick>
+			<onclick condition="String.IsEmpty(Skin.String(MoviePlaylist1_Path))">Skin.SetString(MoviePlaylist1_Path,$ESCINFO[Container.FolderPath])</onclick>
+			<visible>Container.Content(movies) + String.EndsWith(Container.FolderPath,.xsp) + !$EXP[Movies_InPlaylistAny] + [String.IsEmpty(Skin.String(MoviePlaylist1_Path)) | String.IsEmpty(Skin.String(MoviePlaylist2_Path)) | String.IsEmpty(Skin.String(MoviePlaylist3_Path)) | String.IsEmpty(Skin.String(MoviePlaylist4_Path)) | String.IsEmpty(Skin.String(MoviePlaylist5_Path)) | String.IsEmpty(Skin.String(MoviePlaylist6_Path))]</visible>
+		</item>
+		<item>
+			<description>Own view settings for this playlist / On</description>
+			<label>Own view settings $VAR[Copacetic_Divider_Bold] On</label>
+			<label2>Own view settings $VAR[Copacetic_Divider_Bold] On</label2>
+			<onclick condition="$EXP[Movies_InPlaylist1]">Skin.Reset(ListView_Display_Playlist1)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist1]">Skin.Reset(ListView_Details_Playlist1)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist1]">Skin.Reset(ListView_Flags_Playlist1)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist1]">Skin.Reset(BillboardView_Details_Playlist1)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist1]">Skin.Reset(BillboardView_Logo_Playlist1)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist1]">Skin.Reset(BillboardView_Flags_Playlist1)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist1]">Skin.Reset(ShowcaseView_Display_Playlist1)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist1]">Skin.Reset(ShowcaseView_Details_Playlist1)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist1]">Skin.Reset(ShowcaseView_Logo_Playlist1)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist1]">Skin.Reset(ShowcaseView_Flags_Playlist1)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist1]">Skin.Reset(StripView_Display_Playlist1)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist1]">Skin.Reset(StripView_Details_Playlist1)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist1]">Skin.Reset(StripView_Logo_Playlist1)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist1]">Skin.Reset(StripView_Flags_Playlist1)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist1]">Skin.Reset(GridView_Display_Playlist1)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist1]">Skin.Reset(GridView_Details_Playlist1)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist1]">Skin.Reset(Playlist1_ViewMode)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist1]">ClearProperty(Playlist1_ViewPath,home)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist1]">Skin.Reset(MoviePlaylist1_Name)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist1]">Skin.Reset(MoviePlaylist1_Path)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist2]">Skin.Reset(ListView_Display_Playlist2)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist2]">Skin.Reset(ListView_Details_Playlist2)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist2]">Skin.Reset(ListView_Flags_Playlist2)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist2]">Skin.Reset(BillboardView_Details_Playlist2)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist2]">Skin.Reset(BillboardView_Logo_Playlist2)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist2]">Skin.Reset(BillboardView_Flags_Playlist2)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist2]">Skin.Reset(ShowcaseView_Display_Playlist2)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist2]">Skin.Reset(ShowcaseView_Details_Playlist2)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist2]">Skin.Reset(ShowcaseView_Logo_Playlist2)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist2]">Skin.Reset(ShowcaseView_Flags_Playlist2)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist2]">Skin.Reset(StripView_Display_Playlist2)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist2]">Skin.Reset(StripView_Details_Playlist2)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist2]">Skin.Reset(StripView_Logo_Playlist2)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist2]">Skin.Reset(StripView_Flags_Playlist2)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist2]">Skin.Reset(GridView_Display_Playlist2)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist2]">Skin.Reset(GridView_Details_Playlist2)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist2]">Skin.Reset(Playlist2_ViewMode)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist2]">ClearProperty(Playlist2_ViewPath,home)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist2]">Skin.Reset(MoviePlaylist2_Name)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist2]">Skin.Reset(MoviePlaylist2_Path)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist3]">Skin.Reset(ListView_Display_Playlist3)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist3]">Skin.Reset(ListView_Details_Playlist3)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist3]">Skin.Reset(ListView_Flags_Playlist3)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist3]">Skin.Reset(BillboardView_Details_Playlist3)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist3]">Skin.Reset(BillboardView_Logo_Playlist3)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist3]">Skin.Reset(BillboardView_Flags_Playlist3)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist3]">Skin.Reset(ShowcaseView_Display_Playlist3)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist3]">Skin.Reset(ShowcaseView_Details_Playlist3)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist3]">Skin.Reset(ShowcaseView_Logo_Playlist3)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist3]">Skin.Reset(ShowcaseView_Flags_Playlist3)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist3]">Skin.Reset(StripView_Display_Playlist3)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist3]">Skin.Reset(StripView_Details_Playlist3)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist3]">Skin.Reset(StripView_Logo_Playlist3)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist3]">Skin.Reset(StripView_Flags_Playlist3)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist3]">Skin.Reset(GridView_Display_Playlist3)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist3]">Skin.Reset(GridView_Details_Playlist3)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist3]">Skin.Reset(Playlist3_ViewMode)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist3]">ClearProperty(Playlist3_ViewPath,home)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist3]">Skin.Reset(MoviePlaylist3_Name)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist3]">Skin.Reset(MoviePlaylist3_Path)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist4]">Skin.Reset(ListView_Display_Playlist4)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist4]">Skin.Reset(ListView_Details_Playlist4)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist4]">Skin.Reset(ListView_Flags_Playlist4)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist4]">Skin.Reset(BillboardView_Details_Playlist4)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist4]">Skin.Reset(BillboardView_Logo_Playlist4)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist4]">Skin.Reset(BillboardView_Flags_Playlist4)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist4]">Skin.Reset(ShowcaseView_Display_Playlist4)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist4]">Skin.Reset(ShowcaseView_Details_Playlist4)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist4]">Skin.Reset(ShowcaseView_Logo_Playlist4)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist4]">Skin.Reset(ShowcaseView_Flags_Playlist4)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist4]">Skin.Reset(StripView_Display_Playlist4)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist4]">Skin.Reset(StripView_Details_Playlist4)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist4]">Skin.Reset(StripView_Logo_Playlist4)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist4]">Skin.Reset(StripView_Flags_Playlist4)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist4]">Skin.Reset(GridView_Display_Playlist4)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist4]">Skin.Reset(GridView_Details_Playlist4)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist4]">Skin.Reset(Playlist4_ViewMode)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist4]">ClearProperty(Playlist4_ViewPath,home)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist4]">Skin.Reset(MoviePlaylist4_Name)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist4]">Skin.Reset(MoviePlaylist4_Path)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist5]">Skin.Reset(ListView_Display_Playlist5)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist5]">Skin.Reset(ListView_Details_Playlist5)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist5]">Skin.Reset(ListView_Flags_Playlist5)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist5]">Skin.Reset(BillboardView_Details_Playlist5)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist5]">Skin.Reset(BillboardView_Logo_Playlist5)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist5]">Skin.Reset(BillboardView_Flags_Playlist5)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist5]">Skin.Reset(ShowcaseView_Display_Playlist5)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist5]">Skin.Reset(ShowcaseView_Details_Playlist5)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist5]">Skin.Reset(ShowcaseView_Logo_Playlist5)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist5]">Skin.Reset(ShowcaseView_Flags_Playlist5)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist5]">Skin.Reset(StripView_Display_Playlist5)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist5]">Skin.Reset(StripView_Details_Playlist5)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist5]">Skin.Reset(StripView_Logo_Playlist5)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist5]">Skin.Reset(StripView_Flags_Playlist5)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist5]">Skin.Reset(GridView_Display_Playlist5)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist5]">Skin.Reset(GridView_Details_Playlist5)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist5]">Skin.Reset(Playlist5_ViewMode)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist5]">ClearProperty(Playlist5_ViewPath,home)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist5]">Skin.Reset(MoviePlaylist5_Name)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist5]">Skin.Reset(MoviePlaylist5_Path)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist6]">Skin.Reset(ListView_Display_Playlist6)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist6]">Skin.Reset(ListView_Details_Playlist6)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist6]">Skin.Reset(ListView_Flags_Playlist6)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist6]">Skin.Reset(BillboardView_Details_Playlist6)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist6]">Skin.Reset(BillboardView_Logo_Playlist6)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist6]">Skin.Reset(BillboardView_Flags_Playlist6)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist6]">Skin.Reset(ShowcaseView_Display_Playlist6)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist6]">Skin.Reset(ShowcaseView_Details_Playlist6)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist6]">Skin.Reset(ShowcaseView_Logo_Playlist6)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist6]">Skin.Reset(ShowcaseView_Flags_Playlist6)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist6]">Skin.Reset(StripView_Display_Playlist6)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist6]">Skin.Reset(StripView_Details_Playlist6)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist6]">Skin.Reset(StripView_Logo_Playlist6)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist6]">Skin.Reset(StripView_Flags_Playlist6)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist6]">Skin.Reset(GridView_Display_Playlist6)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist6]">Skin.Reset(GridView_Details_Playlist6)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist6]">Skin.Reset(Playlist6_ViewMode)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist6]">ClearProperty(Playlist6_ViewPath,home)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist6]">Skin.Reset(MoviePlaylist6_Name)</onclick>
+			<onclick condition="$EXP[Movies_InPlaylist6]">Skin.Reset(MoviePlaylist6_Path)</onclick>
+			<visible>$EXP[Movies_InPlaylistAny]</visible>
+		</item>
+		<item>
+			<description>Own view settings for this playlist / no free slot</description>
+			<label>Own view settings $VAR[Copacetic_Divider_Bold] All 6 slots in use</label>
+			<label2>Own view settings $VAR[Copacetic_Divider_Bold] All 6 slots in use</label2>
+			<onclick>Notification($INFO[System.AddonTitle(skin.copacetic)],Free a slot in Skin settings - Views - Movie playlists,5000)</onclick>
+			<visible>Container.Content(movies) + String.EndsWith(Container.FolderPath,.xsp) + !$EXP[Movies_InPlaylistAny] + !String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + !String.IsEmpty(Skin.String(MoviePlaylist6_Path))</visible>
+		</item>
+	</include>
+
+	<include name="Video_Menu_Options">
+		<!-- Show only unwatched or all videos -->
+		<item id="2">
+			<onclick>SetFocus(50)</onclick>
+			<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[16100]$INFO[Container.NumItems, (,)] $VAR[Copacetic_Chevron_Right]</label>
+			<label2>$LOCALIZE[31014] $VAR[Copacetic_Divider_Bold] $LOCALIZE[16100]$INFO[Container.NumItems, (,)]</label2>
+			<property name="ActionLeft">SendClick(14)</property>
+			<property name="ActionRight">SendClick(14)</property>
+			<visible>Window.Is(videos) + Control.IsEnabled(14) + !System.Setting(hidewatched) + !Container.Content(actors) + !Container.Content(sets)</visible>
+		</item>
+		<item id="2">
+			<onclick>SetFocus(50)</onclick>
+			<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[16101]$INFO[Container.TotalUnWatched, (,)] $VAR[Copacetic_Chevron_Right]</label>
+			<label2>$LOCALIZE[31014] $VAR[Copacetic_Divider_Bold] $LOCALIZE[16101]$INFO[Container.TotalUnWatched, (,)]</label2>
+			<property name="ActionLeft">SendClick(14)</property>
+			<property name="ActionRight">SendClick(14)</property>
+			<visible>Window.Is(videos) + Control.IsEnabled(14) + System.Setting(hidewatched) + !Container.Content(actors) + !Container.Content(sets)</visible>
+		</item>
+		<!-- Current playlist -->
+		<item>
+			<onclick>SetFocus(50)</onclick>
+			<onclick>ActivateWindow(videoplaylist)</onclick>
+			<label>$LOCALIZE[13350]</label>
+			<label2>$LOCALIZE[13350]</label2>
+			<visible>!String.IsEqual(Playlist.Length(video),0)</visible>
+		</item>
+	</include>
+
+
+
+</includes>

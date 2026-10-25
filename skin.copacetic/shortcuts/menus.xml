@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copacetic - Skin Shortcuts v3 menus
+  Converted from the v2 overrides.xml + mainmenu_DATA.xml + shutdownmenu_DATA.xml.
+  Item "name" values are the old v2 defaultIDs, so skin XML that matches on them keeps working.
+-->
+<menus>
+
+  <!-- Home menu. container="3000" is the home list ID (the old mainmenuID=3000 in Home.xml / SkinSettings.xml).
+       v3 gives every item a built-in "path" property (the action's path without ActivateWindow()), the
+       same value v2 called "list"; Variables_Paths_Media.xml reads it to pick the home background source,
+       so it also works for shortcuts the user adds later. -->
+  <menu name="mainmenu" container="3000">
+    <!-- every attribute spelled out: v3 3.0.5 reads a missing one as "false" -->
+    <allow widgets="false" backgrounds="true" submenus="false" />
+
+    <item name="movies">
+      <label>$LOCALIZE[342]</label>
+      <action>ActivateWindow(Videos,videodb://movies/titles/,return)</action>
+      <icon>DefaultMovies.png</icon>
+    </item>
+
+    <item name="20434">
+      <label>$LOCALIZE[20434]</label>
+      <action>ActivateWindow(Videos,videodb://movies/sets/,return)</action>
+      <icon>DefaultSets.png</icon>
+    </item>
+
+    <item name="tvshows">
+      <label>$LOCALIZE[20343]</label>
+      <action>ActivateWindow(Videos,videodb://tvshows/titles/,return)</action>
+      <icon>DefaultTVShows.png</icon>
+    </item>
+
+    <item name="133">
+      <label>$LOCALIZE[133]</label>
+      <action>ActivateWindow(Music,musicdb://artists/,return)</action>
+      <icon>DefaultMusicArtists.png</icon>
+    </item>
+
+    <item name="132">
+      <label>$LOCALIZE[132]</label>
+      <action>ActivateWindow(Music,musicdb://albums/,return)</action>
+      <icon>DefaultMusicAlbums.png</icon>
+    </item>
+
+    <item name="1036">
+      <label>$LOCALIZE[1036]</label>
+      <action>ActivateWindow(favourites)</action>
+      <icon>DefaultShortcut.png</icon>
+    </item>
+
+    <item name="10004">
+      <label>$LOCALIZE[10004]</label>
+      <action>ActivateWindow(settings)</action>
+      <icon>DefaultShortcut.png</icon>
+    </item>
+  </menu>
+
+  <!-- Shutdown menu. Replaces the v2 groupoverride that closed all dialogs first.
+       The old Window.IsActive(DialogButtonMenu.xml) condition is dropped: these items only run
+       from the shutdown menu dialog, and v3 attribute conditions are property conditions. -->
+  <menu name="shutdownmenu">
+    <allow widgets="false" backgrounds="false" submenus="false" />
+    <defaults>
+      <action when="before">Dialog.Close(all,force)</action>
+    </defaults>
+
+    <item name="addons">
+      <label>$LOCALIZE[24001]</label>
+      <action>ActivateWindow(addonbrowser)</action>
+    </item>
+
+    <item name="exit">
+      <label>$LOCALIZE[13012]</label>
+      <action>Quit()</action>
+    </item>
+  </menu>
+
+  <!-- v3 ships no built-in shortcuts: this is the picker the user sees when adding/changing items.
+       Rebuilt from what v2 offered by default. -->
+  <groupings>
+    <group name="common" label="Common" icon="DefaultShortcut.png">
+      <shortcut name="movies" label="$LOCALIZE[342]" icon="DefaultMovies.png">
+        <action>ActivateWindow(Videos,videodb://movies/titles/,return)</action>
+      </shortcut>
+      <shortcut name="moviesets" label="$LOCALIZE[20434]" icon="DefaultSets.png">
+        <action>ActivateWindow(Videos,videodb://movies/sets/,return)</action>
+      </shortcut>
+      <shortcut name="tvshows" label="$LOCALIZE[20343]" icon="DefaultTVShows.png">
+        <action>ActivateWindow(Videos,videodb://tvshows/titles/,return)</action>
+      </shortcut>
+      <shortcut name="artists" label="$LOCALIZE[133]" icon="DefaultMusicArtists.png">
+        <action>ActivateWindow(Music,musicdb://artists/,return)</action>
+      </shortcut>
+      <shortcut name="albums" label="$LOCALIZE[132]" icon="DefaultMusicAlbums.png">
+        <action>ActivateWindow(Music,musicdb://albums/,return)</action>
+      </shortcut>
+      <shortcut name="videos" label="$LOCALIZE[3]" icon="DefaultVideo.png">
+        <action>ActivateWindow(Videos)</action>
+      </shortcut>
+      <shortcut name="music" label="$LOCALIZE[2]" icon="DefaultMusicAlbums.png">
+        <action>ActivateWindow(Music)</action>
+      </shortcut>
+      <shortcut name="pictures" label="$LOCALIZE[1]" icon="DefaultPicture.png">
+        <action>ActivateWindow(Pictures)</action>
+      </shortcut>
+      <shortcut name="programs" label="$LOCALIZE[10134]" icon="DefaultAddonProgram.png">
+        <action>ActivateWindow(Programs)</action>
+      </shortcut>
+      <shortcut name="weather" label="$LOCALIZE[8]" icon="DefaultShortcut.png">
+        <action>ActivateWindow(Weather)</action>
+      </shortcut>
+      <shortcut name="addonbrowser" label="$LOCALIZE[24001]" icon="DefaultAddon.png">
+        <action>ActivateWindow(addonbrowser)</action>
+      </shortcut>
+      <shortcut name="favourites" label="$LOCALIZE[1036]" icon="DefaultShortcut.png">
+        <action>ActivateWindow(favourites)</action>
+      </shortcut>
+      <shortcut name="settings" label="$LOCALIZE[10004]" icon="DefaultShortcut.png">
+        <action>ActivateWindow(settings)</action>
+      </shortcut>
+    </group>
+
+    <group name="videolibrary" label="Video Library" icon="DefaultVideo.png">
+      <content source="nodes" target="video" />
+    </group>
+
+    <group name="musiclibrary" label="Music Library" icon="DefaultMusicAlbums.png">
+      <content source="nodes" target="music" />
+    </group>
+
+    <group name="sources" label="Sources" icon="DefaultFolder.png">
+      <content source="sources" target="video" folder="Video Sources" />
+      <content source="sources" target="music" folder="Music Sources" />
+      <content source="sources" target="pictures" folder="Picture Sources" />
+    </group>
+
+    <group name="playlists" label="Playlists" icon="DefaultPlaylist.png">
+      <content source="playlists" target="video" folder="Video Playlists" />
+      <content source="playlists" target="music" folder="Music Playlists" />
+    </group>
+
+    <group name="addons" label="Add-ons" icon="DefaultAddon.png">
+      <content source="addons" target="video" folder="Video Add-ons" />
+      <content source="addons" target="music" folder="Music Add-ons" />
+      <content source="addons" target="pictures" folder="Picture Add-ons" />
+      <content source="addons" target="programs" folder="Program Add-ons" />
+    </group>
+
+    <group name="pvr" label="Live TV and Radio" icon="DefaultTVShows.png">
+      <content source="pvr" target="tv" />
+      <content source="pvr" target="radio" />
+    </group>
+
+    <group name="more" label="More" icon="DefaultShortcut.png">
+      <content source="favourites" />
+      <content source="commands" />
+      <content source="settings" />
+    </group>
+  </groupings>
+
+  <icons>
+    <source label="Browse...">browse</source>
+  </icons>
+
+  <!-- Replaces the v2 <override action="ActivateWindow(favourites)"> block -->
+  <overrides>
+    <action replace="ActivateWindow(favourites)">ActivateWindow(favouritesbrowser)</action>
+  </overrides>
+
+</menus>

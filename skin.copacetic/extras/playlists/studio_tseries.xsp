@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<smartplaylist type="movies">
+    <name>T-Series</name>
+    <match>all</match>
+    <rule field="studio" operator="contains">
+        <value>T-Series</value>
+        <value>Super Cassettes</value>
+    </rule>
+    <order direction="descending">year</order>
+</smartplaylist>

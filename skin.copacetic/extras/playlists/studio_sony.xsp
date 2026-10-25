@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<smartplaylist type="movies">
+    <name>Sony Pictures</name>
+    <match>all</match>
+    <rule field="studio" operator="contains">
+        <value>Sony Pictures</value>
+        <value>Columbia Pictures</value>
+    </rule>
+    <order direction="descending">year</order>
+</smartplaylist>

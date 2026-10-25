@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copacetic - Skin Shortcuts v3 properties
+  v3 pickers are button mappings, not hardcoded IDs. Button 310 in script-skinshortcuts.xml
+  opens the background picker (backgrounds.xml) and stores the choice in the "background" property.
+-->
+<properties>
+
+  <property name="background" type="background" />
+
+  <buttons>
+    <button id="310" property="background" type="background" />
+  </buttons>
+
+</properties>

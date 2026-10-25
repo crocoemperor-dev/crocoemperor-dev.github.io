@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	<!-- Trailer from the context menu, played inside the Strip view's focused artwork.
+	     The context menu's Trailer item (Templates_Dialogs.xml) sets Window(home).Property(Trailer_Window) to
+	     Container(504).CurrentItem and plays ListItem.Trailer windowed. Once it plays, Timers.xml sets Trailer_Window_Playing
+	     and opens dialog 1191 (Custom_1191_Trailer_Controls.xml), which takes the remote: play/pause, seek, and Back to stop.
+	     When it stops or ends, Timers.xml closes that dialog and clears the properties.
+	     Fanart display:          the trailer plays in the focused fanart tile (1120x630).
+	     Posters/Square displays: when the trailer starts, the focused poster stretches out to the fanart tile's size
+	                              and position and dissolves into the trailer; when it stops, it shrinks back.
+	     Every control here uses absolute (window) coordinates: a zoom animation's rects are measured in the parent's
+	     coordinates, and the video itself is never inside a zoomed group. -->
+
+	<!-- Seek bar, times and pause icon, shown while paused or just after a seek -->
+	<include name="Trailer_Window_Controls">
+		<control type="group">
+			<visible>Player.Paused | Player.Seeking | Player.HasPerformedSeek(3) | Player.Forwarding | Player.Rewinding</visible>
+			<animation effect="fade" start="0" end="100" time="Default_Transition_0.5x" tween="sine" easing="out">Visible</animation>
+			<animation effect="fade" start="100" end="0" time="Default_Transition_1x" tween="sine" easing="in">Hidden</animation>
+			<control type="image">
+				<centerleft>50%</centerleft>
+				<centertop>50%</centertop>
+				<width>120</width>
+				<height>120</height>
+				<visible>Player.Paused</visible>
+				<texture colordiffuse="$VAR[Light_Color]">icons/icon_Player.Paused_large.png</texture>
+			</control>
+			<control type="image">
+				<bottom>0</bottom>
+				<height>120</height>
+				<texture colordiffuse="b3000000">views/white_100.png</texture>
+			</control>
+			<control type="label">
+				<left>30</left>
+				<bottom>24</bottom>
+				<width>200</width>
+				<height>40</height>
+				<font>Player_Time</font>
+				<textcolor>$VAR[Light_Color]</textcolor>
+				<label>$INFO[Player.Time]</label>
+			</control>
+			<control type="label">
+				<right>30</right>
+				<bottom>24</bottom>
+				<width>200</width>
+				<height>40</height>
+				<align>right</align>
+				<font>Player_Time</font>
+				<textcolor>$VAR[Light_Color]</textcolor>
+				<label>$INFO[Player.TimeRemaining,-]</label>
+			</control>
+			<control type="progress">
+				<left>30</left>
+				<right>30</right>
+				<bottom>78</bottom>
+				<height>6</height>
+				<info>Player.Progress</info>
+				<texturebg colordiffuse="$VAR[Cachebar_Background_Color]">views/white_100.png</texturebg>
+				<midtexture colordiffuse="$VAR[Light_Color]">views/white_100.png</midtexture>
+			</control>
+		</control>
+	</include>
+
+	<!-- How the video shows on CoreELEC (Amlogic): it plays on its own hardware layer under the GUI, and the videowindow
+	     control just cuts a fully transparent hole through the GUI for as long as Kodi draws it. Alpha (fades) never
+	     applies to that hole, so all the timing below is done with visibility, which Kodi handles to the frame:
+	     - during the delay of a Visible animation a control is not drawn (no hole yet);
+	     - during a Hidden animation a control is still drawn (the hole stays) until the animation ends.
+	     All times are scaled by the skin's effectslowdown (0.7). -->
+
+	<!-- Black backing (letterboxed trailers) + video at the fanart tile, shown once the trailer is actually playing.
+	     open_delay: how long after the trailer starts the hole may open (the poster's expansion, or 0).
+	     Closing: the hole stays exactly as long as the closing dissolve (the poster/fanart fading in over it), then goes. -->
+	<include name="Trailer_Window_Video">
+		<param name="left" />
+		<param name="visible" />
+		<param name="open_start" default="0" />
+		<param name="open_delay" default="0" />
+		<definition>
+			<control type="group">
+				<left>$PARAM[left]</left>
+				<top>240</top>
+				<width>1120</width>
+				<height>630</height>
+				<visible>$PARAM[visible] + $EXP[Trailer_Window_IsPlaying] + String.IsEmpty(Window(home).Property(Trailer_Window_Closing))</visible>
+				<animation effect="fade" start="$PARAM[open_start]" end="100" time="Default_Transition_1x" delay="$PARAM[open_delay]" tween="sine" easing="out">Visible</animation>
+				<!-- No Hidden animation: the trailer is stopped the moment Back is pressed, so the window closes in the
+				     same frame and the item's art (Trailer_Window_Closing_Art) takes its place. -->
+				<control type="image">
+					<texture colordiffuse="ff000000">views/white_100.png</texture>
+				</control>
+				<control type="videowindow" />
+				<include content="Trailer_Window_Controls" />
+			</control>
+		</definition>
+	</include>
+
+	<!-- Closing: in the frame the trailer stops (Back), ends, or is about to end, the item's art replaces the video at the
+	     fanart tile, then
+	     - Posters/Square (to = the tile rect "x,y,w,h") - shrinks back onto the tile with nothing behind it.
+	     Fanart leaves "to" at 100: no shrink.
+	     It then stays where it ended until Timers.xml (trailer_window_cleanup, 1 second later) clears the properties,
+	     which swaps it with the real tile in the same frame. -->
+	<include name="Trailer_Window_Closing_Art">
+		<param name="left" />
+		<param name="condition" />
+		<param name="to" default="100" />
+		<definition>
+			<control type="image">
+				<left>$PARAM[left]</left>
+				<top>240</top>
+				<width>1120</width>
+				<height>630</height>
+				<visible>$EXP[Trailer_Window_IsActive] + $PARAM[condition] + !String.IsEmpty(Window(home).Property(Trailer_Window_Playing)) + [!String.IsEmpty(Window(home).Property(Trailer_Window_Closing)) | !Player.HasVideo]</visible>
+				<!-- Shown at full opacity in the same frame the trailer stops (a fade would show black: the video is already
+				     gone), then it shrinks straight back onto the tile -->
+				<animation effect="zoom" start="100" end="$PARAM[to]" time="Default_Transition_1.5x" tween="cubic" easing="inout">Visible</animation>
+				<aspectratio>stretch</aspectratio>
+				<fadetime>0</fadetime>
+				<texture background="true">$VAR[Strip(0)Content]</texture>
+			</control>
+		</definition>
+	</include>
+
+	<!-- Fanart display: the trailer plays in place; on closing the fanart dissolves back in over it -->
+	<include name="Trailer_Window_InPlace">
+		<param name="left" />
+		<param name="condition" />
+		<definition>
+			<include content="Trailer_Window_Video">
+				<param name="left" value="$PARAM[left]" />
+				<param name="visible" value="$EXP[Trailer_Window_IsActive] + $PARAM[condition]" />
+			</include>
+			<include content="Trailer_Window_Closing_Art">
+				<param name="left" value="$PARAM[left]" />
+				<param name="condition" value="$PARAM[condition]" />
+			</include>
+		</definition>
+	</include>
+
+	<!-- Posters/Square display.
+	     Opening: the poster - laid out at the fanart tile's size, so a zoom that starts at the tile rect (from = "x,y,w,h")
+	     shows it with its real proportions - stretches out to the fanart tile with nothing behind it (the video's hole
+	     only opens once the stretch has finished: open_delay), then dissolves into the trailer.
+	     Closing: the reverse (Trailer_Window_Closing_Art) - the poster dissolves in over the trailer, the hole closes,
+	     then the poster shrinks back onto the tile.
+	     The focused tile itself stays hidden meanwhile (StripView_Static), so nothing shows behind the wide window. -->
+	<include name="Trailer_Window_Expanding">
+		<param name="left" />
+		<param name="from" />
+		<param name="condition" />
+		<definition>
+			<include content="Trailer_Window_Video">
+				<param name="left" value="$PARAM[left]" />
+				<param name="visible" value="$EXP[Trailer_Window_IsActive] + $PARAM[condition]" />
+				<param name="open_start" value="100" />
+				<param name="open_delay" value="Default_Transition_1.5x" />
+			</include>
+			<control type="image">
+				<left>$PARAM[left]</left>
+				<top>240</top>
+				<width>1120</width>
+				<height>630</height>
+				<visible>$EXP[Trailer_Window_IsPlaying] + $PARAM[condition] + String.IsEmpty(Window(home).Property(Trailer_Window_Closing))</visible>
+				<animation type="Visible">
+					<effect type="zoom" start="$PARAM[from]" end="100" time="Default_Transition_1.5x" tween="cubic" easing="inout" />
+					<effect type="fade" start="100" end="0" time="Default_Transition_1x" delay="Default_Transition_1.5x" tween="sine" easing="in" />
+				</animation>
+				<aspectratio>stretch</aspectratio>
+				<fadetime>0</fadetime>
+				<texture background="true">$VAR[Strip(0)Content]</texture>
+			</control>
+			<include content="Trailer_Window_Closing_Art">
+				<param name="left" value="$PARAM[left]" />
+				<param name="condition" value="$PARAM[condition]" />
+				<param name="to" value="$PARAM[from]" />
+			</include>
+		</definition>
+	</include>
+
+	<!-- Positions match StripView_Art_Fanart / _Posters / _Square in Components_Viewtype_504_Strip.xml:
+	     fanart tile 1120x630 at 400,240 (720,240 when the details panel is on the left)
+	     poster tile  480x720 at 720,180
+	     square tile  630x630 at 645,240 (720,240 with details) -->
+	<include name="StripView_Trailer_Window">
+		<control type="group">
+			<visible>$EXP[StripView_Media_IsVisible] + !$EXP[Container_Switching] + !$EXP[Options_Switching]</visible>
+			<!-- Fanart -->
+			<include content="Trailer_Window_InPlace">
+				<param name="left" value="400" />
+				<param name="condition" value="$EXP[StripView_Display_IsFanart] + $EXP[StripView_Details_Off]" />
+			</include>
+			<include content="Trailer_Window_InPlace">
+				<param name="left" value="720" />
+				<param name="condition" value="$EXP[StripView_Display_IsFanart] + !$EXP[StripView_Details_Off]" />
+			</include>
+			<!-- Posters -->
+			<include content="Trailer_Window_Expanding">
+				<param name="left" value="400" />
+				<param name="from" value="720,180,480,720" />
+				<param name="condition" value="$EXP[StripView_Display_IsPosters] + $EXP[StripView_Details_Off]" />
+			</include>
+			<include content="Trailer_Window_Expanding">
+				<param name="left" value="720" />
+				<param name="from" value="720,180,480,720" />
+				<param name="condition" value="$EXP[StripView_Display_IsPosters] + !$EXP[StripView_Details_Off]" />
+			</include>
+			<!-- Square -->
+			<include content="Trailer_Window_Expanding">
+				<param name="left" value="400" />
+				<param name="from" value="645,240,630,630" />
+				<param name="condition" value="$EXP[StripView_Display_IsSquare] + $EXP[StripView_Details_Off]" />
+			</include>
+			<include content="Trailer_Window_Expanding">
+				<param name="left" value="720" />
+				<param name="from" value="720,240,630,630" />
+				<param name="condition" value="$EXP[StripView_Display_IsSquare] + !$EXP[StripView_Details_Off]" />
+			</include>
+		</control>
+	</include>
+
+</includes>

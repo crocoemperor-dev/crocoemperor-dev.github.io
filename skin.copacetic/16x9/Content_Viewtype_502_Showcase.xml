@@ -1,0 +1,2310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	<include name="ShowcaseView_Menu_Options">
+		<param name="visible" default="Control.IsVisible(502)" />
+		<definition>
+			<item id="1">
+				<description>Layout / Showcase</description>
+				<onclick>SetFocus(502)</onclick>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31002] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31005] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31002]</label2>
+				<property name="ActionLeft">Container.PreviousViewMode</property>
+				<property name="ActionRight">Container.NextViewMode</property>
+				<visible>$PARAM[visible] + Integer.IsGreater(Container.ViewCount,1)</visible>
+			</item>
+			<!-- Display -->
+			<!-- Movies -->
+			<item id="2">
+				<description>Display (Movies) / Posters</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31006] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[131] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31006]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Display_Movies,Square)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Display_Movies,Square)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Display_IsPosters_Movies]</visible>
+			</item>
+			<item id="2">
+				<description>Display (Movies in Sets) / Posters</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31006] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[131] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31006]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Display_SetMovies,Square)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Display_SetMovies,Square)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Display_IsPosters_SetMovies]</visible>
+			</item>
+			<item id="2">
+				<description>Display (Movie playlist 1) / Posters</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31006] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[131] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31006]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Display_Playlist1,Square)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Display_Playlist1,Square)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Display_IsPosters_Playlist1]</visible>
+			</item>
+			<item id="2">
+				<description>Display (Movie playlist 2) / Posters</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31006] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[131] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31006]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Display_Playlist2,Square)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Display_Playlist2,Square)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Display_IsPosters_Playlist2]</visible>
+			</item>
+			<item id="2">
+				<description>Display (Movie playlist 3) / Posters</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31006] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[131] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31006]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Display_Playlist3,Square)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Display_Playlist3,Square)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Display_IsPosters_Playlist3]</visible>
+			</item>
+			<item id="2">
+				<description>Display (Movie playlist 4) / Posters</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31006] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[131] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31006]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Display_Playlist4,Square)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Display_Playlist4,Square)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Display_IsPosters_Playlist4]</visible>
+			</item>
+			<item id="2">
+				<description>Display (Movie playlist 5) / Posters</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31006] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[131] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31006]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Display_Playlist5,Square)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Display_Playlist5,Square)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Display_IsPosters_Playlist5]</visible>
+			</item>
+			<item id="2">
+				<description>Display (Movie playlist 6) / Posters</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31006] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[131] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31006]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Display_Playlist6,Square)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Display_Playlist6,Square)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Display_IsPosters_Playlist6]</visible>
+			</item>
+			<item id="2">
+				<description>Display (Movies) / Square</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31008] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[131] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31008]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Display_Movies,Posters)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Display_Movies,Posters)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Display_IsSquare_Movies]</visible>
+			</item>
+			<item id="2">
+				<description>Display (Movies in Sets) / Square</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31008] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[131] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31008]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Display_SetMovies,Posters)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Display_SetMovies,Posters)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Display_IsSquare_SetMovies]</visible>
+			</item>
+			<item id="2">
+				<description>Display (Movie playlist 1) / Square</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31008] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[131] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31008]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Display_Playlist1,Posters)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Display_Playlist1,Posters)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Display_IsSquare_Playlist1]</visible>
+			</item>
+			<item id="2">
+				<description>Display (Movie playlist 2) / Square</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31008] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[131] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31008]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Display_Playlist2,Posters)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Display_Playlist2,Posters)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Display_IsSquare_Playlist2]</visible>
+			</item>
+			<item id="2">
+				<description>Display (Movie playlist 3) / Square</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31008] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[131] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31008]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Display_Playlist3,Posters)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Display_Playlist3,Posters)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Display_IsSquare_Playlist3]</visible>
+			</item>
+			<item id="2">
+				<description>Display (Movie playlist 4) / Square</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31008] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[131] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31008]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Display_Playlist4,Posters)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Display_Playlist4,Posters)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Display_IsSquare_Playlist4]</visible>
+			</item>
+			<item id="2">
+				<description>Display (Movie playlist 5) / Square</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31008] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[131] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31008]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Display_Playlist5,Posters)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Display_Playlist5,Posters)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Display_IsSquare_Playlist5]</visible>
+			</item>
+			<item id="2">
+				<description>Display (Movie playlist 6) / Square</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31008] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[131] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31008]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Display_Playlist6,Posters)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Display_Playlist6,Posters)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Display_IsSquare_Playlist6]</visible>
+			</item>
+			<!-- Sets -->
+			<item id="2">
+				<description>Display (Sets) / Posters</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31006] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[131] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31006]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Display_Sets,Square)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Display_Sets,Square)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Display_IsPosters_Sets]</visible>
+			</item>
+			<item id="2">
+				<description>Display (Sets) / Square</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31008] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[131] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31008]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Display_Sets,Posters)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Display_Sets,Posters)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Display_IsSquare_Sets]</visible>
+			</item>
+			<!-- TV shows -->
+			<item id="2">
+				<description>Display (TV Shows) / Posters</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31006] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[131] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31006]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Display_TVShows,Square)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Display_TVShows,Square)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Display_IsPosters_TVShows]</visible>
+			</item>
+			<item id="2">
+				<description>Display (TV Shows) / Square</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31008] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[131] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31008]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Display_TVShows,Posters)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Display_TVShows,Posters)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Display_IsSquare_TVShows]</visible>
+			</item>
+			<!-- Seasons -->
+			<item id="2">
+				<description>Display (Seasons) / Posters</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31006] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[131] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31006]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Display_Seasons,Square)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Display_Seasons,Square)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Display_IsPosters_Seasons]</visible>
+			</item>
+			<item id="2">
+				<description>Display (Seasons) / Square</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31008] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[131] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31008]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Display_Seasons,Posters)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Display_Seasons,Posters)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Display_IsSquare_Seasons]</visible>
+			</item>
+			<!-- Programs_Folders -->
+			<item id="2">
+				<description>Display (Programs_Folders) / Posters</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31006] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[131] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31006]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Display_Programs_Folders,Square)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Display_Programs_Folders,Square)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Display_IsPosters_Programs_Folders]</visible>
+			</item>
+			<item id="2">
+				<description>Display (Programs_Folders) / Square</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31008] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[131] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31008]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Display_Programs_Folders,Posters)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Display_Programs_Folders,Posters)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Display_IsSquare_Programs_Folders]</visible>
+			</item>
+			<!-- Programs_Files -->
+			<item id="2">
+				<description>Display (Programs_Files) / Posters</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31006] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[131] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31006]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Display_Programs_Files,Square)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Display_Programs_Files,Square)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Display_IsPosters_Programs_Files]</visible>
+			</item>
+			<item id="2">
+				<description>Display (Programs_Files) / Square</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31008] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[131] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31008]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Display_Programs_Files,Posters)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Display_Programs_Files,Posters)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Display_IsSquare_Programs_Files]</visible>
+			</item>
+			<!-- Favourites -->
+			<item id="2">
+				<description>Display (Favourites) / Posters</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31006] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[131] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31006]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Display_Favourites,Square)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Display_Favourites,Square)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Display_IsPosters_Favourites]</visible>
+			</item>
+			<item id="2">
+				<description>Display (Favourites) / Square</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31008] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[131] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31008]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Display_Favourites,Posters)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Display_Favourites,Posters)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Display_IsSquare_Favourites]</visible>
+			</item>
+			<!-- Details -->
+			<!-- Movies -->
+			<item id="3">
+				<description>Details (Movies) / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Movies,All_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Movies,Title_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Off_Movies]</visible>
+			</item>
+			<item id="3">
+				<description>Details (Movies in Sets) / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_SetMovies,All_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_SetMovies,Title_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Off_SetMovies]</visible>
+			</item>
+			<item id="3">
+				<description>Details (Movie playlist 1) / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist1,All_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist1,Title_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Off_Playlist1]</visible>
+			</item>
+			<item id="3">
+				<description>Details (Movie playlist 2) / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist2,All_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist2,Title_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Off_Playlist2]</visible>
+			</item>
+			<item id="3">
+				<description>Details (Movie playlist 3) / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist3,All_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist3,Title_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Off_Playlist3]</visible>
+			</item>
+			<item id="3">
+				<description>Details (Movie playlist 4) / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist4,All_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist4,Title_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Off_Playlist4]</visible>
+			</item>
+			<item id="3">
+				<description>Details (Movie playlist 5) / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist5,All_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist5,Title_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Off_Playlist5]</visible>
+			</item>
+			<item id="3">
+				<description>Details (Movie playlist 6) / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist6,All_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist6,Title_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Off_Playlist6]</visible>
+			</item>
+			<item>
+				<description>Details (Movies) / Title (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31029]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Movies,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Movies,TitleAndInfo_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_Overlay_Movies]</visible>
+			</item>
+			<item>
+				<description>Details (Movies in Sets) / Title (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31029]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_SetMovies,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_SetMovies,TitleAndInfo_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_Overlay_SetMovies]</visible>
+			</item>
+			<item>
+				<description>Details (Movie playlist 1) / Title (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31029]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist1,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist1,TitleAndInfo_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_Overlay_Playlist1]</visible>
+			</item>
+			<item>
+				<description>Details (Movie playlist 2) / Title (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31029]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist2,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist2,TitleAndInfo_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_Overlay_Playlist2]</visible>
+			</item>
+			<item>
+				<description>Details (Movie playlist 3) / Title (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31029]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist3,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist3,TitleAndInfo_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_Overlay_Playlist3]</visible>
+			</item>
+			<item>
+				<description>Details (Movie playlist 4) / Title (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31029]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist4,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist4,TitleAndInfo_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_Overlay_Playlist4]</visible>
+			</item>
+			<item>
+				<description>Details (Movie playlist 5) / Title (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31029]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist5,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist5,TitleAndInfo_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_Overlay_Playlist5]</visible>
+			</item>
+			<item>
+				<description>Details (Movie playlist 6) / Title (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31029]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist6,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist6,TitleAndInfo_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_Overlay_Playlist6]</visible>
+			</item>
+			<item id="4">
+				<description>Details (Movies) / Title and Info (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31018] ($LOCALIZE[31029]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31018] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Movies,Title_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Movies,Title_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Info_Overlay_Movies]</visible>
+			</item>
+			<item id="4">
+				<description>Details (Movies in Sets) / Title and Info (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31018] ($LOCALIZE[31029]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31018] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_SetMovies,Title_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_SetMovies,Title_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Info_Overlay_SetMovies]</visible>
+			</item>
+			<item id="4">
+				<description>Details (Movie playlist 1) / Title and Info (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31018] ($LOCALIZE[31029]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31018] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist1,Title_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist1,Title_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Info_Overlay_Playlist1]</visible>
+			</item>
+			<item id="4">
+				<description>Details (Movie playlist 2) / Title and Info (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31018] ($LOCALIZE[31029]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31018] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist2,Title_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist2,Title_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Info_Overlay_Playlist2]</visible>
+			</item>
+			<item id="4">
+				<description>Details (Movie playlist 3) / Title and Info (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31018] ($LOCALIZE[31029]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31018] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist3,Title_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist3,Title_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Info_Overlay_Playlist3]</visible>
+			</item>
+			<item id="4">
+				<description>Details (Movie playlist 4) / Title and Info (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31018] ($LOCALIZE[31029]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31018] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist4,Title_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist4,Title_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Info_Overlay_Playlist4]</visible>
+			</item>
+			<item id="4">
+				<description>Details (Movie playlist 5) / Title and Info (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31018] ($LOCALIZE[31029]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31018] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist5,Title_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist5,Title_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Info_Overlay_Playlist5]</visible>
+			</item>
+			<item id="4">
+				<description>Details (Movie playlist 6) / Title and Info (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31018] ($LOCALIZE[31029]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31018] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist6,Title_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist6,Title_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Info_Overlay_Playlist6]</visible>
+			</item>
+			<item id="5">
+				<description>Details (Movies) / Title (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Movies,TitleAndInfo_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Movies,TitleAndInfo_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_Movies]</visible>
+			</item>
+			<item id="5">
+				<description>Details (Movies in Sets) / Title (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_SetMovies,TitleAndInfo_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_SetMovies,TitleAndInfo_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_SetMovies]</visible>
+			</item>
+			<item id="5">
+				<description>Details (Movie playlist 1) / Title (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist1,TitleAndInfo_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist1,TitleAndInfo_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_Playlist1]</visible>
+			</item>
+			<item id="5">
+				<description>Details (Movie playlist 2) / Title (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist2,TitleAndInfo_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist2,TitleAndInfo_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_Playlist2]</visible>
+			</item>
+			<item id="5">
+				<description>Details (Movie playlist 3) / Title (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist3,TitleAndInfo_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist3,TitleAndInfo_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_Playlist3]</visible>
+			</item>
+			<item id="5">
+				<description>Details (Movie playlist 4) / Title (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist4,TitleAndInfo_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist4,TitleAndInfo_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_Playlist4]</visible>
+			</item>
+			<item id="5">
+				<description>Details (Movie playlist 5) / Title (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist5,TitleAndInfo_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist5,TitleAndInfo_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_Playlist5]</visible>
+			</item>
+			<item id="5">
+				<description>Details (Movie playlist 6) / Title (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist6,TitleAndInfo_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist6,TitleAndInfo_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_Playlist6]</visible>
+			</item>
+			<item>
+				<description>Details (Movies) / Title and Info (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31018] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31018] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Movies,Title_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Movies,TitleAndPlot_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Info_Movies]</visible>
+			</item>
+			<item>
+				<description>Details (Movies in Sets) / Title and Info (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31018] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31018] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_SetMovies,Title_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_SetMovies,TitleAndPlot_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Info_SetMovies]</visible>
+			</item>
+			<item>
+				<description>Details (Movie playlist 1) / Title and Info (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31018] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31018] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist1,Title_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist1,TitleAndPlot_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Info_Playlist1]</visible>
+			</item>
+			<item>
+				<description>Details (Movie playlist 2) / Title and Info (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31018] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31018] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist2,Title_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist2,TitleAndPlot_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Info_Playlist2]</visible>
+			</item>
+			<item>
+				<description>Details (Movie playlist 3) / Title and Info (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31018] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31018] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist3,Title_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist3,TitleAndPlot_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Info_Playlist3]</visible>
+			</item>
+			<item>
+				<description>Details (Movie playlist 4) / Title and Info (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31018] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31018] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist4,Title_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist4,TitleAndPlot_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Info_Playlist4]</visible>
+			</item>
+			<item>
+				<description>Details (Movie playlist 5) / Title and Info (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31018] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31018] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist5,Title_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist5,TitleAndPlot_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Info_Playlist5]</visible>
+			</item>
+			<item>
+				<description>Details (Movie playlist 6) / Title and Info (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31018] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31018] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist6,Title_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist6,TitleAndPlot_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Info_Playlist6]</visible>
+			</item>
+			<item>
+				<description>Details (Movies) / Title and Plot (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31019] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31019] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Movies,TitleAndInfo_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Movies,All_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Plot_Movies]</visible>
+			</item>
+			<item>
+				<description>Details (Movies in Sets) / Title and Plot (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31019] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31019] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_SetMovies,TitleAndInfo_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_SetMovies,All_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Plot_SetMovies]</visible>
+			</item>
+			<item>
+				<description>Details (Movie playlist 1) / Title and Plot (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31019] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31019] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist1,TitleAndInfo_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist1,All_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Plot_Playlist1]</visible>
+			</item>
+			<item>
+				<description>Details (Movie playlist 2) / Title and Plot (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31019] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31019] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist2,TitleAndInfo_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist2,All_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Plot_Playlist2]</visible>
+			</item>
+			<item>
+				<description>Details (Movie playlist 3) / Title and Plot (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31019] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31019] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist3,TitleAndInfo_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist3,All_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Plot_Playlist3]</visible>
+			</item>
+			<item>
+				<description>Details (Movie playlist 4) / Title and Plot (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31019] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31019] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist4,TitleAndInfo_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist4,All_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Plot_Playlist4]</visible>
+			</item>
+			<item>
+				<description>Details (Movie playlist 5) / Title and Plot (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31019] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31019] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist5,TitleAndInfo_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist5,All_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Plot_Playlist5]</visible>
+			</item>
+			<item>
+				<description>Details (Movie playlist 6) / Title and Plot (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31019] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31019] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist6,TitleAndInfo_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist6,All_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Plot_Playlist6]</visible>
+			</item>
+			<item id="6">
+				<description>Details (Movies) / All (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[593] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[593] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Movies,TitleAndPlot_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Movies,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_All_Movies]</visible>
+			</item>
+			<item id="6">
+				<description>Details (Movies in Sets) / All (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[593] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[593] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_SetMovies,TitleAndPlot_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_SetMovies,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_All_SetMovies]</visible>
+			</item>
+			<item id="6">
+				<description>Details (Movie playlist 1) / All (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[593] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[593] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist1,TitleAndPlot_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist1,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_All_Playlist1]</visible>
+			</item>
+			<item id="6">
+				<description>Details (Movie playlist 2) / All (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[593] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[593] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist2,TitleAndPlot_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist2,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_All_Playlist2]</visible>
+			</item>
+			<item id="6">
+				<description>Details (Movie playlist 3) / All (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[593] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[593] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist3,TitleAndPlot_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist3,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_All_Playlist3]</visible>
+			</item>
+			<item id="6">
+				<description>Details (Movie playlist 4) / All (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[593] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[593] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist4,TitleAndPlot_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist4,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_All_Playlist4]</visible>
+			</item>
+			<item id="6">
+				<description>Details (Movie playlist 5) / All (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[593] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[593] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist5,TitleAndPlot_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist5,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_All_Playlist5]</visible>
+			</item>
+			<item id="6">
+				<description>Details (Movie playlist 6) / All (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[593] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[593] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Playlist6,TitleAndPlot_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Playlist6,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_All_Playlist6]</visible>
+			</item>
+			<!-- Sets -->
+			<item id="2">
+				<description>Details (Sets) / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Sets,All_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Sets,Title_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Off_Sets]</visible>
+			</item>
+			<item id="3">
+				<description>Details (Sets) / Title (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31029]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Sets,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Sets,TitleAndInfo_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_Overlay_Sets]</visible>
+			</item>
+			<item id="4">
+				<description>Details (Sets) / Title and Info (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31018] ($LOCALIZE[31029]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31018] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Sets,Title_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Sets,Title_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Info_Overlay_Sets]</visible>
+			</item>
+			<item id="5">
+				<description>Details (Sets) / Title (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Sets,TitleAndInfo_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Sets,TitleAndInfo_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_Sets]</visible>
+			</item>
+			<item>
+				<description>Details (Sets) / Title and Info (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31018] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31018] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Sets,Title_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Sets,TitleAndPlot_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Info_Sets]</visible>
+			</item>
+			<item>
+				<description>Details (Sets) / Title and Plot (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31019] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31019] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Sets,TitleAndInfo_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Sets,All_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Plot_Sets]</visible>
+			</item>
+			<item id="6">
+				<description>Details (Sets) / All (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[593] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[593] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Sets,TitleAndPlot_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Sets,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_All_Sets]</visible>
+			</item>
+			<!-- TV shows -->
+			<item id="2">
+				<description>Details (TV Shows) / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_TVShows,All_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_TVShows,Title_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Off_TVShows]</visible>
+			</item>
+			<item id="3">
+				<description>Details (TV Shows) / Title (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31029]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_TVShows,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_TVShows,TitleAndInfo_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_Overlay_TVShows]</visible>
+			</item>
+			<item id="4">
+				<description>Details (TV Shows) / Title And Info (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] Title and Info (Overlay)$VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31018] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_TVShows,Title_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_TVShows,Title_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Info_Overlay_TVShows]</visible>
+			</item>
+			<item id="5">
+				<description>Details (TV Shows) / Title (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_TVShows,TitleAndInfo_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_TVShows,TitleAndInfo_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_TVShows]</visible>
+			</item>
+			<item>
+				<description>Details (TV Shows) / Title and Info (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31018] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31018] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_TVShows,Title_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_TVShows,TitleAndPlot_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Info_TVShows]</visible>
+			</item>
+			<item>
+				<description>Details (TV Shows) / Title and Plot (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31019] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31019] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_TVShows,TitleAndInfo_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_TVShows,All_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Plot_TVShows]</visible>
+			</item>
+			<item id="6">
+				<description>Details (TV Shows) / All (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[593] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[593] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_TVShows,TitleAndPlot_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_TVShows,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_All_TVShows]</visible>
+			</item>
+			<!-- Seasons -->
+			<item id="2">
+				<description>Details (Seasons) / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Seasons,All_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Seasons,Title_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Off_Seasons]</visible>
+			</item>
+			<item id="3">
+				<description>Details (Seasons) / Title (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31029]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Seasons,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Seasons,TitleAndInfo_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_Overlay_Seasons]</visible>
+			</item>
+			<item id="4">
+				<description>Details (Seasons) / Title And Info (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31018] ($LOCALIZE[31029]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31018] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Seasons,Title_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Seasons,Title_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Info_Overlay_Seasons]</visible>
+			</item>
+			<item id="5">
+				<description>Details (Seasons) / Title (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Seasons,TitleAndInfo_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Seasons,TitleAndInfo_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_Seasons]</visible>
+			</item>
+			<item>
+				<description>Details (Seasons) / Title and Info (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31018] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31018] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Seasons,Title_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Seasons,TitleAndPlot_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Info_Seasons]</visible>
+			</item>
+			<item>
+				<description>Details (Seasons) / Title and Plot (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31019] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31019] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Seasons,TitleAndInfo_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Seasons,All_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Plot_Seasons]</visible>
+			</item>
+			<item id="6">
+				<description>Details (Seasons) / All (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[593] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[593] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Seasons,TitleAndPlot_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Seasons,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_All_Seasons]</visible>
+			</item>
+			<!-- Episodes -->
+			<item id="3">
+				<description>Details (Episodes) / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Episodes,All_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Episodes,Title_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Off_Episodes]</visible>
+			</item>
+			<item>
+				<description>Details (Episodes) / Title (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31029]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Episodes,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Episodes,TitleAndInfo_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_Overlay_Episodes]</visible>
+			</item>
+			<item id="4">
+				<description>Details (Episodes) / Title and Info (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31018] ($LOCALIZE[31029]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31018] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Episodes,Title_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Episodes,Title_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Info_Overlay_Episodes]</visible>
+			</item>
+			<item id="5">
+				<description>Details (Episodes) / Title (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Episodes,TitleAndInfo_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Episodes,TitleAndInfo_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_Episodes]</visible>
+			</item>
+			<item>
+				<description>Details (Episodes) / Title and Info (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31018] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31018] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Episodes,Title_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Episodes,TitleAndPlot_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Info_Episodes]</visible>
+			</item>
+			<item>
+				<description>Details (Episodes) / Title and Plot (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31019] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31019] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Episodes,TitleAndInfo_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Episodes,All_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Plot_Episodes]</visible>
+			</item>
+			<item id="6">
+				<description>Details (Episodes) / All (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[593] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[593] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Episodes,TitleAndPlot_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Episodes,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_All_Episodes]</visible>
+			</item>
+			<!-- Artists -->
+			<item id="3">
+				<description>Artist Details / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Artists,All_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Artists,Title_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Off_Artists]</visible>
+			</item>
+			<item>
+				<description>Artist Details / Title (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31029]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Artists,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Artists,TitleAndInfo_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_Overlay_Artists]</visible>
+			</item>
+			<item id="4">
+				<description>Artist Details / Title And Info (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31018] ($LOCALIZE[31029]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31018] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Artists,Title_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Artists,Title_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Info_Overlay_Artists]</visible>
+			</item>
+			<item id="5">
+				<description>Artist Details / Title (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Artists,TitleAndInfo_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Artists,TitleAndInfo_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_Artists]</visible>
+			</item>
+			<item>
+				<description>Artist Details / Title And Info (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31018] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31018] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Artists,Title_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Artists,TitleAndPlot_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Info_Artists]</visible>
+			</item>
+			<item>
+				<description>Artist Details / Title And Plot (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31020] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31020] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Artists,TitleAndInfo_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Artists,All_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Plot_Artists]</visible>
+			</item>
+			<item id="6">
+				<description>Artist Details / All (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[593] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[593] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Artists,TitleAndPlot_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Artists,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_All_Artists]</visible>
+			</item>
+			<!-- Albums -->
+			<item id="3">
+				<description>Album Details / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Albums,All_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Albums,Title_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Off_Albums]</visible>
+			</item>
+			<item>
+				<description>Album Details / Title (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31029]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Albums,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Albums,TitleAndInfo_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_Overlay_Albums]</visible>
+			</item>
+			<item id="4">
+				<description>Album Details / Title and Info (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31018] ($LOCALIZE[31029]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31018] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Albums,Title_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Albums,Title_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Info_Overlay_Albums]</visible>
+			</item>
+			<item id="5">
+				<description>Album Details / Title (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Albums,TitleAndInfo_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Albums,TitleAndInfo_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_Albums]</visible>
+			</item>
+			<item>
+				<description>Album Details / Title And Info (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31018] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31018] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Albums,Title_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Albums,TitleAndPlot_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Info_Albums]</visible>
+			</item>
+			<item>
+				<description>Album Details / Title And Review (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31021] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31021] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Albums,TitleAndInfo_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Albums,All_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Plot_Albums]</visible>
+			</item>
+			<item id="6">
+				<description>Album Details / All (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[593] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[593] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Albums,TitleAndPlot_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Albums,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_All_Albums]</visible>
+			</item>
+			<!-- Addons -->
+			<item id="3">
+				<description>Add-on Details / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Addons,All_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Addons,Title_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Off_Addons]</visible>
+			</item>
+			<item>
+				<description>Add-on Details / Title (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31029]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Addons,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Addons,TitleAndInfo_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_Overlay_Addons]</visible>
+			</item>
+			<item id="4">
+				<description>Add-on Details / Title and Info (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31018] ($LOCALIZE[31029]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31018] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Addons,Title_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Addons,Title_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Info_Overlay_Addons]</visible>
+			</item>
+			<item id="5">
+				<description>Add-on Details / Title (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Addons,TitleAndInfo_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Addons,TitleAndInfo_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_Addons]</visible>
+			</item>
+			<item>
+				<description>Add-on Details / Title And Info (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31018] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31018] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Addons,Title_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Addons,TitleAndPlot_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Info_Addons]</visible>
+			</item>
+			<item>
+				<description>Add-on Details / Title And Review (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31021] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31021] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Addons,TitleAndInfo_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Addons,All_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Plot_Addons]</visible>
+			</item> 
+			<item id="6">
+				<description>Add-on Details / All (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[593] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[593] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Addons,TitleAndPlot_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Addons,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_All_Addons]</visible>
+			</item>
+			<!-- Images -->
+			<item>
+				<description>Images Details / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Images,TitleAndInfo_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Images,Title_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Off_Images]</visible>
+			</item>
+			<item>
+				<description>Images Details / Title (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31029]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Images,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Images,TitleAndInfo_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_Overlay_Images]</visible>
+			</item>
+			<item>
+				<description>Images Details / Title and Info (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31018] ($LOCALIZE[31029]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31018] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Images,Title_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Images,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Info_Overlay_Images]</visible>
+			</item>
+			<!-- Programs_Folders -->
+			<item id="2">
+				<description>Details (Programs_Folders) / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Programs_Folders,All_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Programs_Folders,Title_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Off_Programs_Folders]</visible>
+			</item>
+			<item id="3">
+				<description>Details (Programs_Folders) / Title (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31029]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Programs_Folders,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Programs_Folders,TitleAndInfo_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_Overlay_Programs_Folders]</visible>
+			</item>
+			<item id="4">
+				<description>Details (Programs_Folders) / Title and Info (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31018] ($LOCALIZE[31029]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31018] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Programs_Folders,Title_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Programs_Folders,Title_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Info_Overlay_Programs_Folders]</visible>
+			</item>
+			<item id="5">
+				<description>Details (Programs_Folders) / Title (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Programs_Folders,TitleAndInfo_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Programs_Folders,TitleAndInfo_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_Programs_Folders]</visible>
+			</item>
+			<item>
+				<description>Details (Programs_Folders) / Title and Info (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31018] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31018] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Programs_Folders,Title_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Programs_Folders,TitleAndPlot_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Info_Programs_Folders]</visible>
+			</item>
+			<item>
+				<description>Details (Programs_Folders) / Title and Plot (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31019] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31019] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Programs_Folders,TitleAndInfo_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Programs_Folders,All_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Plot_Programs_Folders]</visible>
+			</item>
+			<item id="6">
+				<description>Details (Programs_Folders) / All (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[593] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[593] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Programs_Folders,TitleAndPlot_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Programs_Folders,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_All_Programs_Folders]</visible>
+			</item>
+			<!-- Programs_Files -->
+			<item id="2">
+				<description>Details (Programs_Files) / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Programs_Files,All_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Programs_Files,Title_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Off_Programs_Files]</visible>
+			</item>
+			<item id="3">
+				<description>Details (Programs_Files) / Title (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31029]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Programs_Files,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Programs_Files,TitleAndInfo_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_Overlay_Programs_Files]</visible>
+			</item>
+			<item id="4">
+				<description>Details (Programs_Files) / Title and Info (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31018] ($LOCALIZE[31029]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31018] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Programs_Files,Title_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Programs_Files,Title_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Info_Overlay_Programs_Files]</visible>
+			</item>
+			<item id="5">
+				<description>Details (Programs_Files) / Title (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Programs_Files,TitleAndInfo_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Programs_Files,TitleAndInfo_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_Programs_Files]</visible>
+			</item>
+			<item>
+				<description>Details (Programs_Files) / Title and Info (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31018] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31018] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Programs_Files,Title_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Programs_Files,TitleAndPlot_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Info_Programs_Files]</visible>
+			</item>
+			<item>
+				<description>Details (Programs_Files) / Title and Plot (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31019] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31019] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Programs_Files,TitleAndInfo_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Programs_Files,All_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Plot_Programs_Files]</visible>
+			</item>
+			<item id="6">
+				<description>Details (Programs_Files) / All (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[593] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[593] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Programs_Files,TitleAndPlot_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Programs_Files,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_All_Programs_Files]</visible>
+			</item>
+			<!-- Favourites -->
+			<item id="3">
+				<description>Details (Favourites) / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Favourites,Title_Side)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Favourites,Title_Overlay)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Off_Favourites]</visible>
+			</item>
+			<item id="4">
+				<description>Details (Favourites) / Title (Overlay)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31029]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31029])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Favourites,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Favourites,Title_Side)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_Overlay_Favourites]</visible>
+			</item>
+			<item id="2">
+				<description>Details (Favourites) / Title (Side)</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31017] ($LOCALIZE[31028]) $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31016] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31017] ($LOCALIZE[31028])</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Details_Favourites,Title_Overlay)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Details_Favourites,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Details_Title_Favourites]</visible>
+			</item>
+			<!-- Clearlogos -->
+			<!-- Movies -->
+			<!-- Off -->
+			<!-- [Posters + !Prefer Keyart + Keyart + Clearlogo] -->
+			<item id="2">
+				<description>Movie logos / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_Movies,On)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_Movies,On)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_Off_Movies] + [$EXP[ShowcaseView_Display_IsPosters_Movies] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<item id="2">
+				<description>Movie logos / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_SetMovies,On)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_SetMovies,On)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_Off_SetMovies] + [$EXP[ShowcaseView_Display_IsPosters_SetMovies] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<item id="2">
+				<description>Movie logos / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_Playlist1,On)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_Playlist1,On)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_Off_Playlist1] + [$EXP[ShowcaseView_Display_IsPosters_Playlist1] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<item id="2">
+				<description>Movie logos / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_Playlist2,On)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_Playlist2,On)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_Off_Playlist2] + [$EXP[ShowcaseView_Display_IsPosters_Playlist2] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<item id="2">
+				<description>Movie logos / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_Playlist3,On)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_Playlist3,On)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_Off_Playlist3] + [$EXP[ShowcaseView_Display_IsPosters_Playlist3] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<item id="2">
+				<description>Movie logos / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_Playlist4,On)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_Playlist4,On)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_Off_Playlist4] + [$EXP[ShowcaseView_Display_IsPosters_Playlist4] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<item id="2">
+				<description>Movie logos / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_Playlist5,On)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_Playlist5,On)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_Off_Playlist5] + [$EXP[ShowcaseView_Display_IsPosters_Playlist5] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<item id="2">
+				<description>Movie logos / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_Playlist6,On)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_Playlist6,On)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_Off_Playlist6] + [$EXP[ShowcaseView_Display_IsPosters_Playlist6] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<!-- ![Posters + !Prefer Keyart + Keyart + Clearlogo] -->
+			<item>
+				<description>Movie logos / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_Movies,On)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_Movies,On)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_Off_Movies] + ![$EXP[ShowcaseView_Display_IsPosters_Movies] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<item>
+				<description>Movie logos / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_SetMovies,On)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_SetMovies,On)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_Off_SetMovies] + ![$EXP[ShowcaseView_Display_IsPosters_SetMovies] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<item>
+				<description>Movie logos / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_Playlist1,On)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_Playlist1,On)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_Off_Playlist1] + ![$EXP[ShowcaseView_Display_IsPosters_Playlist1] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<item>
+				<description>Movie logos / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_Playlist2,On)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_Playlist2,On)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_Off_Playlist2] + ![$EXP[ShowcaseView_Display_IsPosters_Playlist2] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<item>
+				<description>Movie logos / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_Playlist3,On)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_Playlist3,On)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_Off_Playlist3] + ![$EXP[ShowcaseView_Display_IsPosters_Playlist3] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<item>
+				<description>Movie logos / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_Playlist4,On)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_Playlist4,On)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_Off_Playlist4] + ![$EXP[ShowcaseView_Display_IsPosters_Playlist4] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<item>
+				<description>Movie logos / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_Playlist5,On)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_Playlist5,On)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_Off_Playlist5] + ![$EXP[ShowcaseView_Display_IsPosters_Playlist5] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<item>
+				<description>Movie logos / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_Playlist6,On)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_Playlist6,On)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_Off_Playlist6] + ![$EXP[ShowcaseView_Display_IsPosters_Playlist6] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<!-- On -->
+			<!-- [Posters + !Prefer Keyart + Keyart + Clearlogo] -->
+			<item id="2">
+				<description>Movie logos / On</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[34222] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[34222]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_Movies,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_Movies,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_On_Movies] + [$EXP[ShowcaseView_Display_IsPosters_Movies] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<item id="2">
+				<description>Movie logos / On</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[34222] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[34222]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_SetMovies,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_SetMovies,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_On_SetMovies] + [$EXP[ShowcaseView_Display_IsPosters_SetMovies] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<item id="2">
+				<description>Movie logos / On</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[34222] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[34222]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_Playlist1,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_Playlist1,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_On_Playlist1] + [$EXP[ShowcaseView_Display_IsPosters_Playlist1] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<item id="2">
+				<description>Movie logos / On</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[34222] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[34222]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_Playlist2,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_Playlist2,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_On_Playlist2] + [$EXP[ShowcaseView_Display_IsPosters_Playlist2] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<item id="2">
+				<description>Movie logos / On</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[34222] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[34222]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_Playlist3,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_Playlist3,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_On_Playlist3] + [$EXP[ShowcaseView_Display_IsPosters_Playlist3] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<item id="2">
+				<description>Movie logos / On</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[34222] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[34222]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_Playlist4,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_Playlist4,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_On_Playlist4] + [$EXP[ShowcaseView_Display_IsPosters_Playlist4] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<item id="2">
+				<description>Movie logos / On</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[34222] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[34222]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_Playlist5,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_Playlist5,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_On_Playlist5] + [$EXP[ShowcaseView_Display_IsPosters_Playlist5] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<item id="2">
+				<description>Movie logos / On</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[34222] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[34222]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_Playlist6,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_Playlist6,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_On_Playlist6] + [$EXP[ShowcaseView_Display_IsPosters_Playlist6] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<!-- ![Posters + !Prefer Keyart + Keyart + Clearlogo] -->
+			<item>
+				<description>Movie logos / On</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[34222] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[34222]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_Movies,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_Movies,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_On_Movies] + ![$EXP[ShowcaseView_Display_IsPosters_Movies] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<item>
+				<description>Movie logos / On</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[34222] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[34222]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_SetMovies,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_SetMovies,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_On_SetMovies] + ![$EXP[ShowcaseView_Display_IsPosters_SetMovies] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<item>
+				<description>Movie logos / On</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[34222] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[34222]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_Playlist1,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_Playlist1,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_On_Playlist1] + ![$EXP[ShowcaseView_Display_IsPosters_Playlist1] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<item>
+				<description>Movie logos / On</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[34222] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[34222]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_Playlist2,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_Playlist2,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_On_Playlist2] + ![$EXP[ShowcaseView_Display_IsPosters_Playlist2] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<item>
+				<description>Movie logos / On</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[34222] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[34222]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_Playlist3,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_Playlist3,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_On_Playlist3] + ![$EXP[ShowcaseView_Display_IsPosters_Playlist3] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<item>
+				<description>Movie logos / On</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[34222] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[34222]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_Playlist4,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_Playlist4,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_On_Playlist4] + ![$EXP[ShowcaseView_Display_IsPosters_Playlist4] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<item>
+				<description>Movie logos / On</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[34222] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[34222]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_Playlist5,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_Playlist5,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_On_Playlist5] + ![$EXP[ShowcaseView_Display_IsPosters_Playlist5] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<item>
+				<description>Movie logos / On</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[34222] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[34222]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_Playlist6,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_Playlist6,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_On_Playlist6] + ![$EXP[ShowcaseView_Display_IsPosters_Playlist6] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<!-- Sets -->
+			<!-- Off -->
+			<!-- [Posters + !Prefer Keyart + Keyart + Clearlogo] -->
+			<item id="2">
+				<description>Set logos / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_Sets,On)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_Sets,On)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_Off_Sets] + [$EXP[ShowcaseView_Display_IsPosters_Sets] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<!-- ![Posters + !Prefer Keyart + Keyart + Clearlogo] -->
+			<item>
+				<description>Set logos / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_Sets,On)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_Sets,On)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_Off_Sets] + ![$EXP[ShowcaseView_Display_IsPosters_Sets] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<!-- On -->
+			<!-- [Posters + !Prefer Keyart + Keyart + Clearlogo] -->
+			<item id="2">
+				<description>Set logos / On</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[34222] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[34222]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_Sets,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_Sets,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_On_Sets] + [$EXP[ShowcaseView_Display_IsPosters_Sets] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<!-- ![Posters + !Prefer Keyart + Keyart + Clearlogo] -->
+			<item>
+				<description>Set logos / On</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[34222] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[34222]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_Sets,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_Sets,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_On_Sets] + ![$EXP[ShowcaseView_Display_IsPosters_Sets] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<!-- TVShows -->
+			<!-- Off -->
+			<!-- [Posters + !Prefer Keyart + Keyart + Clearlogo] -->
+			<item id="2">
+				<description>TVShow logos / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_TVShows,On)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_TVShows,On)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_Off_TVShows] + [$EXP[ShowcaseView_Display_IsPosters_TVShows] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<!-- ![Posters + !Prefer Keyart + Keyart + Clearlogo] -->
+			<item>
+				<description>TVShow logos / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_TVShows,On)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_TVShows,On)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_Off_TVShows] + ![$EXP[ShowcaseView_Display_IsPosters_TVShows] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<!-- On -->
+			<!-- [Posters + !Prefer Keyart + Keyart + Clearlogo] -->
+			<item id="2">
+				<description>TVShow logos / On</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[34222] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[34222]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_TVShows,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_TVShows,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_On_TVShows] + [$EXP[ShowcaseView_Display_IsPosters_TVShows] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<!-- ![Posters + !Prefer Keyart + Keyart + Clearlogo] -->
+			<item>
+				<description>TVShow logos / On</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[34222] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] $VAR[Copacetic_Divider_Bold] $LOCALIZE[34222]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_TVShows,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_TVShows,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_On_TVShows] + ![$EXP[ShowcaseView_Display_IsPosters_TVShows] + $EXP[Keyart_And_Clearlogo_IsVisible]]</visible>
+			</item>
+			<!-- Artists -->
+			<item>
+				<description>Artist logos / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] / $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_Artists,On)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_Artists,On)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_Off_Artists]</visible>
+			</item>
+			<item>
+				<description>Artist logos / On</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[34222] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] / $LOCALIZE[34222]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_Artists,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_Artists,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_On_Artists]</visible>
+			</item>
+			<!-- Programs_Files -->
+			<item>
+				<description>Artist logos / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] / $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_Programs_Files,On)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_Programs_Files,On)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_Off_Programs_Files]</visible>
+			</item>
+			<item>
+				<description>Artist logos / On</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[34222] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31023] / $LOCALIZE[34222]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Logo_Programs_Files,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Logo_Programs_Files,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Logo_On_Programs_Files]</visible>
+			</item>
+			<!-- Flags -->
+			<!-- Movies -->
+			<item>
+				<description>Movie flags / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Movies,All)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Movies,Studio)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Off_Movies]</visible>
+			</item>
+			<item>
+				<description>Movie flags / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_SetMovies,All)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_SetMovies,Studio)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Off_SetMovies]</visible>
+			</item>
+			<item>
+				<description>Movie flags / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Playlist1,All)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Playlist1,Studio)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Off_Playlist1]</visible>
+			</item>
+			<item>
+				<description>Movie flags / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Playlist2,All)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Playlist2,Studio)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Off_Playlist2]</visible>
+			</item>
+			<item>
+				<description>Movie flags / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Playlist3,All)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Playlist3,Studio)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Off_Playlist3]</visible>
+			</item>
+			<item>
+				<description>Movie flags / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Playlist4,All)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Playlist4,Studio)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Off_Playlist4]</visible>
+			</item>
+			<item>
+				<description>Movie flags / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Playlist5,All)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Playlist5,Studio)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Off_Playlist5]</visible>
+			</item>
+			<item>
+				<description>Movie flags / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Playlist6,All)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Playlist6,Studio)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Off_Playlist6]</visible>
+			</item>
+			<item>
+				<description>Movie flags / Studio</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31025] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31025]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Movies,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Movies,Rating)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Studio_Movies]</visible>
+			</item>
+			<item>
+				<description>Movie flags / Studio</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31025] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31025]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_SetMovies,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_SetMovies,Rating)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Studio_SetMovies]</visible>
+			</item>
+			<item>
+				<description>Movie flags / Studio</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31025] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31025]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Playlist1,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Playlist1,Rating)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Studio_Playlist1]</visible>
+			</item>
+			<item>
+				<description>Movie flags / Studio</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31025] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31025]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Playlist2,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Playlist2,Rating)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Studio_Playlist2]</visible>
+			</item>
+			<item>
+				<description>Movie flags / Studio</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31025] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31025]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Playlist3,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Playlist3,Rating)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Studio_Playlist3]</visible>
+			</item>
+			<item>
+				<description>Movie flags / Studio</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31025] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31025]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Playlist4,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Playlist4,Rating)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Studio_Playlist4]</visible>
+			</item>
+			<item>
+				<description>Movie flags / Studio</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31025] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31025]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Playlist5,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Playlist5,Rating)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Studio_Playlist5]</visible>
+			</item>
+			<item>
+				<description>Movie flags / Studio</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31025] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31025]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Playlist6,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Playlist6,Rating)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Studio_Playlist6]</visible>
+			</item>
+			<item>
+				<description>Movie flags / Age Rating</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31026] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31026]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Movies,Studio)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Movies,All)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Rating_Movies]</visible>
+			</item>
+			<item>
+				<description>Movie flags / Age Rating</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31026] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31026]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_SetMovies,Studio)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_SetMovies,All)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Rating_SetMovies]</visible>
+			</item>
+			<item>
+				<description>Movie flags / Age Rating</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31026] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31026]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Playlist1,Studio)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Playlist1,All)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Rating_Playlist1]</visible>
+			</item>
+			<item>
+				<description>Movie flags / Age Rating</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31026] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31026]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Playlist2,Studio)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Playlist2,All)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Rating_Playlist2]</visible>
+			</item>
+			<item>
+				<description>Movie flags / Age Rating</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31026] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31026]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Playlist3,Studio)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Playlist3,All)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Rating_Playlist3]</visible>
+			</item>
+			<item>
+				<description>Movie flags / Age Rating</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31026] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31026]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Playlist4,Studio)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Playlist4,All)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Rating_Playlist4]</visible>
+			</item>
+			<item>
+				<description>Movie flags / Age Rating</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31026] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31026]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Playlist5,Studio)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Playlist5,All)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Rating_Playlist5]</visible>
+			</item>
+			<item>
+				<description>Movie flags / Age Rating</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31026] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31026]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Playlist6,Studio)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Playlist6,All)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Rating_Playlist6]</visible>
+			</item>
+			<item>
+				<description>Movie flags / All</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[593] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[593]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Movies,Rating)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Movies,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_All_Movies]</visible>
+			</item>
+			<item>
+				<description>Movie flags / All</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[593] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[593]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_SetMovies,Rating)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_SetMovies,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_All_SetMovies]</visible>
+			</item>
+			<item>
+				<description>Movie flags / All</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[593] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[593]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Playlist1,Rating)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Playlist1,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_All_Playlist1]</visible>
+			</item>
+			<item>
+				<description>Movie flags / All</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[593] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[593]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Playlist2,Rating)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Playlist2,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_All_Playlist2]</visible>
+			</item>
+			<item>
+				<description>Movie flags / All</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[593] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[593]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Playlist3,Rating)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Playlist3,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_All_Playlist3]</visible>
+			</item>
+			<item>
+				<description>Movie flags / All</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[593] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[593]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Playlist4,Rating)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Playlist4,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_All_Playlist4]</visible>
+			</item>
+			<item>
+				<description>Movie flags / All</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[593] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[593]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Playlist5,Rating)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Playlist5,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_All_Playlist5]</visible>
+			</item>
+			<item>
+				<description>Movie flags / All</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[593] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[593]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Playlist6,Rating)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Playlist6,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_All_Playlist6]</visible>
+			</item>
+			<!-- Sets -->
+			<item>
+				<description>Set flags / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Sets,All)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Sets,Studio)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Off_Sets]</visible>
+			</item>
+			<item>
+				<description>Set flags / Studio</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31025] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31025]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Sets,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Sets,Rating)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Studio_Sets]</visible>
+			</item>
+			<item>
+				<description>Set flags / Age Rating</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31026] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31026]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Sets,Studio)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Sets,All)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Rating_Sets]</visible>
+			</item>
+			<item>
+				<description>Set flags / All</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[593] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[593]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Sets,Rating)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Sets,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_All_Sets]</visible>
+			</item>
+			<!-- TV shows -->
+			<item>
+				<description>TV show flags / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_TVShows,All)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_TVShows,Studio)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Off_TVShows]</visible>
+			</item>
+			<item>
+				<description>TV show flags / Studio</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31025] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31025]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_TVShows,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_TVShows,Rating)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Studio_TVShows]</visible>
+			</item>
+			<item>
+				<description>TV show flags / Age Rating</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31026] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31026]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_TVShows,Studio)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_TVShows,All)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Rating_TVShows]</visible>
+			</item>
+			<item>
+				<description>TV show flags / All</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[593] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[593]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_TVShows,Rating)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_TVShows,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_All_TVShows]</visible>
+			</item>
+			<!-- Seasons -->
+			<item>
+				<description>Season flags / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Seasons,All)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Seasons,Studio)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Off_Seasons]</visible>
+			</item>
+			<item>
+				<description>Season flags / Studio</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31025] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31025]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Seasons,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Seasons,Rating)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Studio_Seasons]</visible>
+			</item>
+			<item>
+				<description>Season flags / Age Rating</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31026] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31026]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Seasons,Studio)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Seasons,All)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Rating_Seasons]</visible>
+			</item>
+			<item>
+				<description>Season flags / All</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[593] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[593]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Seasons,Rating)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Seasons,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_All_Seasons]</visible>
+			</item>
+			<!-- Episodes -->
+			<item>
+				<description>Episode flags / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Episodes,All)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Episodes,Studio)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Off_Episodes]</visible>
+			</item>
+			<item>
+				<description>Episode flags / Studio</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31025] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31025]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Episodes,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Episodes,Rating)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Studio_Episodes]</visible>
+			</item>
+			<item>
+				<description>Episode flags / Age Rating</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31026] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31026]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Episodes,Studio)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Episodes,All)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Rating_Episodes]</visible>
+			</item>
+			<item>
+				<description>Episode flags / All</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[593] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[593]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Episodes,Rating)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Episodes,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_All_Episodes]</visible>
+			</item>
+			<!-- Programs_Files -->
+			<item>
+				<description>Episode flags / Off</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[591] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[591]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Programs_Files,All)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Programs_Files,Studio)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Off_Programs_Files]</visible>
+			</item>
+			<item>
+				<description>Episode flags / Studio</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31025] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31025]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Programs_Files,Off)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Programs_Files,Rating)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Studio_Programs_Files]</visible>
+			</item>
+			<item>
+				<description>Episode flags / Age Rating</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[31026] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[31026]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Programs_Files,Studio)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Programs_Files,All)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_Rating_Programs_Files]</visible>
+			</item>
+			<item>
+				<description>Episode flags / All</description>
+				<label>$VAR[Copacetic_Chevron_Left] $LOCALIZE[593] $VAR[Copacetic_Chevron_Right]</label>
+				<label2>$LOCALIZE[31024] $VAR[Copacetic_Divider_Bold] $LOCALIZE[593]</label2>
+				<onclick>SetFocus(502)</onclick>
+				<property name="ActionLeft">Skin.SetString(ShowcaseView_Flags_Programs_Files,Rating)</property>
+				<property name="ActionRight">Skin.SetString(ShowcaseView_Flags_Programs_Files,Off)</property>
+				<visible>$PARAM[visible] + $EXP[ShowcaseView_Flags_All_Programs_Files]</visible>
+			</item>
+		</definition>
+	</include>
+</includes>

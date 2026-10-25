@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<smartplaylist type="movies">
+    <name>Warner Bros.</name>
+    <match>all</match>
+    <rule field="studio" operator="contains">
+        <value>Warner Bros</value>
+        <value>Warner Brothers</value>
+    </rule>
+    <order direction="descending">year</order>
+</smartplaylist>

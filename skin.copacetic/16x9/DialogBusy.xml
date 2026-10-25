@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<!-- busydialog -->
+	<!-- Kodi already waits before it opens this dialog; the skin's extra 1080 ms open delay hid the spinner
+	     for over a second after playback had started loading -->
+	<include content="Busy_OpenClose_Animation" />
+	<controls>
+		<include content="Busy_Spinner">
+			<param name="visible" value="!Window.IsVisible(shutdownmenu) + !String.IsEqual(Window(home).Property(Trailer_Autoplay),true)" />
+		</include>
+	</controls>
+</window>

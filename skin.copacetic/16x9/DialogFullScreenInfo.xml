@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<!-- fullscreeninfo -->
+	<onload condition="!Skin.TimerIsRunning(video_playback_label_interruptor)">Skin.TimerStart(video_playback_label_interruptor)</onload>
+	<zorder>2</zorder>
+	<controls>
+		<!-- The playing movie's IMAX tag (croco, or the Sync app's IMAX switch): one item when it has it.
+		     Read by IMAX_Label_FullscreenVideo (Variables_Labels_Media.xml). -->
+		<include content="Hidden_List">
+			<param name="id" value="9601" />
+			<param name="visible" value="VideoPlayer.Content(movies) + Integer.IsGreater(VideoPlayer.DBID,0)" />
+			<param name="content" value="videodb://movies/titles/?movieid=$INFO[VideoPlayer.DBID]&amp;tag=IMAX" />
+			<param name="sortby" value="title" />
+			<param name="sortorder" value="ascending" />
+		</include>
+		<include content="Fullscreen_Info">
+			<include content="WindowOpenClose_Fade_Delayed_Animation" />
+			<visible>!$EXP[TransparentDialog_IsVisible] + !Window.IsVisible(playerprocessinfo)</visible>
+			<include content="Visible_Fade_Delayed_Animation" />
+		</include>
+	</controls>
+</window>

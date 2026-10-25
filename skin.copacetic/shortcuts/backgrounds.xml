@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copacetic - Skin Shortcuts v3 backgrounds
+  Replaces v2 <backgroundBrowse>True</backgroundBrowse> and <background label="::PLAYLIST::">playlistBackground</background>
+-->
+<backgrounds>
+
+  <!-- v2 ::PLAYLIST:: background (name kept as playlistBackground) -->
+  <background name="playlistBackground" label="Playlist" type="playlist">
+    <source label="Video Playlists">special://profile/playlists/video/</source>
+    <source label="Music Playlists">special://profile/playlists/music/</source>
+  </background>
+
+  <!-- v2 backgroundBrowse: let the user pick their own image -->
+  <background name="browse" label="Custom Image" type="browse">
+    <source label="Browse...">browse</source>
+  </background>
+
+</backgrounds>

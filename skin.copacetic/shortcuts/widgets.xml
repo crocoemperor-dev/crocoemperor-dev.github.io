@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copacetic - Skin Shortcuts v3 widgets
+  Feeds the custom widget picker in Skin Settings (RunScript ... type=skinstring), which fills
+  WidgetN_Custom_Name / _Path / _Type / _Target. v3 ships no built-in widgets, so the picker
+  shows only what is defined here.
+-->
+<widgets>
+
+  <!-- The sort method picker (Skin Settings > widget > sort method) opens this same file with
+       prop=copaceticPicker,value=sortmethod. v3 checks a custom path= for its own menus.xml, so a
+       separate sortmethods folder is refused; a flat group shown only for that call does the job.
+       The picked "path" is the sort value the skin stores, so it must be a name Kodi's
+       SortUtils accepts (label, not name; playlist, episode, track, totalepisodes, watchedepisodes). -->
+  <group name="sortmethods" flat="true" visible="String.IsEqual(Window(Home).Property(copaceticPicker),sortmethod)">
+    <widget name="sort-name" label="$LOCALIZE[551]" type="videos"><path>label</path></widget>
+    <widget name="sort-random" label="$LOCALIZE[590]" type="videos"><path>random</path></widget>
+    <widget name="sort-dateadded" label="$LOCALIZE[570]" type="videos"><path>dateadded</path></widget>
+    <widget name="sort-lastplayed" label="$LOCALIZE[568]" type="videos"><path>lastplayed</path></widget>
+    <widget name="sort-playcount" label="$LOCALIZE[567]" type="videos"><path>playcount</path></widget>
+    <widget name="sort-year" label="$LOCALIZE[562]" type="videos"><path>year</path></widget>
+    <widget name="sort-rating" label="$LOCALIZE[553]" type="videos"><path>rating</path></widget>
+    <widget name="sort-userrating" label="$LOCALIZE[38018]" type="videos"><path>userrating</path></widget>
+    <widget name="sort-votes" label="$LOCALIZE[205]" type="videos"><path>votes</path></widget>
+    <widget name="sort-genre" label="$LOCALIZE[515]" type="videos"><path>genre</path></widget>
+    <widget name="sort-country" label="$LOCALIZE[574]" type="videos"><path>country</path></widget>
+    <widget name="sort-studio" label="$LOCALIZE[572]" type="videos"><path>studio</path></widget>
+    <widget name="sort-playlistorder" label="$LOCALIZE[559]" type="videos"><path>playlist</path></widget>
+    <widget name="sort-episodenumber" label="$LOCALIZE[20359]" type="videos"><path>episode</path></widget>
+    <widget name="sort-season" label="$LOCALIZE[20373]" type="videos"><path>season</path></widget>
+    <widget name="sort-numberofepisodes" label="Number of episodes" type="videos"><path>totalepisodes</path></widget>
+    <widget name="sort-numberofwatchedepisodes" label="Number of watched episodes" type="videos"><path>watchedepisodes</path></widget>
+    <widget name="sort-tvshowstatus" label="TV show status" type="videos"><path>tvshowstatus</path></widget>
+    <widget name="sort-tvshowtitle" label="$LOCALIZE[20364]" type="videos"><path>tvshowtitle</path></widget>
+    <widget name="sort-file" label="$LOCALIZE[561]" type="videos"><path>file</path></widget>
+    <widget name="sort-title" label="$LOCALIZE[556]" type="videos"><path>title</path></widget>
+    <widget name="sort-tracknumber" label="$LOCALIZE[554]" type="videos"><path>track</path></widget>
+    <widget name="sort-time" label="$LOCALIZE[555]" type="videos"><path>time</path></widget>
+    <widget name="sort-artist" label="$LOCALIZE[557]" type="videos"><path>artist</path></widget>
+    <widget name="sort-album" label="$LOCALIZE[558]" type="videos"><path>album</path></widget>
+    <widget name="sort-lastupdated" label="$LOCALIZE[12014]" type="videos"><path>lastupdated</path></widget>
+    <widget name="sort-lastused" label="$LOCALIZE[12012]" type="videos"><path>lastused</path></widget>
+    <widget name="sort-date" label="$LOCALIZE[552]" type="videos"><path>date</path></widget>
+  </group>
+
+  <!-- Everything below is the normal widget picker -->
+  <group name="standard" flat="true" visible="String.IsEmpty(Window(Home).Property(copaceticPicker))">
+
+  <group name="movies" label="$LOCALIZE[342]" icon="DefaultMovies.png" visible="Library.HasContent(movies)">
+    <widget name="recent-movies" label="Recently Added Movies" target="videos" type="movies" icon="DefaultRecentlyAddedMovies.png">
+      <path>videodb://recentlyaddedmovies/</path>
+    </widget>
+    <widget name="movies-all" label="$LOCALIZE[342]" target="videos" type="movies" icon="DefaultMovies.png">
+      <path>videodb://movies/titles/</path>
+    </widget>
+    <widget name="movie-sets" label="$LOCALIZE[20434]" target="videos" type="sets" icon="DefaultSets.png">
+      <path>videodb://movies/sets/</path>
+    </widget>
+    <!-- One tile per genre; clicking a tile opens that genre in the library.
+         Tiles get artwork from resource.images.moviegenrefanart.metrocity when it is installed. -->
+    <widget name="movie-genres" label="Movie Genres" target="videos" type="genres" icon="DefaultGenre.png">
+      <path>videodb://movies/genres/</path>
+    </widget>
+    <content source="library" target="moviegenres" />
+  </group>
+
+  <!-- Studios. "All Studios" is one tile per studio in the library (logos come from the skin's
+       media/flags/studios); clicking a tile opens that studio's movies. The named studios are
+       skin smart playlists in extras/playlists/studio_*.xsp that match the studio field with
+       "contains", so name variants ("Pixar" / "Pixar Animation Studios") are all caught.
+       Add your own by copying one of those files and adding a widget line here. -->
+  <group name="studios" label="Studios" icon="DefaultStudios.png" visible="Library.HasContent(movies)">
+    <widget name="movie-studios" label="All Studios" target="videos" type="studios" icon="DefaultStudios.png">
+      <path>videodb://movies/studios/</path>
+    </widget>
+    <widget name="studio-pixar" label="Pixar" target="videos" type="movies" icon="DefaultStudios.png">
+      <path>special://skin/extras/playlists/studio_pixar.xsp</path>
+    </widget>
+    <widget name="studio-ghibli" label="Studio Ghibli" target="videos" type="movies" icon="DefaultStudios.png">
+      <path>special://skin/extras/playlists/studio_ghibli.xsp</path>
+    </widget>
+    <widget name="studio-disney" label="Disney" target="videos" type="movies" icon="DefaultStudios.png">
+      <path>special://skin/extras/playlists/studio_disney.xsp</path>
+    </widget>
+    <widget name="studio-marvel" label="Marvel Studios" target="videos" type="movies" icon="DefaultStudios.png">
+      <path>special://skin/extras/playlists/studio_marvel.xsp</path>
+    </widget>
+    <widget name="studio-lucasfilm" label="Lucasfilm" target="videos" type="movies" icon="DefaultStudios.png">
+      <path>special://skin/extras/playlists/studio_lucasfilm.xsp</path>
+    </widget>
+    <widget name="studio-dreamworks" label="DreamWorks Animation" target="videos" type="movies" icon="DefaultStudios.png">
+      <path>special://skin/extras/playlists/studio_dreamworks.xsp</path>
+    </widget>
+    <widget name="studio-illumination" label="Illumination" target="videos" type="movies" icon="DefaultStudios.png">
+      <path>special://skin/extras/playlists/studio_illumination.xsp</path>
+    </widget>
+    <widget name="studio-warnerbros" label="Warner Bros." target="videos" type="movies" icon="DefaultStudios.png">
+      <path>special://skin/extras/playlists/studio_warnerbros.xsp</path>
+    </widget>
+    <widget name="studio-universal" label="Universal Pictures" target="videos" type="movies" icon="DefaultStudios.png">
+      <path>special://skin/extras/playlists/studio_universal.xsp</path>
+    </widget>
+    <widget name="studio-paramount" label="Paramount Pictures" target="videos" type="movies" icon="DefaultStudios.png">
+      <path>special://skin/extras/playlists/studio_paramount.xsp</path>
+    </widget>
+    <widget name="studio-sony" label="Sony Pictures" target="videos" type="movies" icon="DefaultStudios.png">
+      <path>special://skin/extras/playlists/studio_sony.xsp</path>
+    </widget>
+    <widget name="studio-20thcentury" label="20th Century Studios" target="videos" type="movies" icon="DefaultStudios.png">
+      <path>special://skin/extras/playlists/studio_20thcentury.xsp</path>
+    </widget>
+    <widget name="studio-lionsgate" label="Lionsgate" target="videos" type="movies" icon="DefaultStudios.png">
+      <path>special://skin/extras/playlists/studio_lionsgate.xsp</path>
+    </widget>
+    <widget name="studio-legendary" label="Legendary Pictures" target="videos" type="movies" icon="DefaultStudios.png">
+      <path>special://skin/extras/playlists/studio_legendary.xsp</path>
+    </widget>
+    <widget name="studio-a24" label="A24" target="videos" type="movies" icon="DefaultStudios.png">
+      <path>special://skin/extras/playlists/studio_a24.xsp</path>
+    </widget>
+    <widget name="studio-blumhouse" label="Blumhouse" target="videos" type="movies" icon="DefaultStudios.png">
+      <path>special://skin/extras/playlists/studio_blumhouse.xsp</path>
+    </widget>
+    <widget name="studio-yashraj" label="Yash Raj Films" target="videos" type="movies" icon="DefaultStudios.png">
+      <path>special://skin/extras/playlists/studio_yashraj.xsp</path>
+    </widget>
+    <widget name="studio-dharma" label="Dharma Productions" target="videos" type="movies" icon="DefaultStudios.png">
+      <path>special://skin/extras/playlists/studio_dharma.xsp</path>
+    </widget>
+    <widget name="studio-redchillies" label="Red Chillies Entertainment" target="videos" type="movies" icon="DefaultStudios.png">
+      <path>special://skin/extras/playlists/studio_redchillies.xsp</path>
+    </widget>
+    <widget name="studio-excel" label="Excel Entertainment" target="videos" type="movies" icon="DefaultStudios.png">
+      <path>special://skin/extras/playlists/studio_excel.xsp</path>
+    </widget>
+    <widget name="studio-tseries" label="T-Series" target="videos" type="movies" icon="DefaultStudios.png">
+      <path>special://skin/extras/playlists/studio_tseries.xsp</path>
+    </widget>
+  </group>
+
+  <group name="tvshows" label="$LOCALIZE[20343]" icon="DefaultTVShows.png" visible="Library.HasContent(tvshows)">
+    <widget name="inprogress-tvshows" label="In Progress TV Shows" target="videos" type="tvshows" icon="DefaultInProgressShows.png">
+      <path>videodb://inprogresstvshows/</path>
+    </widget>
+    <widget name="recent-episodes" label="Recently Added Episodes" target="videos" type="episodes" icon="DefaultRecentlyAddedEpisodes.png">
+      <path>videodb://recentlyaddedepisodes/</path>
+    </widget>
+    <!-- Shows (not episodes), newest first. A show's date added is its newest episode's,
+         so a show moves to the front whenever a new episode is added. -->
+    <widget name="recent-tvshows" label="Recently Added TV Shows" target="videos" type="tvshows" icon="DefaultTVShows.png">
+      <path>special://skin/extras/playlists/recentlyadded_tvshows.xsp</path>
+    </widget>
+    <widget name="tvshow-genres" label="TV Show Genres" target="videos" type="genres" icon="DefaultGenre.png">
+      <path>videodb://tvshows/genres/</path>
+    </widget>
+    <!-- One tile per network/studio, with the skin's studio logos -->
+    <widget name="tvshow-studios" label="TV Networks" target="videos" type="studios" icon="DefaultStudios.png">
+      <path>videodb://tvshows/studios/</path>
+    </widget>
+    <widget name="tvshows-all" label="$LOCALIZE[20343]" target="videos" type="tvshows" icon="DefaultTVShows.png">
+      <path>videodb://tvshows/titles/</path>
+    </widget>
+    <content source="library" target="tvgenres" />
+  </group>
+
+  <group name="music" label="$LOCALIZE[2]" icon="DefaultMusicAlbums.png" visible="Library.HasContent(music)">
+    <widget name="recent-albums" label="Recently Added Albums" target="music" type="albums" icon="DefaultMusicRecentlyAdded.png">
+      <path>musicdb://recentlyaddedalbums/</path>
+    </widget>
+    <widget name="recent-played-albums" label="Recently Played Albums" target="music" type="albums" icon="DefaultMusicRecentlyPlayed.png">
+      <path>musicdb://recentlyplayedalbums/</path>
+    </widget>
+    <widget name="artists-all" label="$LOCALIZE[133]" target="music" type="artists" icon="DefaultMusicArtists.png">
+      <path>musicdb://artists/</path>
+    </widget>
+  </group>
+
+  <group name="playlists" label="Playlists" icon="DefaultPlaylist.png">
+    <content source="playlists" target="video" />
+    <content source="playlists" target="music" />
+  </group>
+
+  <group name="addons" label="Add-ons" icon="DefaultAddon.png">
+    <content source="addons" target="video" folder="Video Add-ons" />
+    <content source="addons" target="music" folder="Music Add-ons" />
+  </group>
+
+  <widget name="favourites" label="$LOCALIZE[1036]" target="videos" type="videos" icon="DefaultShortcut.png">
+    <path>favourites://</path>
+  </widget>
+
+  </group>
+
+</widgets>

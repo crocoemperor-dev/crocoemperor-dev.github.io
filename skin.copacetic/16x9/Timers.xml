@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<timers>
+    <timer>
+    <name>infoline_changer</name>
+    <start reset="true">Window.IsVisible(videos)</start>
+    <reset>Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(infoline_changer),14)</reset>
+    <stop>!Window.IsVisible(videos)</stop>
+  </timer>
+  <timer>
+    <name>home_visible</name>
+    <start reset="true">Window.IsVisible(home)</start>
+    <stop>!Window.IsVisible(home)</stop>
+  </timer>
+  <timer>
+    <name>videos_visible</name>
+    <start reset="true">Window.IsVisible(videos)</start>
+    <stop>!Window.IsVisible(videos)</stop>
+  </timer>
+  <timer>
+    <name>osd_idle</name>
+    <start reset="true">String.IsEqual(System.CurrentWindow,Fullscreen OSD) | String.IsEqual(System.CurrentWindow,Music OSD)</start>
+    <reset>[VideoPlayer.IsFullscreen + !String.IsEqual(System.CurrentWindow,Fullscreen OSD)] | [Window.IsVisible(visualisation) + !String.IsEqual(System.CurrentWindow,Music OSD)] | [!System.IdleTime(1) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(osd_idle),1)]</reset>
+    <stop>[Window.IsActive(videoosd) | Window.IsVisible(musicosd)] + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(osd_idle),3)</stop>
+    <onstop>Dialog.Close(all)</onstop>
+  </timer>
+  <timer>
+    <name>home_screensaver</name>
+    <start reset="true">Skin.HasSetting(Home_Screensaver_Enabled) + Window.Is(home) + [Control.HasFocus(3000) | Control.HasFocus(4201)] + !VideoPlayer.Content(livetv)</start>
+    <reset>!Control.HasFocus(3000) + !Control.HasFocus(4201)</reset>
+    <stop>Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(home_screensaver),15) + System.IdleTime(15) + !VideoPlayer.Content(livetv)</stop>
+    <onstop>SetFocus(4300)</onstop>
+  </timer>
+  <timer>
+    <name>video_playback</name>
+    <description>timer that starts whenever video has fullscreen playback</description>
+    <start reset="true">VideoPlayer.IsFullscreen</start>
+    <stop>!VideoPlayer.IsFullscreen</stop>
+  </timer>
+  <timer>
+    <name>video_playback_label_interruptor</name>
+    <description>timer started when videoosd or fullscreeninfo are loaded for the first time</description>
+    <stop>!Player.HasVideo</stop>
+  </timer>
+  <timer>
+    <name>music_playback</name>
+    <description>timer that starts whenever music is playing</description>
+    <start reset="true">Player.HasAudio + Player.Playing</start>
+    <stop>!Player.Playing</stop>
+  </timer>
+  <timer>
+    <name>music_visualisation</name>
+    <description>timer that starts whenever music visualisation is showing</description>
+  </timer>
+  <timer>
+    <name>trailer_autoplay</name>
+    <start reset="true">Window.Is(videos) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(videos_visible),3) + Skin.HasSetting(Trailer_Autoplay) + [[Skin.String(Trailer_Autoplay_Movies_Enabled,true) + Container.Content(movies)] | [Skin.String(Trailer_Autoplay_TVShows_Enabled,true) + Container.Content(tvshows)]] + Window.IsVisible(1160) + !Player.HasMedia + String.IsEmpty(Window(home).Property(Trailer_Window))</start>
+    <reset>Player.HasVideo | Window.IsVisible(movieinformation) | Window.IsVisible(shutdownmenu) | Window.IsVisible(busydialog)</reset>
+    <stop>!String.IsEmpty(ListItem.Trailer) + String.IsEmpty(Window(home).Property(Trailer_Autoplay)) + !Player.HasVideo</stop>
+    <onstart condition="[Control.HasFocus(50) | Control.HasFocus(501) | Control.HasFocus(502) | Control.HasFocus(504)] + !String.IsEmpty(ListItem.Trailer)">SetProperty(Trailer_Autoplay,true,home)</onstart>
+    <onstart condition="[Control.HasFocus(50) | Control.HasFocus(501) | Control.HasFocus(502) | Control.HasFocus(504)] + !String.IsEmpty(ListItem.Trailer)">PlayMedia($ESCINFO[ListItem.Trailer],1,noresume)</onstart>
+    <onstart condition="Control.HasFocus(3100) + !String.IsEmpty(Container(3100).ListItem.Trailer)">SetProperty(Trailer_Autoplay,true,home)</onstart>
+    <onstart condition="Control.HasFocus(3100) + !String.IsEmpty(Container(3100).ListItem.Trailer)">PlayMedia($ESCINFO[Container(3100).ListItem.Trailer],1,noresume)</onstart>
+  </timer>
+  <timer>
+    <name>trailer_autoplay_home</name>
+    <start reset="true">Window.Is(home) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(home_visible),3) + Skin.HasSetting(Trailer_Autoplay) + !String.IsEmpty(window(home).property(Home_Widget)) + Window.IsVisible(1160) + !Player.HasMedia + ![[Control.HasFocus(3201) + Window.IsVisible(1131)] | [Control.HasFocus(3202) + Window.IsVisible(1132)] | [Control.HasFocus(3203) + Window.IsVisible(1133)] | [Control.HasFocus(3204) + Window.IsVisible(1134)] | [Control.HasFocus(3205) + Window.IsVisible(1135)] | [Control.HasFocus(3206) + Window.IsVisible(1136)] | [Control.HasFocus(3207) + Window.IsVisible(1137)] | [Control.HasFocus(3208) + Window.IsVisible(1138)] | [Control.HasFocus(3209) + Window.IsVisible(1139)]]</start>
+    <reset>Player.HasVideo | Window.IsVisible(movieinformation) | Window.IsVisible(shutdownmenu) | Window.IsVisible(busydialog)</reset>
+    <stop>!String.IsEmpty(ListItem.Trailer) + String.IsEmpty(Window(home).Property(Trailer_Autoplay)) + !Player.HasVideo</stop>
+    <onstart condition="Control.HasFocus(3201) + Skin.HasSetting(Widget1_Trailer_Autoplay) + !String.IsEmpty(ListItem.Trailer)">SetProperty(Trailer_Autoplay,true,home)</onstart>
+    <onstart condition="Control.HasFocus(3201) + Skin.HasSetting(Widget1_Trailer_Autoplay) + !String.IsEmpty(ListItem.Trailer)">PlayMedia($ESCINFO[ListItem.Trailer],1,noresume)</onstart>
+    <onstart condition="Control.HasFocus(3202) + Skin.HasSetting(Widget2_Trailer_Autoplay) + !String.IsEmpty(ListItem.Trailer)">SetProperty(Trailer_Autoplay,true,home)</onstart>
+    <onstart condition="Control.HasFocus(3202) + Skin.HasSetting(Widget2_Trailer_Autoplay) + !String.IsEmpty(ListItem.Trailer)">PlayMedia($ESCINFO[ListItem.Trailer],1,noresume)</onstart>
+    <onstart condition="Control.HasFocus(3203) + Skin.HasSetting(Widget3_Trailer_Autoplay) + !String.IsEmpty(ListItem.Trailer)">SetProperty(Trailer_Autoplay,true,home)</onstart>
+    <onstart condition="Control.HasFocus(3203) + Skin.HasSetting(Widget3_Trailer_Autoplay) + !String.IsEmpty(ListItem.Trailer)">PlayMedia($ESCINFO[ListItem.Trailer],1,noresume)</onstart>
+    <onstart condition="Control.HasFocus(3204) + Skin.HasSetting(Widget4_Trailer_Autoplay) + !String.IsEmpty(ListItem.Trailer)">SetProperty(Trailer_Autoplay,true,home)</onstart>
+    <onstart condition="Control.HasFocus(3204) + Skin.HasSetting(Widget4_Trailer_Autoplay) + !String.IsEmpty(ListItem.Trailer)">PlayMedia($ESCINFO[ListItem.Trailer],1,noresume)</onstart>
+    <onstart condition="Control.HasFocus(3205) + Skin.HasSetting(Widget5_Trailer_Autoplay) + !String.IsEmpty(ListItem.Trailer)">SetProperty(Trailer_Autoplay,true,home)</onstart>
+    <onstart condition="Control.HasFocus(3205) + Skin.HasSetting(Widget5_Trailer_Autoplay) + !String.IsEmpty(ListItem.Trailer)">PlayMedia($ESCINFO[ListItem.Trailer],1,noresume)</onstart>
+    <onstart condition="Control.HasFocus(3206) + Skin.HasSetting(Widget6_Trailer_Autoplay) + !String.IsEmpty(ListItem.Trailer)">SetProperty(Trailer_Autoplay,true,home)</onstart>
+    <onstart condition="Control.HasFocus(3206) + Skin.HasSetting(Widget6_Trailer_Autoplay) + !String.IsEmpty(ListItem.Trailer)">PlayMedia($ESCINFO[ListItem.Trailer],1,noresume)</onstart>
+    <onstart condition="Control.HasFocus(3207) + Skin.HasSetting(Widget7_Trailer_Autoplay) + !String.IsEmpty(ListItem.Trailer)">SetProperty(Trailer_Autoplay,true,home)</onstart>
+    <onstart condition="Control.HasFocus(3207) + Skin.HasSetting(Widget7_Trailer_Autoplay) + !String.IsEmpty(ListItem.Trailer)">PlayMedia($ESCINFO[ListItem.Trailer],1,noresume)</onstart>
+    <onstart condition="Control.HasFocus(3208) + Skin.HasSetting(Widget8_Trailer_Autoplay) + !String.IsEmpty(ListItem.Trailer)">SetProperty(Trailer_Autoplay,true,home)</onstart>
+    <onstart condition="Control.HasFocus(3208) + Skin.HasSetting(Widget8_Trailer_Autoplay) + !String.IsEmpty(ListItem.Trailer)">PlayMedia($ESCINFO[ListItem.Trailer],1,noresume)</onstart>
+    <onstart condition="Control.HasFocus(3209) + Skin.HasSetting(Widget9_Trailer_Autoplay) + !String.IsEmpty(ListItem.Trailer)">SetProperty(Trailer_Autoplay,true,home)</onstart>
+    <onstart condition="Control.HasFocus(3209) + Skin.HasSetting(Widget9_Trailer_Autoplay) + !String.IsEmpty(ListItem.Trailer)">PlayMedia($ESCINFO[ListItem.Trailer],1,noresume)</onstart>
+  </timer>
+  <timer>
+    <name>widget_spotlight_3201</name>
+    <start reset="true">Window.Is(home) + Skin.HasSetting(Widget1_AutoScroll) + Control.HasFocus(3201)</start>
+    <reset>Player.HasVideo | Window.IsVisible(movieinformation) | Window.IsVisible(shutdownmenu) | Window.IsVisible(busydialog)</reset>
+    <stop>[[!Skin.HasSetting(Widget1_Trailer_Autoplay) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(widget_spotlight_3201),8) + System.IdleTime(8)] | [Skin.HasSetting(Widget1_Trailer_Autoplay) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(widget_spotlight_3201),2) + Skin.TimerIsRunning(trailer_autoplay_home) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(trailer_autoplay_home),2)]] + !Player.HasVideo + !Window.IsVisible(movieinformation) + !Window.IsVisible(shutdownmenu) + !Window.IsVisible(busydialog)</stop>
+    <onstop condition="Skin.HasSetting(Widget1_Trailer_Autoplay) + String.IsEqual(Window(home).Property(Trailer_Autoplay),true)">ClearProperty(Trailer_Autoplay,home)</onstop>
+    <onstop condition="Control.HasFocus(3201)">Control.Move(3201,1)</onstop>
+  </timer>
+  <timer>
+    <name>widget_spotlight_3202</name>
+    <start reset="true">Window.Is(home) + Skin.HasSetting(Widget2_AutoScroll) + Control.HasFocus(3202)</start>
+    <reset>Player.HasVideo | Window.IsVisible(movieinformation) | Window.IsVisible(shutdownmenu) | Window.IsVisible(busydialog)</reset>
+    <stop>[[!Skin.HasSetting(Widget2_Trailer_Autoplay) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(widget_spotlight_3202),8) + System.IdleTime(8)] | [Skin.HasSetting(Widget2_Trailer_Autoplay) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(widget_spotlight_3202),2) + Skin.TimerIsRunning(trailer_autoplay_home) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(trailer_autoplay_home),2)]] + !Player.HasVideo + !Window.IsVisible(movieinformation) + !Window.IsVisible(shutdownmenu) + !Window.IsVisible(busydialog)</stop>
+    <onstop condition="Skin.HasSetting(Widget2_Trailer_Autoplay) + String.IsEqual(Window(home).Property(Trailer_Autoplay),true)">ClearProperty(Trailer_Autoplay,home)</onstop>
+    <onstop condition="Control.HasFocus(3202)">Control.Move(3202,1)</onstop>
+  </timer>
+  <timer>
+    <name>widget_spotlight_3203</name>
+    <start reset="true">Window.Is(home) + Skin.HasSetting(Widget3_AutoScroll) + Control.HasFocus(3203)</start>
+    <reset>Player.HasVideo | Window.IsVisible(movieinformation) | Window.IsVisible(shutdownmenu) | Window.IsVisible(busydialog)</reset>
+    <stop>[[!Skin.HasSetting(Widget3_Trailer_Autoplay) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(widget_spotlight_3203),8) + System.IdleTime(8)] | [Skin.HasSetting(Widget3_Trailer_Autoplay) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(widget_spotlight_3203),2) + Skin.TimerIsRunning(trailer_autoplay_home) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(trailer_autoplay_home),2)]] + !Player.HasVideo + !Window.IsVisible(movieinformation) + !Window.IsVisible(shutdownmenu) + !Window.IsVisible(busydialog)</stop>
+    <onstop condition="Skin.HasSetting(Widget3_Trailer_Autoplay) + String.IsEqual(Window(home).Property(Trailer_Autoplay),true)">ClearProperty(Trailer_Autoplay,home)</onstop>
+    <onstop condition="Control.HasFocus(3203)">Control.Move(3203,1)</onstop>
+  </timer>
+  <timer>
+    <name>widget_spotlight_3204</name>
+    <start reset="true">Window.Is(home) + Skin.HasSetting(Widget4_AutoScroll) + Control.HasFocus(3204)</start>
+    <reset>Player.HasVideo | Window.IsVisible(movieinformation) | Window.IsVisible(shutdownmenu) | Window.IsVisible(busydialog)</reset>
+    <stop>[[!Skin.HasSetting(Widget4_Trailer_Autoplay) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(widget_spotlight_3204),8) + System.IdleTime(8)] | [Skin.HasSetting(Widget4_Trailer_Autoplay) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(widget_spotlight_3204),2) + Skin.TimerIsRunning(trailer_autoplay_home) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(trailer_autoplay_home),2)]] + !Player.HasVideo + !Window.IsVisible(movieinformation) + !Window.IsVisible(shutdownmenu) + !Window.IsVisible(busydialog)</stop>
+    <onstop condition="Skin.HasSetting(Widget4_Trailer_Autoplay) + String.IsEqual(Window(home).Property(Trailer_Autoplay),true)">ClearProperty(Trailer_Autoplay,home)</onstop>
+    <onstop condition="Control.HasFocus(3204)">Control.Move(3204,1)</onstop>
+  </timer>
+  <timer>
+    <name>widget_spotlight_3205</name>
+    <start reset="true">Window.Is(home) + Skin.HasSetting(Widget5_AutoScroll) + Control.HasFocus(3205)</start>
+    <reset>Player.HasVideo | Window.IsVisible(movieinformation) | Window.IsVisible(shutdownmenu) | Window.IsVisible(busydialog)</reset>
+    <stop>[[!Skin.HasSetting(Widget5_Trailer_Autoplay) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(widget_spotlight_3205),8) + System.IdleTime(8)] | [Skin.HasSetting(Widget5_Trailer_Autoplay) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(widget_spotlight_3205),2) + Skin.TimerIsRunning(trailer_autoplay_home) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(trailer_autoplay_home),2)]] + !Player.HasVideo + !Window.IsVisible(movieinformation) + !Window.IsVisible(shutdownmenu) + !Window.IsVisible(busydialog)</stop>
+    <onstop condition="Skin.HasSetting(Widget5_Trailer_Autoplay) + String.IsEqual(Window(home).Property(Trailer_Autoplay),true)">ClearProperty(Trailer_Autoplay,home)</onstop>
+    <onstop condition="Control.HasFocus(3205)">Control.Move(3205,1)</onstop>
+  </timer>
+  <timer>
+    <name>widget_spotlight_3206</name>
+    <start reset="true">Window.Is(home) + Skin.HasSetting(Widget6_AutoScroll) + Control.HasFocus(3206)</start>
+    <reset>Player.HasVideo | Window.IsVisible(movieinformation) | Window.IsVisible(shutdownmenu) | Window.IsVisible(busydialog)</reset>
+    <stop>[[!Skin.HasSetting(Widget6_Trailer_Autoplay) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(widget_spotlight_3206),8) + System.IdleTime(8)] | [Skin.HasSetting(Widget6_Trailer_Autoplay) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(widget_spotlight_3206),2) + Skin.TimerIsRunning(trailer_autoplay_home) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(trailer_autoplay_home),2)]] + !Player.HasVideo + !Window.IsVisible(movieinformation) + !Window.IsVisible(shutdownmenu) + !Window.IsVisible(busydialog)</stop>
+    <onstop condition="Skin.HasSetting(Widget6_Trailer_Autoplay) + String.IsEqual(Window(home).Property(Trailer_Autoplay),true)">ClearProperty(Trailer_Autoplay,home)</onstop>
+    <onstop condition="Control.HasFocus(3206)">Control.Move(3206,1)</onstop>
+  </timer>
+  <timer>
+    <name>widget_spotlight_3207</name>
+    <start reset="true">Window.Is(home) + Skin.HasSetting(Widget7_AutoScroll) + Control.HasFocus(3207)</start>
+    <reset>Player.HasVideo | Window.IsVisible(movieinformation) | Window.IsVisible(shutdownmenu) | Window.IsVisible(busydialog)</reset>
+    <stop>[[!Skin.HasSetting(Widget7_Trailer_Autoplay) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(widget_spotlight_3207),8) + System.IdleTime(8)] | [Skin.HasSetting(Widget7_Trailer_Autoplay) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(widget_spotlight_3207),2) + Skin.TimerIsRunning(trailer_autoplay_home) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(trailer_autoplay_home),2)]] + !Player.HasVideo + !Window.IsVisible(movieinformation) + !Window.IsVisible(shutdownmenu) + !Window.IsVisible(busydialog)</stop>
+    <onstop condition="Skin.HasSetting(Widget7_Trailer_Autoplay) + String.IsEqual(Window(home).Property(Trailer_Autoplay),true)">ClearProperty(Trailer_Autoplay,home)</onstop>
+    <onstop condition="Control.HasFocus(3207)">Control.Move(3207,1)</onstop>
+  </timer>
+  <timer>
+    <name>widget_spotlight_3208</name>
+    <start reset="true">Window.Is(home) + Skin.HasSetting(Widget8_AutoScroll) + Control.HasFocus(3208)</start>
+    <reset>Player.HasVideo | Window.IsVisible(movieinformation) | Window.IsVisible(shutdownmenu) | Window.IsVisible(busydialog)</reset>
+    <stop>[[!Skin.HasSetting(Widget8_Trailer_Autoplay) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(widget_spotlight_3208),8) + System.IdleTime(8)] | [Skin.HasSetting(Widget8_Trailer_Autoplay) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(widget_spotlight_3208),2) + Skin.TimerIsRunning(trailer_autoplay_home) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(trailer_autoplay_home),2)]] + !Player.HasVideo + !Window.IsVisible(movieinformation) + !Window.IsVisible(shutdownmenu) + !Window.IsVisible(busydialog)</stop>
+    <onstop condition="Skin.HasSetting(Widget8_Trailer_Autoplay) + String.IsEqual(Window(home).Property(Trailer_Autoplay),true)">ClearProperty(Trailer_Autoplay,home)</onstop>
+    <onstop condition="Control.HasFocus(3208)">Control.Move(3208,1)</onstop>
+  </timer>
+  <timer>
+    <name>widget_spotlight_3209</name>
+    <start reset="true">Window.Is(home) + Skin.HasSetting(Widget9_AutoScroll) + Control.HasFocus(3209)</start>
+    <reset>Player.HasVideo | Window.IsVisible(movieinformation) | Window.IsVisible(shutdownmenu) | Window.IsVisible(busydialog)</reset>
+    <stop>[[!Skin.HasSetting(Widget9_Trailer_Autoplay) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(widget_spotlight_3209),8) + System.IdleTime(8)] | [Skin.HasSetting(Widget9_Trailer_Autoplay) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(widget_spotlight_3209),2) + Skin.TimerIsRunning(trailer_autoplay_home) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(trailer_autoplay_home),2)]] + !Player.HasVideo + !Window.IsVisible(movieinformation) + !Window.IsVisible(shutdownmenu) + !Window.IsVisible(busydialog)</stop>
+    <onstop condition="Skin.HasSetting(Widget9_Trailer_Autoplay) + String.IsEqual(Window(home).Property(Trailer_Autoplay),true)">ClearProperty(Trailer_Autoplay,home)</onstop>
+    <onstop condition="Control.HasFocus(3209)">Control.Move(3209,1)</onstop>
+  </timer>
+  <!-- Movies inside a movie set keep their own layout (List, Strip, Grid...) apart from the Movies library.
+       Kodi remembers a layout per set folder and starts every new set from the Movies one, so on entering a set
+       the remembered set layout is applied, and a layout picked inside a set is remembered for all sets. -->
+  <timer>
+    <name>setmovies_view_apply</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + String.StartsWith(Container.FolderPath,videodb://movies/sets/) + !String.IsEmpty(Skin.String(SetMovies_ViewMode)) + !String.IsEqual(Window(home).Property(SetMovies_ViewPath),Container.FolderPath)</start>
+    <onstart>SetProperty(SetMovies_ViewPath,$INFO[Container.FolderPath],home)</onstart>
+    <onstart>Container.SetViewMode($INFO[Skin.String(SetMovies_ViewMode)])</onstart>
+    <stop>!Window.IsActive(videos) | !Container.Content(movies) | !String.StartsWith(Container.FolderPath,videodb://movies/sets/)</stop>
+    <onstop>ClearProperty(SetMovies_ViewPath,home)</onstop>
+  </timer>
+  <timer>
+    <name>setmovies_view_save_50</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + String.StartsWith(Container.FolderPath,videodb://movies/sets/) + Control.IsVisible(50) + !Skin.String(SetMovies_ViewMode,50) + [String.IsEmpty(Skin.String(SetMovies_ViewMode)) | [Skin.TimerIsRunning(setmovies_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(setmovies_view_apply),2)]]</start>
+    <onstart>Skin.SetString(SetMovies_ViewMode,50)</onstart>
+    <stop>!Control.IsVisible(50) | !Window.IsActive(videos) | !Container.Content(movies) | !String.StartsWith(Container.FolderPath,videodb://movies/sets/)</stop>
+  </timer>
+  <timer>
+    <name>setmovies_view_save_500</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + String.StartsWith(Container.FolderPath,videodb://movies/sets/) + Control.IsVisible(500) + !Skin.String(SetMovies_ViewMode,500) + [String.IsEmpty(Skin.String(SetMovies_ViewMode)) | [Skin.TimerIsRunning(setmovies_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(setmovies_view_apply),2)]]</start>
+    <onstart>Skin.SetString(SetMovies_ViewMode,500)</onstart>
+    <stop>!Control.IsVisible(500) | !Window.IsActive(videos) | !Container.Content(movies) | !String.StartsWith(Container.FolderPath,videodb://movies/sets/)</stop>
+  </timer>
+  <timer>
+    <name>setmovies_view_save_501</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + String.StartsWith(Container.FolderPath,videodb://movies/sets/) + Control.IsVisible(501) + !Skin.String(SetMovies_ViewMode,501) + [String.IsEmpty(Skin.String(SetMovies_ViewMode)) | [Skin.TimerIsRunning(setmovies_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(setmovies_view_apply),2)]]</start>
+    <onstart>Skin.SetString(SetMovies_ViewMode,501)</onstart>
+    <stop>!Control.IsVisible(501) | !Window.IsActive(videos) | !Container.Content(movies) | !String.StartsWith(Container.FolderPath,videodb://movies/sets/)</stop>
+  </timer>
+  <timer>
+    <name>setmovies_view_save_502</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + String.StartsWith(Container.FolderPath,videodb://movies/sets/) + Control.IsVisible(502) + !Skin.String(SetMovies_ViewMode,502) + [String.IsEmpty(Skin.String(SetMovies_ViewMode)) | [Skin.TimerIsRunning(setmovies_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(setmovies_view_apply),2)]]</start>
+    <onstart>Skin.SetString(SetMovies_ViewMode,502)</onstart>
+    <stop>!Control.IsVisible(502) | !Window.IsActive(videos) | !Container.Content(movies) | !String.StartsWith(Container.FolderPath,videodb://movies/sets/)</stop>
+  </timer>
+  <timer>
+    <name>setmovies_view_save_504</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + String.StartsWith(Container.FolderPath,videodb://movies/sets/) + Control.IsVisible(504) + !Skin.String(SetMovies_ViewMode,504) + [String.IsEmpty(Skin.String(SetMovies_ViewMode)) | [Skin.TimerIsRunning(setmovies_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(setmovies_view_apply),2)]]</start>
+    <onstart>Skin.SetString(SetMovies_ViewMode,504)</onstart>
+    <stop>!Control.IsVisible(504) | !Window.IsActive(videos) | !Container.Content(movies) | !String.StartsWith(Container.FolderPath,videodb://movies/sets/)</stop>
+  </timer>
+  <timer>
+    <name>setmovies_view_save_505</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + String.StartsWith(Container.FolderPath,videodb://movies/sets/) + Control.IsVisible(505) + !Skin.String(SetMovies_ViewMode,505) + [String.IsEmpty(Skin.String(SetMovies_ViewMode)) | [Skin.TimerIsRunning(setmovies_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(setmovies_view_apply),2)]]</start>
+    <onstart>Skin.SetString(SetMovies_ViewMode,505)</onstart>
+    <stop>!Control.IsVisible(505) | !Window.IsActive(videos) | !Container.Content(movies) | !String.StartsWith(Container.FolderPath,videodb://movies/sets/)</stop>
+  </timer>
+  <!-- Movie playlist 1: same layout memory as movie sets, for the playlist in MoviePlaylist1_Path -->
+  <timer>
+    <name>playlist1_view_apply</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist1_Path))] + !String.IsEmpty(Skin.String(Playlist1_ViewMode)) + !String.IsEqual(Window(home).Property(Playlist1_ViewPath),Container.FolderPath)</start>
+    <onstart>SetProperty(Playlist1_ViewPath,$INFO[Container.FolderPath],home)</onstart>
+    <onstart>Container.SetViewMode($INFO[Skin.String(Playlist1_ViewMode)])</onstart>
+    <stop>!Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist1_Path))]</stop>
+    <onstop>ClearProperty(Playlist1_ViewPath,home)</onstop>
+  </timer>
+  <timer>
+    <name>playlist1_view_save_50</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist1_Path))] + Control.IsVisible(50) + !Skin.String(Playlist1_ViewMode,50) + [String.IsEmpty(Skin.String(Playlist1_ViewMode)) | [Skin.TimerIsRunning(playlist1_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(playlist1_view_apply),2)]]</start>
+    <onstart>Skin.SetString(Playlist1_ViewMode,50)</onstart>
+    <stop>!Control.IsVisible(50) | !Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist1_Path))]</stop>
+  </timer>
+  <timer>
+    <name>playlist1_view_save_500</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist1_Path))] + Control.IsVisible(500) + !Skin.String(Playlist1_ViewMode,500) + [String.IsEmpty(Skin.String(Playlist1_ViewMode)) | [Skin.TimerIsRunning(playlist1_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(playlist1_view_apply),2)]]</start>
+    <onstart>Skin.SetString(Playlist1_ViewMode,500)</onstart>
+    <stop>!Control.IsVisible(500) | !Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist1_Path))]</stop>
+  </timer>
+  <timer>
+    <name>playlist1_view_save_501</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist1_Path))] + Control.IsVisible(501) + !Skin.String(Playlist1_ViewMode,501) + [String.IsEmpty(Skin.String(Playlist1_ViewMode)) | [Skin.TimerIsRunning(playlist1_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(playlist1_view_apply),2)]]</start>
+    <onstart>Skin.SetString(Playlist1_ViewMode,501)</onstart>
+    <stop>!Control.IsVisible(501) | !Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist1_Path))]</stop>
+  </timer>
+  <timer>
+    <name>playlist1_view_save_502</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist1_Path))] + Control.IsVisible(502) + !Skin.String(Playlist1_ViewMode,502) + [String.IsEmpty(Skin.String(Playlist1_ViewMode)) | [Skin.TimerIsRunning(playlist1_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(playlist1_view_apply),2)]]</start>
+    <onstart>Skin.SetString(Playlist1_ViewMode,502)</onstart>
+    <stop>!Control.IsVisible(502) | !Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist1_Path))]</stop>
+  </timer>
+  <timer>
+    <name>playlist1_view_save_504</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist1_Path))] + Control.IsVisible(504) + !Skin.String(Playlist1_ViewMode,504) + [String.IsEmpty(Skin.String(Playlist1_ViewMode)) | [Skin.TimerIsRunning(playlist1_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(playlist1_view_apply),2)]]</start>
+    <onstart>Skin.SetString(Playlist1_ViewMode,504)</onstart>
+    <stop>!Control.IsVisible(504) | !Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist1_Path))]</stop>
+  </timer>
+  <timer>
+    <name>playlist1_view_save_505</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist1_Path))] + Control.IsVisible(505) + !Skin.String(Playlist1_ViewMode,505) + [String.IsEmpty(Skin.String(Playlist1_ViewMode)) | [Skin.TimerIsRunning(playlist1_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(playlist1_view_apply),2)]]</start>
+    <onstart>Skin.SetString(Playlist1_ViewMode,505)</onstart>
+    <stop>!Control.IsVisible(505) | !Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist1_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist1_Path))]</stop>
+  </timer>
+  <!-- Movie playlist 2: same layout memory as movie sets, for the playlist in MoviePlaylist2_Path -->
+  <timer>
+    <name>playlist2_view_apply</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist2_Path))] + !String.IsEmpty(Skin.String(Playlist2_ViewMode)) + !String.IsEqual(Window(home).Property(Playlist2_ViewPath),Container.FolderPath)</start>
+    <onstart>SetProperty(Playlist2_ViewPath,$INFO[Container.FolderPath],home)</onstart>
+    <onstart>Container.SetViewMode($INFO[Skin.String(Playlist2_ViewMode)])</onstart>
+    <stop>!Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist2_Path))]</stop>
+    <onstop>ClearProperty(Playlist2_ViewPath,home)</onstop>
+  </timer>
+  <timer>
+    <name>playlist2_view_save_50</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist2_Path))] + Control.IsVisible(50) + !Skin.String(Playlist2_ViewMode,50) + [String.IsEmpty(Skin.String(Playlist2_ViewMode)) | [Skin.TimerIsRunning(playlist2_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(playlist2_view_apply),2)]]</start>
+    <onstart>Skin.SetString(Playlist2_ViewMode,50)</onstart>
+    <stop>!Control.IsVisible(50) | !Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist2_Path))]</stop>
+  </timer>
+  <timer>
+    <name>playlist2_view_save_500</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist2_Path))] + Control.IsVisible(500) + !Skin.String(Playlist2_ViewMode,500) + [String.IsEmpty(Skin.String(Playlist2_ViewMode)) | [Skin.TimerIsRunning(playlist2_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(playlist2_view_apply),2)]]</start>
+    <onstart>Skin.SetString(Playlist2_ViewMode,500)</onstart>
+    <stop>!Control.IsVisible(500) | !Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist2_Path))]</stop>
+  </timer>
+  <timer>
+    <name>playlist2_view_save_501</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist2_Path))] + Control.IsVisible(501) + !Skin.String(Playlist2_ViewMode,501) + [String.IsEmpty(Skin.String(Playlist2_ViewMode)) | [Skin.TimerIsRunning(playlist2_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(playlist2_view_apply),2)]]</start>
+    <onstart>Skin.SetString(Playlist2_ViewMode,501)</onstart>
+    <stop>!Control.IsVisible(501) | !Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist2_Path))]</stop>
+  </timer>
+  <timer>
+    <name>playlist2_view_save_502</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist2_Path))] + Control.IsVisible(502) + !Skin.String(Playlist2_ViewMode,502) + [String.IsEmpty(Skin.String(Playlist2_ViewMode)) | [Skin.TimerIsRunning(playlist2_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(playlist2_view_apply),2)]]</start>
+    <onstart>Skin.SetString(Playlist2_ViewMode,502)</onstart>
+    <stop>!Control.IsVisible(502) | !Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist2_Path))]</stop>
+  </timer>
+  <timer>
+    <name>playlist2_view_save_504</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist2_Path))] + Control.IsVisible(504) + !Skin.String(Playlist2_ViewMode,504) + [String.IsEmpty(Skin.String(Playlist2_ViewMode)) | [Skin.TimerIsRunning(playlist2_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(playlist2_view_apply),2)]]</start>
+    <onstart>Skin.SetString(Playlist2_ViewMode,504)</onstart>
+    <stop>!Control.IsVisible(504) | !Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist2_Path))]</stop>
+  </timer>
+  <timer>
+    <name>playlist2_view_save_505</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist2_Path))] + Control.IsVisible(505) + !Skin.String(Playlist2_ViewMode,505) + [String.IsEmpty(Skin.String(Playlist2_ViewMode)) | [Skin.TimerIsRunning(playlist2_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(playlist2_view_apply),2)]]</start>
+    <onstart>Skin.SetString(Playlist2_ViewMode,505)</onstart>
+    <stop>!Control.IsVisible(505) | !Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist2_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist2_Path))]</stop>
+  </timer>
+  <!-- Movie playlist 3: same layout memory as movie sets, for the playlist in MoviePlaylist3_Path -->
+  <timer>
+    <name>playlist3_view_apply</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist3_Path))] + !String.IsEmpty(Skin.String(Playlist3_ViewMode)) + !String.IsEqual(Window(home).Property(Playlist3_ViewPath),Container.FolderPath)</start>
+    <onstart>SetProperty(Playlist3_ViewPath,$INFO[Container.FolderPath],home)</onstart>
+    <onstart>Container.SetViewMode($INFO[Skin.String(Playlist3_ViewMode)])</onstart>
+    <stop>!Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist3_Path))]</stop>
+    <onstop>ClearProperty(Playlist3_ViewPath,home)</onstop>
+  </timer>
+  <timer>
+    <name>playlist3_view_save_50</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist3_Path))] + Control.IsVisible(50) + !Skin.String(Playlist3_ViewMode,50) + [String.IsEmpty(Skin.String(Playlist3_ViewMode)) | [Skin.TimerIsRunning(playlist3_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(playlist3_view_apply),2)]]</start>
+    <onstart>Skin.SetString(Playlist3_ViewMode,50)</onstart>
+    <stop>!Control.IsVisible(50) | !Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist3_Path))]</stop>
+  </timer>
+  <timer>
+    <name>playlist3_view_save_500</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist3_Path))] + Control.IsVisible(500) + !Skin.String(Playlist3_ViewMode,500) + [String.IsEmpty(Skin.String(Playlist3_ViewMode)) | [Skin.TimerIsRunning(playlist3_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(playlist3_view_apply),2)]]</start>
+    <onstart>Skin.SetString(Playlist3_ViewMode,500)</onstart>
+    <stop>!Control.IsVisible(500) | !Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist3_Path))]</stop>
+  </timer>
+  <timer>
+    <name>playlist3_view_save_501</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist3_Path))] + Control.IsVisible(501) + !Skin.String(Playlist3_ViewMode,501) + [String.IsEmpty(Skin.String(Playlist3_ViewMode)) | [Skin.TimerIsRunning(playlist3_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(playlist3_view_apply),2)]]</start>
+    <onstart>Skin.SetString(Playlist3_ViewMode,501)</onstart>
+    <stop>!Control.IsVisible(501) | !Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist3_Path))]</stop>
+  </timer>
+  <timer>
+    <name>playlist3_view_save_502</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist3_Path))] + Control.IsVisible(502) + !Skin.String(Playlist3_ViewMode,502) + [String.IsEmpty(Skin.String(Playlist3_ViewMode)) | [Skin.TimerIsRunning(playlist3_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(playlist3_view_apply),2)]]</start>
+    <onstart>Skin.SetString(Playlist3_ViewMode,502)</onstart>
+    <stop>!Control.IsVisible(502) | !Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist3_Path))]</stop>
+  </timer>
+  <timer>
+    <name>playlist3_view_save_504</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist3_Path))] + Control.IsVisible(504) + !Skin.String(Playlist3_ViewMode,504) + [String.IsEmpty(Skin.String(Playlist3_ViewMode)) | [Skin.TimerIsRunning(playlist3_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(playlist3_view_apply),2)]]</start>
+    <onstart>Skin.SetString(Playlist3_ViewMode,504)</onstart>
+    <stop>!Control.IsVisible(504) | !Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist3_Path))]</stop>
+  </timer>
+  <timer>
+    <name>playlist3_view_save_505</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist3_Path))] + Control.IsVisible(505) + !Skin.String(Playlist3_ViewMode,505) + [String.IsEmpty(Skin.String(Playlist3_ViewMode)) | [Skin.TimerIsRunning(playlist3_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(playlist3_view_apply),2)]]</start>
+    <onstart>Skin.SetString(Playlist3_ViewMode,505)</onstart>
+    <stop>!Control.IsVisible(505) | !Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist3_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist3_Path))]</stop>
+  </timer>
+  <!-- Movie playlist 4: same layout memory as movie sets, for the playlist in MoviePlaylist4_Path -->
+  <timer>
+    <name>playlist4_view_apply</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist4_Path))] + !String.IsEmpty(Skin.String(Playlist4_ViewMode)) + !String.IsEqual(Window(home).Property(Playlist4_ViewPath),Container.FolderPath)</start>
+    <onstart>SetProperty(Playlist4_ViewPath,$INFO[Container.FolderPath],home)</onstart>
+    <onstart>Container.SetViewMode($INFO[Skin.String(Playlist4_ViewMode)])</onstart>
+    <stop>!Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist4_Path))]</stop>
+    <onstop>ClearProperty(Playlist4_ViewPath,home)</onstop>
+  </timer>
+  <timer>
+    <name>playlist4_view_save_50</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist4_Path))] + Control.IsVisible(50) + !Skin.String(Playlist4_ViewMode,50) + [String.IsEmpty(Skin.String(Playlist4_ViewMode)) | [Skin.TimerIsRunning(playlist4_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(playlist4_view_apply),2)]]</start>
+    <onstart>Skin.SetString(Playlist4_ViewMode,50)</onstart>
+    <stop>!Control.IsVisible(50) | !Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist4_Path))]</stop>
+  </timer>
+  <timer>
+    <name>playlist4_view_save_500</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist4_Path))] + Control.IsVisible(500) + !Skin.String(Playlist4_ViewMode,500) + [String.IsEmpty(Skin.String(Playlist4_ViewMode)) | [Skin.TimerIsRunning(playlist4_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(playlist4_view_apply),2)]]</start>
+    <onstart>Skin.SetString(Playlist4_ViewMode,500)</onstart>
+    <stop>!Control.IsVisible(500) | !Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist4_Path))]</stop>
+  </timer>
+  <timer>
+    <name>playlist4_view_save_501</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist4_Path))] + Control.IsVisible(501) + !Skin.String(Playlist4_ViewMode,501) + [String.IsEmpty(Skin.String(Playlist4_ViewMode)) | [Skin.TimerIsRunning(playlist4_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(playlist4_view_apply),2)]]</start>
+    <onstart>Skin.SetString(Playlist4_ViewMode,501)</onstart>
+    <stop>!Control.IsVisible(501) | !Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist4_Path))]</stop>
+  </timer>
+  <timer>
+    <name>playlist4_view_save_502</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist4_Path))] + Control.IsVisible(502) + !Skin.String(Playlist4_ViewMode,502) + [String.IsEmpty(Skin.String(Playlist4_ViewMode)) | [Skin.TimerIsRunning(playlist4_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(playlist4_view_apply),2)]]</start>
+    <onstart>Skin.SetString(Playlist4_ViewMode,502)</onstart>
+    <stop>!Control.IsVisible(502) | !Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist4_Path))]</stop>
+  </timer>
+  <timer>
+    <name>playlist4_view_save_504</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist4_Path))] + Control.IsVisible(504) + !Skin.String(Playlist4_ViewMode,504) + [String.IsEmpty(Skin.String(Playlist4_ViewMode)) | [Skin.TimerIsRunning(playlist4_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(playlist4_view_apply),2)]]</start>
+    <onstart>Skin.SetString(Playlist4_ViewMode,504)</onstart>
+    <stop>!Control.IsVisible(504) | !Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist4_Path))]</stop>
+  </timer>
+  <timer>
+    <name>playlist4_view_save_505</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist4_Path))] + Control.IsVisible(505) + !Skin.String(Playlist4_ViewMode,505) + [String.IsEmpty(Skin.String(Playlist4_ViewMode)) | [Skin.TimerIsRunning(playlist4_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(playlist4_view_apply),2)]]</start>
+    <onstart>Skin.SetString(Playlist4_ViewMode,505)</onstart>
+    <stop>!Control.IsVisible(505) | !Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist4_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist4_Path))]</stop>
+  </timer>
+  <!-- Movie playlist 5: same layout memory as movie sets, for the playlist in MoviePlaylist5_Path -->
+  <timer>
+    <name>playlist5_view_apply</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist5_Path))] + !String.IsEmpty(Skin.String(Playlist5_ViewMode)) + !String.IsEqual(Window(home).Property(Playlist5_ViewPath),Container.FolderPath)</start>
+    <onstart>SetProperty(Playlist5_ViewPath,$INFO[Container.FolderPath],home)</onstart>
+    <onstart>Container.SetViewMode($INFO[Skin.String(Playlist5_ViewMode)])</onstart>
+    <stop>!Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist5_Path))]</stop>
+    <onstop>ClearProperty(Playlist5_ViewPath,home)</onstop>
+  </timer>
+  <timer>
+    <name>playlist5_view_save_50</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist5_Path))] + Control.IsVisible(50) + !Skin.String(Playlist5_ViewMode,50) + [String.IsEmpty(Skin.String(Playlist5_ViewMode)) | [Skin.TimerIsRunning(playlist5_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(playlist5_view_apply),2)]]</start>
+    <onstart>Skin.SetString(Playlist5_ViewMode,50)</onstart>
+    <stop>!Control.IsVisible(50) | !Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist5_Path))]</stop>
+  </timer>
+  <timer>
+    <name>playlist5_view_save_500</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist5_Path))] + Control.IsVisible(500) + !Skin.String(Playlist5_ViewMode,500) + [String.IsEmpty(Skin.String(Playlist5_ViewMode)) | [Skin.TimerIsRunning(playlist5_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(playlist5_view_apply),2)]]</start>
+    <onstart>Skin.SetString(Playlist5_ViewMode,500)</onstart>
+    <stop>!Control.IsVisible(500) | !Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist5_Path))]</stop>
+  </timer>
+  <timer>
+    <name>playlist5_view_save_501</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist5_Path))] + Control.IsVisible(501) + !Skin.String(Playlist5_ViewMode,501) + [String.IsEmpty(Skin.String(Playlist5_ViewMode)) | [Skin.TimerIsRunning(playlist5_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(playlist5_view_apply),2)]]</start>
+    <onstart>Skin.SetString(Playlist5_ViewMode,501)</onstart>
+    <stop>!Control.IsVisible(501) | !Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist5_Path))]</stop>
+  </timer>
+  <timer>
+    <name>playlist5_view_save_502</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist5_Path))] + Control.IsVisible(502) + !Skin.String(Playlist5_ViewMode,502) + [String.IsEmpty(Skin.String(Playlist5_ViewMode)) | [Skin.TimerIsRunning(playlist5_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(playlist5_view_apply),2)]]</start>
+    <onstart>Skin.SetString(Playlist5_ViewMode,502)</onstart>
+    <stop>!Control.IsVisible(502) | !Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist5_Path))]</stop>
+  </timer>
+  <timer>
+    <name>playlist5_view_save_504</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist5_Path))] + Control.IsVisible(504) + !Skin.String(Playlist5_ViewMode,504) + [String.IsEmpty(Skin.String(Playlist5_ViewMode)) | [Skin.TimerIsRunning(playlist5_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(playlist5_view_apply),2)]]</start>
+    <onstart>Skin.SetString(Playlist5_ViewMode,504)</onstart>
+    <stop>!Control.IsVisible(504) | !Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist5_Path))]</stop>
+  </timer>
+  <timer>
+    <name>playlist5_view_save_505</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist5_Path))] + Control.IsVisible(505) + !Skin.String(Playlist5_ViewMode,505) + [String.IsEmpty(Skin.String(Playlist5_ViewMode)) | [Skin.TimerIsRunning(playlist5_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(playlist5_view_apply),2)]]</start>
+    <onstart>Skin.SetString(Playlist5_ViewMode,505)</onstart>
+    <stop>!Control.IsVisible(505) | !Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist5_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist5_Path))]</stop>
+  </timer>
+  <!-- Movie playlist 6: same layout memory as movie sets, for the playlist in MoviePlaylist6_Path -->
+  <timer>
+    <name>playlist6_view_apply</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist6_Path))] + !String.IsEmpty(Skin.String(Playlist6_ViewMode)) + !String.IsEqual(Window(home).Property(Playlist6_ViewPath),Container.FolderPath)</start>
+    <onstart>SetProperty(Playlist6_ViewPath,$INFO[Container.FolderPath],home)</onstart>
+    <onstart>Container.SetViewMode($INFO[Skin.String(Playlist6_ViewMode)])</onstart>
+    <stop>!Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist6_Path))]</stop>
+    <onstop>ClearProperty(Playlist6_ViewPath,home)</onstop>
+  </timer>
+  <timer>
+    <name>playlist6_view_save_50</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist6_Path))] + Control.IsVisible(50) + !Skin.String(Playlist6_ViewMode,50) + [String.IsEmpty(Skin.String(Playlist6_ViewMode)) | [Skin.TimerIsRunning(playlist6_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(playlist6_view_apply),2)]]</start>
+    <onstart>Skin.SetString(Playlist6_ViewMode,50)</onstart>
+    <stop>!Control.IsVisible(50) | !Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist6_Path))]</stop>
+  </timer>
+  <timer>
+    <name>playlist6_view_save_500</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist6_Path))] + Control.IsVisible(500) + !Skin.String(Playlist6_ViewMode,500) + [String.IsEmpty(Skin.String(Playlist6_ViewMode)) | [Skin.TimerIsRunning(playlist6_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(playlist6_view_apply),2)]]</start>
+    <onstart>Skin.SetString(Playlist6_ViewMode,500)</onstart>
+    <stop>!Control.IsVisible(500) | !Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist6_Path))]</stop>
+  </timer>
+  <timer>
+    <name>playlist6_view_save_501</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist6_Path))] + Control.IsVisible(501) + !Skin.String(Playlist6_ViewMode,501) + [String.IsEmpty(Skin.String(Playlist6_ViewMode)) | [Skin.TimerIsRunning(playlist6_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(playlist6_view_apply),2)]]</start>
+    <onstart>Skin.SetString(Playlist6_ViewMode,501)</onstart>
+    <stop>!Control.IsVisible(501) | !Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist6_Path))]</stop>
+  </timer>
+  <timer>
+    <name>playlist6_view_save_502</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist6_Path))] + Control.IsVisible(502) + !Skin.String(Playlist6_ViewMode,502) + [String.IsEmpty(Skin.String(Playlist6_ViewMode)) | [Skin.TimerIsRunning(playlist6_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(playlist6_view_apply),2)]]</start>
+    <onstart>Skin.SetString(Playlist6_ViewMode,502)</onstart>
+    <stop>!Control.IsVisible(502) | !Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist6_Path))]</stop>
+  </timer>
+  <timer>
+    <name>playlist6_view_save_504</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist6_Path))] + Control.IsVisible(504) + !Skin.String(Playlist6_ViewMode,504) + [String.IsEmpty(Skin.String(Playlist6_ViewMode)) | [Skin.TimerIsRunning(playlist6_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(playlist6_view_apply),2)]]</start>
+    <onstart>Skin.SetString(Playlist6_ViewMode,504)</onstart>
+    <stop>!Control.IsVisible(504) | !Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist6_Path))]</stop>
+  </timer>
+  <timer>
+    <name>playlist6_view_save_505</name>
+    <start reset="true">Window.IsActive(videos) + Container.Content(movies) + [!String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist6_Path))] + Control.IsVisible(505) + !Skin.String(Playlist6_ViewMode,505) + [String.IsEmpty(Skin.String(Playlist6_ViewMode)) | [Skin.TimerIsRunning(playlist6_view_apply) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(playlist6_view_apply),2)]]</start>
+    <onstart>Skin.SetString(Playlist6_ViewMode,505)</onstart>
+    <stop>!Control.IsVisible(505) | !Window.IsActive(videos) | !Container.Content(movies) | ![!String.IsEmpty(Skin.String(MoviePlaylist6_Path)) + String.IsEqual(Container.FolderPath,Skin.String(MoviePlaylist6_Path))]</stop>
+  </timer>
+  <!-- Trailer from the context menu, played inside the Strip view's artwork (Templates_Dialogs.xml, Extras_Trailer_Window.xml).
+       Trailer_Window_Request is set while the trailer is being fetched. -->
+  <timer>
+    <!-- The trailer's picture is there (start-up caching done): show it and give the remote to the controls dialog -->
+    <name>trailer_window_start</name>
+    <start>!String.IsEmpty(Window(home).Property(Trailer_Window_Request)) + !String.IsEmpty(Window(home).Property(Trailer_Window)) + Player.HasVideo + String.IsEmpty(VideoPlayer.DBID) + !Window.IsActive(fullscreenvideo) + !Player.Caching + Integer.IsGreater(Player.Process(videowidth),0) + Window.IsActive(videos) + ![Window.IsVisible(busydialog) | Window.IsVisible(busydialognocancel)] + ![!System.HasActiveModalDialog + !String.IsEmpty(Container(504).CurrentItem) + !String.IsEqual(Window(home).Property(Trailer_Window),Container(504).CurrentItem)]</start>
+    <onstart>ClearProperty(Trailer_Window_Request,home)</onstart>
+    <onstart>SetProperty(Trailer_Window_Playing,true,home)</onstart>
+    <onstart>ActivateWindow(1191)</onstart>
+    <stop>String.IsEmpty(Window(home).Property(Trailer_Window_Request))</stop>
+  </timer>
+  <timer>
+    <!-- The trailer started after the user moved on (another item, Up/Down/Back, another window): stop it -->
+    <name>trailer_window_cancel</name>
+    <start>!String.IsEmpty(Window(home).Property(Trailer_Window_Request)) + Player.HasVideo + String.IsEmpty(VideoPlayer.DBID) + !Window.IsActive(fullscreenvideo) + [String.IsEmpty(Window(home).Property(Trailer_Window)) | !Window.IsActive(videos) | [!System.HasActiveModalDialog + !String.IsEmpty(Container(504).CurrentItem) + !String.IsEqual(Window(home).Property(Trailer_Window),Container(504).CurrentItem)]]</start>
+    <onstart>ClearProperty(Trailer_Window_Request,home)</onstart>
+    <onstart>ClearProperty(Trailer_Window,home)</onstart>
+    <onstart>PlayerControl(Stop)</onstart>
+    <stop>String.IsEmpty(Window(home).Property(Trailer_Window_Request))</stop>
+  </timer>
+  <timer>
+    <!-- Nothing playing and nothing loading for 5 seconds: the trailer isn't coming (e.g. YouTube refused it) -->
+    <name>trailer_window_timeout</name>
+    <start reset="true">!String.IsEmpty(Window(home).Property(Trailer_Window_Request)) + !Player.HasMedia + ![Window.IsVisible(busydialog) | Window.IsVisible(busydialognocancel)]</start>
+    <stop>String.IsEmpty(Window(home).Property(Trailer_Window_Request)) | Player.HasMedia | [Window.IsVisible(busydialog) | Window.IsVisible(busydialognocancel)] | Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(trailer_window_timeout),5)</stop>
+    <onstop condition="!String.IsEmpty(Window(home).Property(Trailer_Window_Request)) + !Player.HasMedia + ![Window.IsVisible(busydialog) | Window.IsVisible(busydialognocancel)]">ClearProperty(Trailer_Window_Request,home)</onstop>
+    <onstop condition="!String.IsEmpty(Window(home).Property(Trailer_Window_Request)) + !Player.HasMedia + ![Window.IsVisible(busydialog) | Window.IsVisible(busydialognocancel)]">ClearProperty(Trailer_Window,home)</onstop>
+  </timer>
+  <timer>
+    <!-- Back (Trailer_Window_Closing) or the trailer ended: the artwork shrinks back onto its tile, then everything is reset -->
+    <name>trailer_window_cleanup</name>
+    <start reset="true">!String.IsEmpty(Window(home).Property(Trailer_Window_Playing)) + [!String.IsEmpty(Window(home).Property(Trailer_Window_Closing)) | !Player.HasVideo]</start>
+    <stop>Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(trailer_window_cleanup),1)</stop>
+    <onstop>ClearProperty(Trailer_Window_Playing,home)</onstop>
+    <onstop>ClearProperty(Trailer_Window_Closing,home)</onstop>
+    <onstop>ClearProperty(Trailer_Window,home)</onstop>
+    <onstop>Dialog.Close(1191,true)</onstop>
+  </timer>
+</timers>
